@@ -1,0 +1,71 @@
+[INFO ] 2018-03-08 12:06:27.366 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-08 12:06:27.367 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-08 12:06:27.367 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-08 12:06:27.367 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-08 12:06:27.367 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-08 12:06:27.367 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-08 12:06:27.367 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-08 12:06:27.367 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-08 12:06:27.367 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-08 12:06:33.514 [main] RFWebsiteDriver - Window is maximized
+[INFO ] 2018-03-08 12:06:33.515 [main] RFWebsiteDriver - All cookies deleted
+[INFO ] 2018-03-08 12:06:33.515 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-08 12:06:34.901 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-08 12:06:34.930 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-08 12:06:35.000 [main] DBUtil - QUERY TRIGGERED IS SELECT top 1 * FROM Commissions.[calcs].[vwQualificationSummary] where SV!=0 and PSQV!=0 and L1L2!=0 and L1L6!=0 and ECLegs > 0 and periodid= LEFT(CONVERT(varchar, GetDate(),112),6)  order by NewID() desc
+
+[INFO ] 2018-03-08 12:06:49.772 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantAdhocOrderDetailsOnOrderCards_2848q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:49.829 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantAdhocOrderDetailsOnOrderCards_2848q skipped]
+[INFO ] 2018-03-08 12:06:49.919 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoadingOrdersScreen_2821q_2820q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:49.927 [main] TestListner - [TEST IS SKIPPED -------- Test case testLoadingOrdersScreen_2821q_2820q skipped]
+[INFO ] 2018-03-08 12:06:49.943 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderStatusOrderResultsBasedOnOrderFilter_2835q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:49.949 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderStatusOrderResultsBasedOnOrderFilter_2835q skipped]
+[INFO ] 2018-03-08 12:06:49.962 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderTypeOrderResultsBasedOnOrderFilter_2834q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:49.973 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderTypeOrderResultsBasedOnOrderFilter_2834q skipped]
+[INFO ] 2018-03-08 12:06:49.994 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCAdhocOrderDetailsOnOrderCards_2844q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:50.000 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCAdhocOrderDetailsOnOrderCards_2844q skipped]
+[INFO ] 2018-03-08 12:06:50.020 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPulseSubscriptionOrderDetailsOnOrderCards_2843q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:50.024 [main] TestListner - [TEST IS SKIPPED -------- Test case testPulseSubscriptionOrderDetailsOnOrderCards_2843q skipped]
+[INFO ] 2018-03-08 12:06:50.034 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testRetailAdhocOrderDetailsOnOrderCards_2841q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:50.039 [main] TestListner - [TEST IS SKIPPED -------- Test case testRetailAdhocOrderDetailsOnOrderCards_2841q skipped]
+[INFO ] 2018-03-08 12:06:50.048 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsOnOrderCards_2838q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:50.052 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsOnOrderCards_2838q skipped]
+[INFO ] 2018-03-08 12:06:50.060 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:50.064 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q skipped]
+[INFO ] 2018-03-08 12:06:50.074 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForFailedPCOrders_3430q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:50.078 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForFailedPCOrders_3430q skipped]
+[INFO ] 2018-03-08 12:06:50.086 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q
+******************************************************************************************************************************
+[INFO ] 2018-03-08 12:06:50.090 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q skipped]

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="RFNSCore4FullRegressionSuite">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="RFNSCore4FullRegressionTestsSuite3">
+		<classes>
+			<class name="com.rf.test.website.nscore4.NSCore4AccountTest">
+				<methods>
+					<!--<include name="testBasePWSSiteDetailsEditSite_256"></include>
+					<include name="testBasePWSReplicateSites_257"></include>
+					<include name="testBasePWSNewEditDeleteEvent_253"></include>
+					<include name="testProductsManagementFulfillmentDetails_295"></include>
+					<include name="testProductsManagementProductTypes_296"></include>
+					<include name="testProductsManagementAddNewProduct"></include>
+					<include name="testCorporateSitePageAddEditNewSite_246"></include>
+					<include name="testCorporateUploadEditResource_243"></include>
+					<include name="testNsCorporateResourceLibrary_249"></include>
+					<include name="testBasePWSAddEditDeleteNews_254"></include>
+					<include name="testBasePWSUploadEditResource_255"></include>
+					<include name="testBasePWSResourceLibrary"></include>
+					<include name="testSiteSubscriptionsUpdate_276"></include>
+					<include name="testDisbursementProfilesNew_280"></include>
+					<include name="testProductsTabCategoryTrees_292"></include>
+					<include name="testProductsManagementBrowseProducts_293"></include>
+					<include name="testCorporateCalendarEvents_248"></include>-->
+					<include name="testMAIN5200SOOAndMultipleLineItemZeroTaxOnly_971"></include>
+					<include name="testSaveNewBillingProfilePCAutoshipTemplateNSC4_1954q"></include>
+					<include name="testMAIN5200SOOAndMultipleLineItemZeroPriceOnly_970"></include>
+					<include name="testMAIN5200OverrideComission_973v"></include>
+					<include name="testAccountLookupAdvanceSearch_267"></include>
+					<include name="testOverridePriceHigherThanOriginal_976_981_963"></include>
+					<include name="testMAIN5200OverrideShipping_974_983"></include>
+					<include name="testMAIN5200OverrideOverrideNotChangeOnAnyValue_975_982"></include>
+					<include name="testMAIN5200RecalculateSubtotalAfterChangeItemPrice_940"></include>
+					<include name="testMAIN5200PerformOverrideWithAValueLessThanTheOriginal_941"></include>
+					<include name="testMAIN5200EditQVOnOverride_942"></include>
+						<!--  
+					<include name="testEditCorporateSiteContent_686q"></include>
+					<include name="testEditPWSComSiteContent_687q"></include>
+					<include name="testEditPWSBizSiteContent_688q"></include>
+					<include name="testNsCorporateCorporateSiteEditMode_252q"></include>
+					<include name="testNSC4_SitesTab_nsDistributor_BasePWSLoadSiteEditModeCom_264q"></include>
+					<include name="testNSC4_SitesTab_nsDistributor_BasePWSLoadSiteEditModeBiz_265q"></include>
+					<include name="testCORPEditSiteContentForProductCategoryPage_Redefine_699q"></include>
+					<include name="testPWSBizEditSiteContentForProductCategoryPage_Redefine_700q"></include>
+					<include name="testPWSCOMEditSiteContentForProductCategoryPage_Redefine_701q"></include>
+					<include name="testNSC4ControlledBlocksForEditorialPages_689q"></include>-->
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
+				

@@ -1,0 +1,11 @@
+[
+  {
+    "name": "Non Executed Tests", 
+    "matchedStatuses": ["skipped"] 
+  },
+  {
+    "name": "WebElement not found issue",
+     "traceRegex": ".*element not visible*","no such element" 
+      "matchedStatuses": ["failed"]
+  }  
+]

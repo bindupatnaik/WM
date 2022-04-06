@@ -1,0 +1,65 @@
+[DEBUG] 2018-04-03 14:43:37.616 [main] RFBaseTest - Started execution with  null
+[INFO ] 2018-04-03 14:43:37.622 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-04-03 14:43:37.623 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-04-03 14:43:37.623 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-04-03 14:43:37.623 [main] RFBaseTest - Default user password is  ------ null
+[INFO ] 2018-04-03 14:43:37.623 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-04-03 14:43:37.623 [main] RFBaseTest - Default DB IP is  ------ 10.115.2.18 
+[INFO ] 2018-04-03 14:43:37.624 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-04-03 14:43:37.624 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-04-03 14:43:37.624 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-04-03 14:43:38.958 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantAdhocOrderDetailsOnOrderCards_2848q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.015 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantAdhocOrderDetailsOnOrderCards_2848q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.121 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoadingOrdersScreen_2821q_2820q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.125 [main] TestListner - [TEST IS SKIPPED -------- Test case testLoadingOrdersScreen_2821q_2820q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.135 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderStatusOrderResultsBasedOnOrderFilter_2835q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.138 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderStatusOrderResultsBasedOnOrderFilter_2835q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.143 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderTypeOrderResultsBasedOnOrderFilter_2834q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.148 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderTypeOrderResultsBasedOnOrderFilter_2834q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.158 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCAdhocOrderDetailsOnOrderCards_2844q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.161 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCAdhocOrderDetailsOnOrderCards_2844q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.169 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPulseSubscriptionOrderDetailsOnOrderCards_2843q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.172 [main] TestListner - [TEST IS SKIPPED -------- Test case testPulseSubscriptionOrderDetailsOnOrderCards_2843q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.177 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testRetailAdhocOrderDetailsOnOrderCards_2841q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.183 [main] TestListner - [TEST IS SKIPPED -------- Test case testRetailAdhocOrderDetailsOnOrderCards_2841q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.203 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsOnOrderCards_2838q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.209 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsOnOrderCards_2838q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.221 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.226 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.243 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForFailedPCOrders_3430q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.249 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForFailedPCOrders_3430q skipped] due to null
+[INFO ] 2018-04-03 14:43:39.262 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 14:43:39.266 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q skipped] due to null

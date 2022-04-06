@@ -1,0 +1,341 @@
+[INFO ] 2018-03-21 15:44:58.942 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-21 15:44:58.942 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-21 15:44:58.942 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:44:58.942 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-21 15:44:58.943 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-21 15:44:58.943 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-21 15:44:58.943 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-21 15:44:58.943 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-21 15:44:58.943 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-21 15:45:03.340 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:45:05.450 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-21 15:45:05.465 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-21 15:45:05.527 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1
+                                            PeriodID
+                                   FROM     Commissions.reference.Periods
+                                   WHERE    ClosedDate IS NULL
+                                   ORDER BY PeriodID ASC
+                                 ) ,
+    @AccountID INT ,
+    @UserName NVARCHAR(225) ,
+    @Country NVARCHAR(225)
+
+SELECT TOP 1
+        @AccountID = ab.AccountID ,
+        @UserName = ac.Username ,
+        @Country = co.Alpha2Code
+FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab
+        JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID
+        JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID
+        JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID
+WHERE   ab.AccountTypeID = 1
+        AND ab.AccountStatusID = 1
+        AND co.Alpha2Code = 'US'
+        AND rf.Active = 1
+        AND EXISTS ( SELECT 1
+                     FROM   RFOperations.Hybris.Autoship (NOLOCK) a
+                     WHERE  a.AccountID = ab.AccountID
+                            AND a.AutoshipTypeID = 3
+                            AND a.Active = 1 )
+        AND EXISTS ( SELECT 1
+                     FROM   Commissions.calcs.vwQualificationSummary v
+                     WHERE  ab.AccountID = v.AccountID
+                            AND v.PeriodID = @CurrentOpenPeriod
+                            AND v.SV >= 100
+                            AND v.PSQV >= 600 )
+ORDER BY NEWID()
+
+SELECT  ISNULL(@AccountID, 1496) AccountID ,
+        ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName ,
+        ISNULL(@Country, 'US') Country ,
+        @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-03-21 15:45:12.680 [main] RFLSDWebsiteBaseTest - randomConsultantDetailsList:[{AccountID=9090127, UserName=dlove2385@gmail.com, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-03-21 15:45:12.680 [main] RFLSDWebsiteBaseTest - Data returned by query: 9090127
+[INFO ] 2018-03-21 15:45:12.680 [main] RFLSDWebsiteBaseTest - Data returned by query: dlove2385@gmail.com
+[INFO ] 2018-03-21 15:45:12.680 [main] RFLSDWebsiteBaseTest - userName:[{AccountID=9090127, UserName=dlove2385@gmail.com, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-03-21 15:45:12.680 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:45:12.702 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 15:45:12.741 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-21 15:45:12.752 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:12.752 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-21 15:45:13.129 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-21 15:45:13.130 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-21 15:45:13.140 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:13.282 [main] RFWebsiteDriver - TYPED text as = tracyscronin77@gmail.com in  text field
+[INFO ] 2018-03-21 15:45:13.283 [main] LSDLoginPage - username is tracyscronin77@gmail.com
+[INFO ] 2018-03-21 15:45:13.283 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-21 15:45:13.283 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-21 15:45:13.297 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:13.404 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-21 15:45:13.404 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-21 15:45:13.437 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-21 15:45:13.509 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-21 15:45:23.833 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:45:24.358 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:45:24.450 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:45:24.450 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:45:29.778 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:45:29.788 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:29.848 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:45:29.848 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:45:29.883 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:45:29.947 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:45:30.020 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLeadTheWayLink_1455q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:45:30.065 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:45:30.065 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:45:30.080 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:30.164 [main] RFWebsiteDriver - Lead the Way ready to be clicked
+[INFO ] 2018-03-21 15:45:30.250 [main] RFWebsiteDriver - CLICKED on Lead the Way
+[INFO ] 2018-03-21 15:45:31.264 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:45:33.265 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:45:35.313 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:45:35.323 [main] RFWebsiteDriver - current URL is https://safe.menlosecurity.com/safeview-auth-server/saml
+[INFO ] 2018-03-21 15:45:35.326 [main] SoftAssert - VERIFICATION FAILED: Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney expected [true] but found [false]
+[INFO ] 2018-03-21 15:45:35.326 [main] SoftAssert - Expected: true
+[INFO ] 2018-03-21 15:45:35.326 [main] SoftAssert - Actual: false
+[INFO ] 2018-03-21 15:45:35.326 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-21 15:45:38.461 [main] SoftAssert - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testVerifyLeadTheWayLink_1455q\Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney expected [true] but found [false].png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testVerifyLeadTheWayLink_1455q\Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney expected [true] but found [false].png</a>
+
+[INFO ] 2018-03-21 15:45:38.585 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:45:38.588 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:45:40.591 [main] TestListner - [TEST HAS FAILED-------- Test case testVerifyLeadTheWayLink_1455q has failed] due to reason:-<br>  java.lang.AssertionError: 1.Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney
+
+[INFO ] 2018-03-21 15:45:40.657 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:45:41.148 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:45:41.358 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:45:41.358 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:45:46.626 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:45:46.635 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:46.701 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:45:46.702 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:45:46.746 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:45:46.838 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:45:46.840 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFConnectionLink_1456q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:45:46.845 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:45:46.846 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:45:46.875 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:46.974 [main] RFWebsiteDriver - RF Connection ready to be clicked
+[INFO ] 2018-03-21 15:45:47.084 [main] RFWebsiteDriver - CLICKED on RF Connection
+[INFO ] 2018-03-21 15:45:48.098 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:45:50.099 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:45:51.133 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:45:51.141 [main] RFWebsiteDriver - current URL is http://www.rodanandfields.com/rfconnection/
+[INFO ] 2018-03-21 15:45:51.291 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:45:51.296 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:45:53.296 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyRFConnectionLink_1456q has passed]
+[INFO ] 2018-03-21 15:45:53.317 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:45:53.843 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:45:54.016 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:45:54.016 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:45:59.350 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:45:59.360 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:59.416 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:45:59.416 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:45:59.444 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:45:59.503 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:45:59.505 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFJourneyLink_1457q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:45:59.511 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:45:59.511 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:45:59.522 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:45:59.599 [main] RFWebsiteDriver - RF Journey ready to be clicked
+[INFO ] 2018-03-21 15:45:59.690 [main] RFWebsiteDriver - CLICKED on RF Journey
+[INFO ] 2018-03-21 15:46:00.699 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:46:02.699 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:46:03.729 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:46:03.737 [main] RFWebsiteDriver - current URL is https://randfjourney.com/
+[INFO ] 2018-03-21 15:46:03.866 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:46:03.869 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:46:05.870 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyRFJourneyLink_1457q has passed]
+[INFO ] 2018-03-21 15:46:05.876 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:46:06.325 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:46:06.428 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:46:06.428 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:46:11.663 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:46:11.687 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:46:11.751 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:46:11.752 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:46:11.791 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:46:11.873 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:46:11.875 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFMallLink_1458q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:46:11.881 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:46:11.881 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:46:11.900 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:46:11.991 [main] RFWebsiteDriver - RF Mall ready to be clicked
+[INFO ] 2018-03-21 15:46:12.078 [main] RFWebsiteDriver - CLICKED on RF Mall
+[INFO ] 2018-03-21 15:46:13.090 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:46:15.091 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:46:16.125 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:46:16.131 [main] RFWebsiteDriver - current URL is http://rodanfields.dsa-direct.com/landingpage.aspx
+[INFO ] 2018-03-21 15:46:16.190 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:46:16.195 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:46:18.196 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyRFMallLink_1458q has passed]
+[INFO ] 2018-03-21 15:46:18.206 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:46:18.722 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:46:18.818 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:46:18.819 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:46:24.165 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:46:24.175 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:46:24.231 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:46:24.231 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:46:24.259 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:46:24.310 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:46:24.312 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFPaydayLink_1459q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:46:24.317 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:46:24.317 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:46:24.328 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:46:24.409 [main] RFWebsiteDriver - RF Payday ready to be clicked
+[INFO ] 2018-03-21 15:46:24.503 [main] RFWebsiteDriver - CLICKED on RF Payday
+[INFO ] 2018-03-21 15:46:25.514 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:46:27.515 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:46:28.543 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:46:28.549 [main] RFWebsiteDriver - current URL is https://payday.myrandf.com/hw2web/landing.xhtml?faces-redirect=true&refreshme=true
+[INFO ] 2018-03-21 15:46:28.573 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:46:28.578 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:46:30.579 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyRFPaydayLink_1459q has passed]
+[INFO ] 2018-03-21 15:46:30.585 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:46:30.971 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:46:31.074 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:46:31.074 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:46:36.450 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:46:36.460 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:46:36.512 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:46:36.512 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:46:36.539 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:46:36.599 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:46:36.602 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkCommsCorner_1447q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:46:36.608 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:46:36.608 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:46:36.618 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:46:36.696 [main] RFWebsiteDriver - Comms Corner ready to be clicked
+[INFO ] 2018-03-21 15:46:36.795 [main] RFWebsiteDriver - CLICKED on Comms Corner
+[INFO ] 2018-03-21 15:46:37.805 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:46:39.807 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:46:40.852 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:46:40.860 [main] RFWebsiteDriver - current URL is https://communications.rodanandfields.com/login.php
+[INFO ] 2018-03-21 15:46:40.893 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:46:40.899 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:46:42.900 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyLinkCommsCorner_1447q has passed]
+[INFO ] 2018-03-21 15:46:42.916 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:46:43.440 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:46:43.530 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:46:43.530 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:46:48.848 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:46:48.859 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:46:48.919 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:46:48.919 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:46:48.952 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:46:49.021 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:46:49.023 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkConsultantLEDEvents_1448
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:46:49.029 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:46:49.029 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:46:49.045 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:46:49.120 [main] RFWebsiteDriver - Consultant - Led Events ready to be clicked
+[INFO ] 2018-03-21 15:46:49.208 [main] RFWebsiteDriver - CLICKED on Consultant - Led Events
+[INFO ] 2018-03-21 15:46:50.218 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:46:52.218 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:46:54.388 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:46:54.660 [main] RFWebsiteDriver - current URL is https://nvite.com/community/rfconsultantevents
+[INFO ] 2018-03-21 15:46:54.842 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:46:54.865 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:46:56.866 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyLinkConsultantLEDEvents_1448 has passed]
+[INFO ] 2018-03-21 15:46:56.880 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:46:57.504 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:46:57.600 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:46:57.601 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:47:02.951 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:47:02.958 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:47:03.013 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:47:03.013 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:47:03.046 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:47:03.107 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:47:03.109 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkCorporateEvents_1449q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:47:03.113 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:47:03.114 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:47:03.136 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:47:03.204 [main] RFWebsiteDriver - Corporate events ready to be clicked
+[INFO ] 2018-03-21 15:47:03.292 [main] RFWebsiteDriver - CLICKED on Corporate events
+[INFO ] 2018-03-21 15:47:04.302 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:47:06.304 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:47:10.219 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:47:10.231 [main] RFWebsiteDriver - current URL is https://www.reg.rodanandfieldsevents.com/ehome/index.php?eventid=221012
+[INFO ] 2018-03-21 15:47:10.264 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:47:10.273 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:47:12.276 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyLinkCorporateEvents_1449q has passed]
+[INFO ] 2018-03-21 15:47:12.285 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:47:12.732 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:47:12.781 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:47:12.782 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 15:47:18.047 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 15:47:18.057 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:47:18.108 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=TRACY
+[INFO ] 2018-03-21 15:47:18.108 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 15:47:18.133 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 15:47:18.195 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 15:47:18.197 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkGettingStarted_1450q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 15:47:18.213 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:47:18.214 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 15:47:18.227 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:47:18.376 [main] RFWebsiteDriver - Getting Started ready to be clicked
+[INFO ] 2018-03-21 15:47:18.513 [main] RFWebsiteDriver - CLICKED on Getting Started
+[INFO ] 2018-03-21 15:47:19.530 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 15:47:21.530 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 15:47:24.084 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 15:47:24.090 [main] RFWebsiteDriver - current URL is https://www.rodanandfields.com/getstarted/login
+[INFO ] 2018-03-21 15:47:24.116 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 15:47:24.123 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 15:47:26.124 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyLinkGettingStarted_1450q has passed]
+[INFO ] 2018-03-21 15:47:26.132 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:47:26.158 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 15:47:26.159 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-21 15:47:26.184 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:47:26.214 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-21 15:47:26.281 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-03-21 15:47:26.281 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-03-21 15:47:26.281 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-03-21 15:47:26.358 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-03-21 15:47:26.358 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:47:26.369 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 15:47:26.369 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 15:47:26.915 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:47:27.004 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 15:47:27.005 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:47:28.066 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-21 15:47:29.109 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-21 15:47:29.162 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 15:47:29.162 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-21 15:47:29.176 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 15:47:29.200 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-21 15:47:29.279 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-03-21 15:47:29.279 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-03-21 15:47:29.279 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-03-21 15:47:29.339 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-03-21 15:47:29.339 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 15:47:29.352 [main] RFWebsiteDriver - LSD loading image disappears

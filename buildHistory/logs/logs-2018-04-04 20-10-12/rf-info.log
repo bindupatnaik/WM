@@ -1,0 +1,377 @@
+[INFO ] 2018-04-04 20:04:42.906 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-04-04 20:04:42.907 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-04-04 20:04:42.907 [main] RFBaseTest - Default URL is  ------ https://laserhead-ppd2.us-east-1.elasticbeanstalk.com
+[INFO ] 2018-04-04 20:04:42.907 [main] RFBaseTest - Default user password is  ------ null
+[INFO ] 2018-04-04 20:04:42.907 [main] RFBaseTest - Default Country is  ------ ca
+[INFO ] 2018-04-04 20:04:42.907 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-04-04 20:04:42.908 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-04-04 20:04:42.908 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-04-04 20:04:42.908 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-04-04 20:04:48.469 [main] RFWebsiteDriver - URL opened is https://laserhead-ppd2.us-east-1.elasticbeanstalk.com
+[INFO ] 2018-04-04 20:04:50.645 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-04 20:04:50.666 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-04 20:04:52.667 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-04-04 20:04:52.681 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-04-04 20:04:52.732 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1    PeriodID FROM     Commissions.reference.Periods WHERE    ClosedDate IS NULL   ORDER BY PeriodID ASC ) ,  @AccountID INT , @UserName NVARCHAR(225) , @Country NVARCHAR(225), @FirstName nvarchar(255), @LastName nvarchar(255) SELECT TOP 1 @AccountID = ab.AccountID , @UserName = ac.Username , @Country = co.Alpha2Code, @firstname=act.FirstName, @LastName= act. LAstName  FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID  JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID    JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK) act ON act.AccountID = ab.AccountID  JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID WHERE   ab.AccountTypeID = 1 AND ab.AccountStatusID = 1 AND co.Alpha2Code = 'US' AND rf.Active = 1  AND EXISTS ( SELECT 1 FROM   RFOperations.Hybris.Autoship (NOLOCK) a WHERE  a.AccountID = ab.AccountID  AND a.AutoshipTypeID = 3  AND a.Active = 1 )  AND EXISTS ( SELECT 1 FROM   Commissions.calcs.vwQualificationSummary v WHERE  ab.AccountID = v.AccountID  AND v.PeriodID = @CurrentOpenPeriod AND v.SV >= 100 AND v.PSQV >= 600 ) ORDER BY NEWID() SELECT  ISNULL(@AccountID, 1496) AccountID , ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName , Isnull(@FirstName,'Sarah') [FirstName], Isnull(@LastName,'Robbins') [LastName], ISNULL(@Country, 'US') Country ,  @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-04-04 20:05:04.070 [main] RFLSDWebsiteBaseTest - randomConsultantDetailsList:[{AccountID=4201720, UserName=Draliciaclevenger@gmail.com, FirstName=Alicia, LastName=Clevenger, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-04-04 20:05:04.071 [main] RFLSDWebsiteBaseTest - Data returned by query: 4201720
+[INFO ] 2018-04-04 20:05:04.071 [main] RFLSDWebsiteBaseTest - Data returned by query: Draliciaclevenger@gmail.com
+[INFO ] 2018-04-04 20:05:04.071 [main] RFLSDWebsiteBaseTest - userName:Draliciaclevenger@gmail.com
+[INFO ] 2018-04-04 20:05:04.071 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:05:04.100 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-04 20:05:04.143 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:05:04.155 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:05:04.155 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-04 20:05:04.156 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:05:04.167 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:05:04.371 [main] RFWebsiteDriver - TYPED text as = Draliciaclevenger@gmail.com in  text field
+[INFO ] 2018-04-04 20:05:04.371 [main] LSDLoginPage - username is Draliciaclevenger@gmail.com
+[INFO ] 2018-04-04 20:05:04.371 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-04 20:05:04.371 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-04 20:05:04.395 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:05:04.543 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-04-04 20:05:04.543 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-04-04 20:05:04.591 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-04 20:05:04.684 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-04 20:05:32.140 [main] RFLSDWebsiteBaseTest - Total windows opened are 1
+[INFO ] 2018-04-04 20:05:32.143 [main] RFWebsiteDriver - URL opened is https://laserhead-ppd2.us-east-1.elasticbeanstalk.com#/Home
+[INFO ] 2018-04-04 20:05:32.187 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-04 20:05:32.196 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-04 20:05:34.196 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:05:34.225 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-04-04 20:05:49.594 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:05:49.607 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:05:49.607 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-04 20:05:49.608 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:05:49.621 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:05:49.857 [main] RFWebsiteDriver - TYPED text as = Draliciaclevenger@gmail.com in  text field
+[INFO ] 2018-04-04 20:05:49.858 [main] LSDLoginPage - username is Draliciaclevenger@gmail.com
+[INFO ] 2018-04-04 20:05:49.858 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-04 20:05:49.858 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-04 20:05:49.871 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:05:49.957 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-04-04 20:05:49.958 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-04-04 20:05:49.981 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-04 20:05:50.020 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-04 20:06:04.365 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoginFailed_2628q
+******************************************************************************************************************************
+[INFO ] 2018-04-04 20:06:04.440 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:06:04.458 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-04 20:06:04.459 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-04-04 20:06:04.476 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:06:04.528 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-04-04 20:06:04.721 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-04-04 20:06:04.722 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-04-04 20:06:04.722 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-04-04 20:06:04.860 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-04-04 20:06:04.860 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:06:04.878 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-04 20:06:05.432 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-04 20:06:05.591 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-04 20:06:30.001 [main] RFWebsiteDriver - Waiting for login button to get disappear
+[INFO ] 2018-04-04 20:06:31.038 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:32.048 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:33.058 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:34.068 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:35.079 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:36.088 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:37.098 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:38.108 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:39.125 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:40.135 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:41.145 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:42.154 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:43.164 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:44.176 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:45.188 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:46.198 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:47.208 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:48.217 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:49.228 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:50.240 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:06:50.240 [main] RFWebsiteDriver - wait started for By.id: login-error
+[INFO ] 2018-04-04 20:06:50.241 [main] RFWebsiteDriver - waiting for locator By.id: login-error
+[INFO ] 2018-04-04 20:06:50.264 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:06:50.265 [main] RFWebsiteDriver - waiting for locator By.id: login-error
+[INFO ] 2018-04-04 20:06:50.280 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:06:50.298 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:06:50.298 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:06:50.319 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:06:50.320 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:06:50.320 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:06:50.333 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:06:50.401 [main] DBUtil - QUERY TRIGGERED IS DECLARE @AccountID INT , @Country NVARCHAR(2)= NULL SELECT TOP 1 a.AccountID FROM    RFOperations.Hybris.Autoship a JOIN RFOperations.RFO_Accounts.AccountBase ab ON ab.AccountID = a.AccountID JOIN RFOperations.RFO_Accounts.AccountRF rf ON rf.AccountID = ab.AccountID JOIN RFOperations.RFO_Reference.Countries co ON co.CountryID = ab.CountryID WHERE   a.Active = 1 AND ab.AccountStatusID = 1 AND ab.AccountTypeID = 1 AND rf.Active = 1 AND a.AutoshipTypeID =3AND CAST(a.NextRunDate AS DATE) BETWEEN DATEADD(DAY, 1, EOMONTH(DATEADD(MONTH,-1, GETDATE()))) AND     EOMONTH(GETDATE()) AND co.Alpha2Code = COALESCE(@Country, co.Alpha2Code) ORDER BY NEWID()
+
+[INFO ] 2018-04-04 20:06:52.278 [main] RFLSDWebsiteBaseTest - Data returned by query: 6814388
+[INFO ] 2018-04-04 20:06:52.279 [main] DBUtil - QUERY TRIGGERED IS select EmailAddress from RFO_Accounts.AccountContacts acTB INNER JOIN RFO_Accounts.AccountEmails aeTB  on acTB.AccountContactId=aeTB.AccountContactId INNER JOIN RFO_Accounts.EmailAddresses aEMTB on aeTB.EmailAddressID=aEMTB.EmailAddressID WHERE acTB.AccountID='6814388' and aEMTB.EmailAddressTypeID=1 
+
+[INFO ] 2018-04-04 20:06:52.904 [main] RFLSDWebsiteBaseTest - Data returned by query: wilsonveronica7@gmail.com
+[INFO ] 2018-04-04 20:06:52.904 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:06:52.931 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:06:52.931 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-04 20:06:52.931 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:06:52.944 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:06:53.222 [main] RFWebsiteDriver - TYPED text as = wilsonveronica7@gmail.com in  text field
+[INFO ] 2018-04-04 20:06:53.222 [main] LSDLoginPage - username is wilsonveronica7@gmail.com
+[INFO ] 2018-04-04 20:06:53.222 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-04 20:06:53.222 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-04 20:06:53.245 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:06:53.356 [main] RFWebsiteDriver - TYPED text as =  in  text field
+[INFO ] 2018-04-04 20:06:53.357 [main] LSDLoginPage - password is 
+[INFO ] 2018-04-04 20:06:53.394 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-04 20:06:53.501 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-04 20:07:17.971 [main] RFWebsiteDriver - Waiting for login button to get disappear
+[INFO ] 2018-04-04 20:07:18.981 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:19.990 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:20.999 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:22.008 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:23.017 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:24.025 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:25.034 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:26.044 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:27.052 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:28.062 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:29.071 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:30.079 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:31.088 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:32.097 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:33.106 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:34.116 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:35.134 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:36.143 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:37.152 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:38.161 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:07:38.161 [main] RFWebsiteDriver - wait started for By.id: login-error
+[INFO ] 2018-04-04 20:07:38.161 [main] RFWebsiteDriver - waiting for locator By.id: login-error
+[INFO ] 2018-04-04 20:07:38.169 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:07:38.170 [main] RFWebsiteDriver - waiting for locator By.id: login-error
+[INFO ] 2018-04-04 20:07:38.179 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:07:38.188 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:07:38.188 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:07:38.197 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:07:38.198 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:07:38.198 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:07:38.207 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:07:38.228 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:07:38.237 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:07:38.237 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-04 20:07:38.237 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:07:38.247 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:07:38.408 [main] RFWebsiteDriver - TYPED text as = wilsonveronica7@gmail.com in  text field
+[INFO ] 2018-04-04 20:07:38.408 [main] LSDLoginPage - username is wilsonveronica7@gmail.com
+[INFO ] 2018-04-04 20:07:38.408 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-04 20:07:38.408 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-04 20:07:38.419 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:07:38.496 [main] RFWebsiteDriver - TYPED text as = 222Maiden in  text field
+[INFO ] 2018-04-04 20:07:38.496 [main] LSDLoginPage - password is 222Maiden
+[INFO ] 2018-04-04 20:07:38.517 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-04 20:07:38.578 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-04 20:08:03.066 [main] RFWebsiteDriver - Waiting for login button to get disappear
+[INFO ] 2018-04-04 20:08:04.076 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:05.085 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:06.094 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:07.103 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:08.113 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:09.122 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:10.131 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:11.140 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:12.149 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:13.158 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:14.168 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:15.178 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:16.187 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:17.196 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:18.206 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:19.214 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:20.225 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:21.233 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:22.242 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:23.263 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:23.263 [main] RFWebsiteDriver - wait started for By.id: login-error
+[INFO ] 2018-04-04 20:08:23.263 [main] RFWebsiteDriver - waiting for locator By.id: login-error
+[INFO ] 2018-04-04 20:08:23.272 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:08:23.272 [main] RFWebsiteDriver - waiting for locator By.id: login-error
+[INFO ] 2018-04-04 20:08:23.283 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:08:23.294 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:08:23.294 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:08:23.305 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:08:23.305 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:08:23.305 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:08:23.315 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:08:23.366 [main] DBUtil - QUERY TRIGGERED IS SELECT TOP 1
+        ab.AccountID ,
+        [as].Username
+FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) AS ab
+        JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) AS ar ON ar.AccountID = ab.AccountID
+        JOIN RFOperations.Security.AccountSecurity (NOLOCK) AS [as] ON ab.AccountID = [as].AccountID
+WHERE   ab.CountryID = 40
+        AND ab.AccountTypeID = 2
+        AND ar.active = 1
+        AND ab.AccountStatusID = 1
+        AND EXISTS ( SELECT 1
+                     FROM   RFOperations.Hybris.orders (NOLOCK) ro
+                     WHERE  ro.AccountID = ab.AccountID
+                            AND ro.OrderStatusID IN ( 2, 4 ) )
+        AND EXISTS ( SELECT 1
+                     FROM   RFOperations.Hybris.Autoship (NOLOCK) AS a
+                     WHERE  a.AccountID = ab.AccountID
+                            AND a.AutoshipTypeID = 1
+                            AND a.Active = 1
+                            AND a.NextRunDate BETWEEN GETDATE() AND GETDATE()
+                            + 45 )
+ORDER BY NEWID() 
+
+[INFO ] 2018-04-04 20:08:30.870 [main] QueryUtils - Data returned by query: kristi-lynne@hotmail.com
+[INFO ] 2018-04-04 20:08:30.871 [main] QueryUtils - PC username fetched from DB is kristi-lynne@hotmail.com
+[INFO ] 2018-04-04 20:08:30.871 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:08:30.882 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:08:30.882 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-04 20:08:30.882 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:08:30.893 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:08:31.025 [main] RFWebsiteDriver - TYPED text as = kristi-lynne@hotmail.com in  text field
+[INFO ] 2018-04-04 20:08:31.025 [main] LSDLoginPage - username is kristi-lynne@hotmail.com
+[INFO ] 2018-04-04 20:08:31.025 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-04 20:08:31.025 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-04 20:08:31.034 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:08:31.109 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-04-04 20:08:31.110 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-04-04 20:08:31.129 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-04 20:08:31.178 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-04 20:08:55.567 [main] RFWebsiteDriver - Waiting for login button to get disappear
+[INFO ] 2018-04-04 20:08:56.578 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:57.587 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:58.596 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:08:59.604 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:00.614 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:01.623 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:02.632 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:03.640 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:04.649 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:05.658 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:06.669 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:07.680 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:08.689 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:09.698 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:10.707 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:11.716 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:12.726 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:13.735 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:14.743 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:15.752 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:15.752 [main] RFWebsiteDriver - wait started for By.id: login-error
+[INFO ] 2018-04-04 20:09:15.752 [main] RFWebsiteDriver - waiting for locator By.id: login-error
+[INFO ] 2018-04-04 20:09:15.760 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:09:15.760 [main] RFWebsiteDriver - waiting for locator By.id: login-error
+[INFO ] 2018-04-04 20:09:15.769 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:09:15.777 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:09:15.778 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:09:15.787 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:09:15.787 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:09:15.787 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='login-error']/descendant::p[2]
+[INFO ] 2018-04-04 20:09:15.797 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:09:15.834 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testLoginFailed_2628q has passed]
+[INFO ] 2018-04-04 20:09:15.860 [main] RFLSDWebsiteBaseTest - Total windows opened are 1
+[INFO ] 2018-04-04 20:09:15.875 [main] RFWebsiteDriver - URL opened is https://laserhead-ppd2.us-east-1.elasticbeanstalk.com#/Home
+[INFO ] 2018-04-04 20:09:15.940 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-04 20:09:15.954 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-04 20:09:17.954 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:09:18.972 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:19.981 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:20.990 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:21.999 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:23.008 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:24.017 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:25.027 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:26.036 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:27.045 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:28.054 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:29.063 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:30.073 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:31.082 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:32.091 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:33.099 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:34.107 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:35.116 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:36.125 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:37.134 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:38.142 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:09:53.426 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:09:53.435 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:09:53.435 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-04 20:09:53.435 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:09:53.443 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:09:53.569 [main] RFWebsiteDriver - TYPED text as = Draliciaclevenger@gmail.com in  text field
+[INFO ] 2018-04-04 20:09:53.569 [main] LSDLoginPage - username is Draliciaclevenger@gmail.com
+[INFO ] 2018-04-04 20:09:53.569 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-04 20:09:53.569 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-04 20:09:53.577 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:09:53.654 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-04-04 20:09:53.654 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-04-04 20:09:53.673 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-04 20:09:53.712 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-04 20:10:00.756 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTextAboveUsernameAndPassword_3412q
+******************************************************************************************************************************
+[INFO ] 2018-04-04 20:10:00.760 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:10:00.781 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-04 20:10:00.781 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-04-04 20:10:00.790 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:00.811 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-04-04 20:10:00.908 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-04-04 20:10:00.908 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-04-04 20:10:00.908 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-04-04 20:10:01.021 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-04-04 20:10:01.021 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:10:01.034 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-04 20:10:01.034 [main] RFWebsiteDriver - wait started for By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-04-04 20:10:01.034 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-04-04 20:10:01.569 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:01.569 [main] RFWebsiteDriver - wait started for By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-04-04 20:10:01.569 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-04-04 20:10:01.579 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:01.627 [main] RFWebsiteDriver - wait started for By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-04-04 20:10:01.627 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-04-04 20:10:01.639 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:01.639 [main] RFWebsiteDriver - wait started for By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-04-04 20:10:01.639 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-04-04 20:10:01.648 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:01.670 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:10:01.679 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:01.680 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-04 20:10:01.680 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-04 20:10:01.689 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:01.871 [main] RFWebsiteDriver - TYPED text as = Draliciaclevenger@gmail.com in  text field
+[INFO ] 2018-04-04 20:10:01.871 [main] LSDLoginPage - username is Draliciaclevenger@gmail.com
+[INFO ] 2018-04-04 20:10:01.871 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-04 20:10:01.871 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-04 20:10:01.881 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:01.995 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-04-04 20:10:01.996 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-04-04 20:10:02.025 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-04 20:10:02.098 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-04 20:10:06.128 [main] RFWebsiteDriver - Waiting for login button to get disappear
+[INFO ] 2018-04-04 20:10:06.136 [main] RFWebsiteDriver - login button disappears
+[INFO ] 2018-04-04 20:10:06.171 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-04-04 20:10:06.180 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:06.189 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testTextAboveUsernameAndPassword_3412q has passed]
+[INFO ] 2018-04-04 20:10:06.195 [main] RFWebsiteDriver - URL opened is https://laserhead-ppd2.us-east-1.elasticbeanstalk.com
+[INFO ] 2018-04-04 20:10:07.731 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-04 20:10:07.753 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-04 20:10:09.754 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:10:09.775 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-04-04 20:10:09.775 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:10:10.786 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-04 20:10:10.796 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-04 20:10:10.796 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-04-04 20:10:10.805 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-04 20:10:10.834 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-04-04 20:10:10.927 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-04-04 20:10:10.927 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-04-04 20:10:10.927 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-04-04 20:10:11.075 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-04-04 20:10:11.075 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-04 20:10:11.086 [main] RFWebsiteDriver - LSD loading image disappears

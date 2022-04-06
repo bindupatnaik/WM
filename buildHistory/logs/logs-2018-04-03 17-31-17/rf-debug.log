@@ -1,0 +1,672 @@
+[DEBUG] 2018-04-03 17:08:50.264 [main] RFBaseTest - Started execution with  null
+[INFO ] 2018-04-03 17:08:50.277 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-04-03 17:08:50.277 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-04-03 17:08:50.277 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-04-03 17:08:50.277 [main] RFBaseTest - Default user password is  ------ null
+[INFO ] 2018-04-03 17:08:50.278 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-04-03 17:08:50.278 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218 
+[INFO ] 2018-04-03 17:08:50.278 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-04-03 17:08:50.278 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-04-03 17:08:50.278 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-04-03 17:08:55.219 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-04-03 17:08:57.067 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-03 17:08:57.110 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-03 17:08:57.110 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-04-03 17:08:57.133 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-04-03 17:08:57.192 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1    PeriodID FROM     Commissions.reference.Periods WHERE    ClosedDate IS NULL   ORDER BY PeriodID ASC ) ,  @AccountID INT , @UserName NVARCHAR(225) , @Country NVARCHAR(225), @FirstName nvarchar(255), @LastName nvarchar(255) SELECT TOP 1 @AccountID = ab.AccountID , @UserName = ac.Username , @Country = co.Alpha2Code, @firstname=act.FirstName, @LastName= act. LAstName  FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID  JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID    JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK) act ON act.AccountID = ab.AccountID  JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID WHERE   ab.AccountTypeID = 1 AND ab.AccountStatusID = 1 AND co.Alpha2Code = 'US' AND rf.Active = 1  AND EXISTS ( SELECT 1 FROM   RFOperations.Hybris.Autoship (NOLOCK) a WHERE  a.AccountID = ab.AccountID  AND a.AutoshipTypeID = 3  AND a.Active = 1 )  AND EXISTS ( SELECT 1 FROM   Commissions.calcs.vwQualificationSummary v WHERE  ab.AccountID = v.AccountID  AND v.PeriodID = @CurrentOpenPeriod AND v.SV >= 100 AND v.PSQV >= 600 ) ORDER BY NEWID() SELECT  ISNULL(@AccountID, 1496) AccountID , ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName , Isnull(@FirstName,'Sarah') [FirstName], Isnull(@LastName,'Robbins') [LastName], ISNULL(@Country, 'US') Country ,  @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-04-03 17:09:05.328 [main] RFLSDWebsiteBaseTest - randomConsultantDetailsList:[{AccountID=4463055, UserName=bridget.kermorris@gmail.com, FirstName=Bridget, LastName=KerMorris, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-04-03 17:09:05.328 [main] RFLSDWebsiteBaseTest - Data returned by query: 4463055
+[INFO ] 2018-04-03 17:09:05.328 [main] RFLSDWebsiteBaseTest - Data returned by query: bridget.kermorris@gmail.com
+[INFO ] 2018-04-03 17:09:05.328 [main] RFLSDWebsiteBaseTest - userName:bridget.kermorris@gmail.com
+[INFO ] 2018-04-03 17:09:05.329 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-03 17:09:05.352 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-03 17:09:05.387 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-03 17:09:05.395 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:05.395 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-03 17:09:05.395 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-03 17:09:05.403 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:05.561 [main] RFWebsiteDriver - TYPED text as = bridget.kermorris@gmail.com in  text field
+[INFO ] 2018-04-03 17:09:05.561 [main] LSDLoginPage - username is bridget.kermorris@gmail.com
+[INFO ] 2018-04-03 17:09:05.561 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-03 17:09:05.562 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-03 17:09:05.575 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:05.674 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-04-03 17:09:05.674 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-04-03 17:09:05.703 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-03 17:09:05.768 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-03 17:09:20.913 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-04-03 17:09:21.470 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-03 17:09:21.486 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-03 17:09:21.487 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-03 17:09:21.628 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-04-03 17:09:21.628 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-04-03 17:09:26.801 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-04-03 17:09:26.809 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:26.859 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=BRIDGET
+[INFO ] 2018-04-03 17:09:26.859 [main] RFLSDWebsiteBaseTest - Data returned by query: Bridget
+[INFO ] 2018-04-03 17:09:26.863 [main] RFLSDWebsiteBaseTest - Total windows opened are 1
+[INFO ] 2018-04-03 17:09:26.890 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-04-03 17:09:26.951 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-04-03 17:09:26.952 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-03 17:09:26.959 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-03 17:09:27.069 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderTypeOrderResultsBasedOnOrderFilter_2834q
+******************************************************************************************************************************
+[INFO ] 2018-04-03 17:09:31.251 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-03 17:09:31.325 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-03 17:09:31.332 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-04-03 17:09:31.386 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:31.489 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-04-03 17:09:31.642 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-04-03 17:09:31.648 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-04-03 17:09:31.654 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-04-03 17:09:31.924 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-04-03 17:09:31.929 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-03 17:09:31.979 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-04-03 17:09:33.780 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-03 17:09:33.851 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:33.856 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-04-03 17:09:33.860 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-04-03 17:09:33.915 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:34.283 [main] RFWebsiteDriver - TYPED text as = Skincareconsultants@gmail.com in  text field
+[INFO ] 2018-04-03 17:09:34.289 [main] LSDLoginPage - username is Skincareconsultants@gmail.com
+[INFO ] 2018-04-03 17:09:34.294 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-04-03 17:09:34.298 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-04-03 17:09:34.371 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:34.643 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-04-03 17:09:34.648 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-04-03 17:09:34.764 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-03 17:09:34.902 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-03 17:09:51.121 [main] RFWebsiteDriver - Waiting for login button to get disappear
+[INFO ] 2018-04-03 17:09:51.178 [main] RFWebsiteDriver - login button disappears
+[INFO ] 2018-04-03 17:09:51.290 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-04-03 17:09:51.353 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:09:52.541 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-03 17:09:52.709 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-03 17:09:52.716 [main] LSDHomePage - Clicked on Pulse Submenu from Top Navigation
+[INFO ] 2018-04-03 17:09:52.931 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-03 17:09:53.086 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-03 17:09:53.092 [main] LSDHomePage - SubMenu Link : Orders clicked
+[INFO ] 2018-04-03 17:09:53.147 [main] RFWebsiteDriver - Waiting for spin image to get disappear0
+[INFO ] 2018-04-03 17:09:53.198 [main] RFWebsiteDriver - spin image disappears
+[INFO ] 2018-04-03 17:10:13.586 [main] RFWebsiteDriver - order filter ready to be clicked
+[INFO ] 2018-04-03 17:10:13.730 [main] RFWebsiteDriver - CLICKED on order filter
+[INFO ] 2018-04-03 17:10:17.684 [main] RFWebsiteDriver - order filter category ready to be clicked
+[INFO ] 2018-04-03 17:10:17.825 [main] RFWebsiteDriver - CLICKED on order filter category
+[INFO ] 2018-04-03 17:10:25.795 [main] RFWebsiteDriver - Apply filter btn ready to be clicked
+[INFO ] 2018-04-03 17:10:25.964 [main] RFWebsiteDriver - CLICKED on Apply filter btn
+[INFO ] 2018-04-03 17:11:27.793 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:11:27.793 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:11:27.862 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:11:27.863 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:11:27.876 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:17:06.840 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:17:06.845 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:17:06.906 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:17:06.911 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:17:06.965 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:17:39.184 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target']
+[INFO ] 2018-04-03 17:17:39.190 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target']
+[INFO ] 2018-04-03 17:17:39.598 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:17:39.990 [main] LSDOrderPage - Count of Orders: 51
+[INFO ] 2018-04-03 17:18:02.370 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:18:02.376 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:18:02.440 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:18:02.552 [main] LSDOrderPage - Order type for order number1th is: Consultant Order
+[INFO ] 2018-04-03 17:18:32.346 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:18:32.354 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:18:32.431 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:18:32.531 [main] LSDOrderPage - Order type for order number2th is: Consultant Order
+[INFO ] 2018-04-03 17:18:40.523 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:18:40.528 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:18:40.586 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:18:40.686 [main] LSDOrderPage - Order type for order number3th is: Consultant Order
+[INFO ] 2018-04-03 17:19:08.154 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:19:08.159 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:19:08.218 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:19:08.319 [main] LSDOrderPage - Order type for order number4th is: Consultant Order
+[INFO ] 2018-04-03 17:20:59.947 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:20:59.953 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:00.018 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:00.117 [main] LSDOrderPage - Order type for order number5th is: Consultant Order
+[INFO ] 2018-04-03 17:21:10.019 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:10.024 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:10.084 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:10.184 [main] LSDOrderPage - Order type for order number6th is: Consultant Order
+[INFO ] 2018-04-03 17:21:11.515 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:11.524 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:11.606 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:11.752 [main] LSDOrderPage - Order type for order number7th is: Consultant Order
+[INFO ] 2018-04-03 17:21:12.803 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:12.808 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:12.864 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:12.965 [main] LSDOrderPage - Order type for order number8th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.101 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.102 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.113 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.137 [main] LSDOrderPage - Order type for order number9th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.137 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.137 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.148 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.167 [main] LSDOrderPage - Order type for order number10th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.167 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.167 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.177 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.196 [main] LSDOrderPage - Order type for order number11th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.196 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.196 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.207 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.227 [main] LSDOrderPage - Order type for order number12th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.227 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.228 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.237 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.255 [main] LSDOrderPage - Order type for order number13th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.255 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.255 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.263 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.280 [main] LSDOrderPage - Order type for order number14th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.281 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.281 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.290 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.306 [main] LSDOrderPage - Order type for order number15th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.307 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.307 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.319 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.336 [main] LSDOrderPage - Order type for order number16th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.336 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.336 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.345 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.361 [main] LSDOrderPage - Order type for order number17th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.361 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.361 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.369 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.384 [main] LSDOrderPage - Order type for order number18th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.384 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.384 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.391 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.406 [main] LSDOrderPage - Order type for order number19th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.406 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.406 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.416 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.429 [main] LSDOrderPage - Order type for order number20th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.430 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.430 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.439 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.465 [main] LSDOrderPage - Order type for order number21th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.466 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.466 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.476 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.494 [main] LSDOrderPage - Order type for order number22th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.494 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.494 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.505 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.523 [main] LSDOrderPage - Order type for order number23th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.524 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.524 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.532 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.546 [main] LSDOrderPage - Order type for order number24th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.547 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.547 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.554 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.569 [main] LSDOrderPage - Order type for order number25th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.569 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.569 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.576 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.594 [main] LSDOrderPage - Order type for order number26th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.594 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.594 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.602 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.617 [main] LSDOrderPage - Order type for order number27th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.617 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.617 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.624 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.640 [main] LSDOrderPage - Order type for order number28th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.641 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.641 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.648 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.665 [main] LSDOrderPage - Order type for order number29th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.665 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.665 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.674 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.689 [main] LSDOrderPage - Order type for order number30th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.689 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.689 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.696 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.711 [main] LSDOrderPage - Order type for order number31th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.711 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.711 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.718 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.732 [main] LSDOrderPage - Order type for order number32th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.732 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.732 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.739 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.752 [main] LSDOrderPage - Order type for order number33th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.753 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.753 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.769 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.786 [main] LSDOrderPage - Order type for order number34th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.786 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.786 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.795 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.810 [main] LSDOrderPage - Order type for order number35th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.810 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.810 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.818 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.835 [main] LSDOrderPage - Order type for order number36th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.836 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.836 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.843 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.858 [main] LSDOrderPage - Order type for order number37th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.858 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.858 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.866 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.882 [main] LSDOrderPage - Order type for order number38th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.882 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.882 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.890 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.903 [main] LSDOrderPage - Order type for order number39th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.903 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.903 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.911 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.925 [main] LSDOrderPage - Order type for order number40th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.925 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.925 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.931 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.946 [main] LSDOrderPage - Order type for order number41th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.946 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.946 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.953 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.967 [main] LSDOrderPage - Order type for order number42th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.967 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.967 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.974 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:19.988 [main] LSDOrderPage - Order type for order number43th is: Consultant Order
+[INFO ] 2018-04-03 17:21:19.988 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.988 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:19.995 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:20.010 [main] LSDOrderPage - Order type for order number44th is: Consultant Order
+[INFO ] 2018-04-03 17:21:20.010 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.010 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.017 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:20.033 [main] LSDOrderPage - Order type for order number45th is: Consultant Order
+[INFO ] 2018-04-03 17:21:20.033 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.033 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.046 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:20.063 [main] LSDOrderPage - Order type for order number46th is: Consultant Order
+[INFO ] 2018-04-03 17:21:20.064 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.064 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.071 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:20.086 [main] LSDOrderPage - Order type for order number47th is: Consultant Order
+[INFO ] 2018-04-03 17:21:20.086 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.086 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.095 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:20.109 [main] LSDOrderPage - Order type for order number48th is: Consultant Order
+[INFO ] 2018-04-03 17:21:20.109 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.109 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.116 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:20.132 [main] LSDOrderPage - Order type for order number49th is: Consultant Order
+[INFO ] 2018-04-03 17:21:20.132 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.132 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.139 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:20.153 [main] LSDOrderPage - Order type for order number50th is: Consultant Order
+[INFO ] 2018-04-03 17:21:20.153 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.154 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:21:20.160 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:21:20.174 [main] LSDOrderPage - Order type for order number51th is: Consultant Order
+[INFO ] 2018-04-03 17:30:29.114 [main] SoftAssert - VERIFICATION FAILED: Orders type Consultant filter is not applied successfully expected [true] but found [false]
+[INFO ] 2018-04-03 17:30:29.114 [main] SoftAssert - Expected: true
+[INFO ] 2018-04-03 17:30:29.114 [main] SoftAssert - Actual: false
+[INFO ] 2018-04-03 17:30:29.114 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-04-03 17:30:29.841 [main] SoftAssert - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testOrderTypeOrderResultsBasedOnOrderFilter_2834q\Orders type Consultant filter is not applied successfully expected [true] but found [false].png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testOrderTypeOrderResultsBasedOnOrderFilter_2834q\Orders type Consultant filter is not applied successfully expected [true] but found [false].png</a>
+
+[INFO ] 2018-04-03 17:30:29.892 [main] RFWebsiteDriver - first applied filter ready to be clicked
+[INFO ] 2018-04-03 17:30:29.992 [main] RFWebsiteDriver - CLICKED on first applied filter
+[INFO ] 2018-04-03 17:30:30.034 [main] RFWebsiteDriver - order filter ready to be clicked
+[INFO ] 2018-04-03 17:30:30.100 [main] RFWebsiteDriver - CLICKED on order filter
+[INFO ] 2018-04-03 17:30:30.135 [main] RFWebsiteDriver - order filter category ready to be clicked
+[INFO ] 2018-04-03 17:30:30.193 [main] RFWebsiteDriver - CLICKED on order filter category
+[INFO ] 2018-04-03 17:30:30.230 [main] RFWebsiteDriver - Apply filter btn ready to be clicked
+[INFO ] 2018-04-03 17:30:30.299 [main] RFWebsiteDriver - CLICKED on Apply filter btn
+[INFO ] 2018-04-03 17:30:30.300 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:30.300 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:30.309 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.309 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:30.318 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.330 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target']
+[INFO ] 2018-04-03 17:30:30.330 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target']
+[INFO ] 2018-04-03 17:30:30.339 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.349 [main] LSDOrderPage - Count of Orders: 8
+[INFO ] 2018-04-03 17:30:30.349 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.349 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.356 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.383 [main] LSDOrderPage - Order type for order number1th is: PC Perks
+[INFO ] 2018-04-03 17:30:30.383 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.383 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.392 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.410 [main] LSDOrderPage - Order type for order number2th is: PC Perks
+[INFO ] 2018-04-03 17:30:30.410 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.410 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.420 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.437 [main] LSDOrderPage - Order type for order number3th is: PC Perks
+[INFO ] 2018-04-03 17:30:30.437 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.437 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.446 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.466 [main] LSDOrderPage - Order type for order number4th is: PC Perks
+[INFO ] 2018-04-03 17:30:30.466 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.466 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.477 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.498 [main] LSDOrderPage - Order type for order number5th is: PC Perks
+[INFO ] 2018-04-03 17:30:30.498 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.498 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.506 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.522 [main] LSDOrderPage - Order type for order number6th is: PC Perks
+[INFO ] 2018-04-03 17:30:30.523 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.523 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.530 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.544 [main] LSDOrderPage - Order type for order number7th is: PC Perks
+[INFO ] 2018-04-03 17:30:30.544 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.544 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.550 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.562 [main] LSDOrderPage - Order type for order number8th is: PC Perks
+[INFO ] 2018-04-03 17:30:30.587 [main] RFWebsiteDriver - first applied filter ready to be clicked
+[INFO ] 2018-04-03 17:30:30.675 [main] RFWebsiteDriver - CLICKED on first applied filter
+[INFO ] 2018-04-03 17:30:30.714 [main] RFWebsiteDriver - order filter ready to be clicked
+[INFO ] 2018-04-03 17:30:30.745 [main] RFWebsiteDriver - CLICKED on order filter
+[INFO ] 2018-04-03 17:30:30.774 [main] RFWebsiteDriver - order filter category ready to be clicked
+[INFO ] 2018-04-03 17:30:30.821 [main] RFWebsiteDriver - CLICKED on order filter category
+[INFO ] 2018-04-03 17:30:30.839 [main] RFWebsiteDriver - Apply filter btn ready to be clicked
+[INFO ] 2018-04-03 17:30:30.887 [main] RFWebsiteDriver - CLICKED on Apply filter btn
+[INFO ] 2018-04-03 17:30:30.887 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:30.887 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:30.895 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.895 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:30.906 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.918 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target']
+[INFO ] 2018-04-03 17:30:30.918 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target']
+[INFO ] 2018-04-03 17:30:30.926 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.933 [main] LSDOrderPage - Count of Orders: 2
+[INFO ] 2018-04-03 17:30:30.934 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.934 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.943 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.973 [main] LSDOrderPage - Order type for order number1th is: CRP
+[INFO ] 2018-04-03 17:30:30.975 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.975 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:30.983 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:30.999 [main] LSDOrderPage - Order type for order number2th is: CRP
+[INFO ] 2018-04-03 17:30:31.000 [main] SoftAssert - VERIFICATION FAILED: Orders type Personal filter is not applied successfully expected [true] but found [false]
+[INFO ] 2018-04-03 17:30:31.000 [main] SoftAssert - Expected: true
+[INFO ] 2018-04-03 17:30:31.000 [main] SoftAssert - Actual: false
+[INFO ] 2018-04-03 17:30:31.000 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-04-03 17:30:31.315 [main] SoftAssert - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testOrderTypeOrderResultsBasedOnOrderFilter_2834q\Orders type Personal filter is not applied successfully expected [true] but found [false].png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testOrderTypeOrderResultsBasedOnOrderFilter_2834q\Orders type Personal filter is not applied successfully expected [true] but found [false].png</a>
+
+[INFO ] 2018-04-03 17:30:31.366 [main] RFWebsiteDriver - first applied filter ready to be clicked
+[INFO ] 2018-04-03 17:30:31.478 [main] RFWebsiteDriver - CLICKED on first applied filter
+[INFO ] 2018-04-03 17:30:31.525 [main] RFWebsiteDriver - order filter ready to be clicked
+[INFO ] 2018-04-03 17:30:31.563 [main] RFWebsiteDriver - CLICKED on order filter
+[INFO ] 2018-04-03 17:30:31.590 [main] RFWebsiteDriver - order filter category ready to be clicked
+[INFO ] 2018-04-03 17:30:31.637 [main] RFWebsiteDriver - CLICKED on order filter category
+[INFO ] 2018-04-03 17:30:31.652 [main] RFWebsiteDriver - Apply filter btn ready to be clicked
+[INFO ] 2018-04-03 17:30:31.689 [main] RFWebsiteDriver - CLICKED on Apply filter btn
+[INFO ] 2018-04-03 17:30:31.689 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:31.689 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:51.971 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]
+[INFO ] 2018-04-03 17:30:53.499 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.506 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target']
+[INFO ] 2018-04-03 17:30:53.506 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target']
+[INFO ] 2018-04-03 17:30:53.518 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.529 [main] LSDOrderPage - Count of Orders: 51
+[INFO ] 2018-04-03 17:30:53.529 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.529 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.537 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.558 [main] LSDOrderPage - Order type for order number1th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.558 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.558 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.567 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.582 [main] LSDOrderPage - Order type for order number2th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.582 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.582 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.589 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.602 [main] LSDOrderPage - Order type for order number3th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.603 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.603 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.610 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.624 [main] LSDOrderPage - Order type for order number4th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.624 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.624 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.631 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.646 [main] LSDOrderPage - Order type for order number5th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.646 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.646 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.653 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.667 [main] LSDOrderPage - Order type for order number6th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.667 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.667 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.674 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.688 [main] LSDOrderPage - Order type for order number7th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.688 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.688 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.696 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.735 [main] LSDOrderPage - Order type for order number8th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.735 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.735 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.743 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.757 [main] LSDOrderPage - Order type for order number9th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.757 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.757 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.764 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.779 [main] LSDOrderPage - Order type for order number10th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.779 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.779 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.785 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.800 [main] LSDOrderPage - Order type for order number11th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.800 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.800 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.807 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.821 [main] LSDOrderPage - Order type for order number12th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.821 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.821 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.828 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.842 [main] LSDOrderPage - Order type for order number13th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.842 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.842 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.848 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.862 [main] LSDOrderPage - Order type for order number14th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.863 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.863 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.869 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.885 [main] LSDOrderPage - Order type for order number15th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.885 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.885 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.892 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.907 [main] LSDOrderPage - Order type for order number16th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.907 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.907 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.916 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.934 [main] LSDOrderPage - Order type for order number17th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.934 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.934 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.942 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.956 [main] LSDOrderPage - Order type for order number18th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.956 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.956 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.962 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.977 [main] LSDOrderPage - Order type for order number19th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.977 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.977 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.984 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:53.998 [main] LSDOrderPage - Order type for order number20th is: Consultant Order
+[INFO ] 2018-04-03 17:30:53.998 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:53.998 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.006 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.020 [main] LSDOrderPage - Order type for order number21th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.020 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.020 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.026 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.044 [main] LSDOrderPage - Order type for order number22th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.044 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.044 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.054 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.070 [main] LSDOrderPage - Order type for order number23th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.071 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.071 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.078 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.093 [main] LSDOrderPage - Order type for order number24th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.093 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.093 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.100 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.114 [main] LSDOrderPage - Order type for order number25th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.115 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.115 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.122 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.137 [main] LSDOrderPage - Order type for order number26th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.138 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.138 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.144 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.159 [main] LSDOrderPage - Order type for order number27th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.159 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.159 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.166 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.180 [main] LSDOrderPage - Order type for order number28th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.180 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.180 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.188 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.220 [main] LSDOrderPage - Order type for order number29th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.220 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.220 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.231 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.247 [main] LSDOrderPage - Order type for order number30th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.247 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.247 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.255 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.272 [main] LSDOrderPage - Order type for order number31th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.272 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.272 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.281 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.293 [main] LSDOrderPage - Order type for order number32th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.294 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.294 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.301 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.313 [main] LSDOrderPage - Order type for order number33th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.313 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.313 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.320 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.332 [main] LSDOrderPage - Order type for order number34th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.333 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.333 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.340 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.355 [main] LSDOrderPage - Order type for order number35th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.355 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.355 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.362 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.377 [main] LSDOrderPage - Order type for order number36th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.377 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.377 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.384 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.399 [main] LSDOrderPage - Order type for order number37th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.399 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.399 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.405 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.420 [main] LSDOrderPage - Order type for order number38th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.420 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.420 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.427 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.441 [main] LSDOrderPage - Order type for order number39th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.441 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.441 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.448 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.462 [main] LSDOrderPage - Order type for order number40th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.462 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.462 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.469 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.484 [main] LSDOrderPage - Order type for order number41th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.484 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.484 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.491 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.509 [main] LSDOrderPage - Order type for order number42th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.509 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.510 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.518 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.532 [main] LSDOrderPage - Order type for order number43th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.532 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.532 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.539 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.554 [main] LSDOrderPage - Order type for order number44th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.554 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.554 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.562 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.579 [main] LSDOrderPage - Order type for order number45th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.579 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.579 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.587 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.604 [main] LSDOrderPage - Order type for order number46th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.604 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.604 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.613 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.633 [main] LSDOrderPage - Order type for order number47th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.633 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.634 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.642 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.658 [main] LSDOrderPage - Order type for order number48th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.658 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.658 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.666 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.684 [main] LSDOrderPage - Order type for order number49th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.684 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.685 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.693 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.711 [main] LSDOrderPage - Order type for order number50th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.711 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.711 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='sub-stage']/descendant::order-card[@class='au-target'][1]//ul[contains(@class,'data-point-list')]/li[2]/span
+[INFO ] 2018-04-03 17:30:54.720 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:30:54.739 [main] LSDOrderPage - Order type for order number51th is: Consultant Order
+[INFO ] 2018-04-03 17:30:54.739 [main] SoftAssert - VERIFICATION FAILED: Orders type Retail filter is not applied successfully expected [true] but found [false]
+[INFO ] 2018-04-03 17:30:54.739 [main] SoftAssert - Expected: true
+[INFO ] 2018-04-03 17:30:54.739 [main] SoftAssert - Actual: false
+[INFO ] 2018-04-03 17:30:54.739 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-04-03 17:30:55.057 [main] SoftAssert - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testOrderTypeOrderResultsBasedOnOrderFilter_2834q\Orders type Retail filter is not applied successfully expected [true] but found [false].png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testOrderTypeOrderResultsBasedOnOrderFilter_2834q\Orders type Retail filter is not applied successfully expected [true] but found [false].png</a>
+
+[INFO ] 2018-04-03 17:30:55.098 [main] RFWebsiteDriver - first applied filter ready to be clicked
+[INFO ] 2018-04-03 17:30:55.180 [main] RFWebsiteDriver - CLICKED on first applied filter
+[INFO ] 2018-04-03 17:30:55.181 [main] TestListner - [TEST HAS FAILED-------- Test case testOrderTypeOrderResultsBasedOnOrderFilter_2834q has failed] due to reason:-<br>  java.lang.AssertionError: 1.Orders type Consultant filter is not applied successfully
+
+ 1.Orders type Personal filter is not applied successfully
+
+ 1.Orders type Retail filter is not applied successfully
+
+[INFO ] 2018-04-03 17:30:55.219 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-04-03 17:30:56.067 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-03 17:30:56.146 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-03 17:30:56.146 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-03 17:30:56.224 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-04-03 17:30:56.224 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-03 17:30:57.282 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:30:58.291 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:30:59.297 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:00.306 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:01.314 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:02.323 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:03.329 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:04.336 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:05.345 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:06.353 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:07.363 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:08.372 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:09.379 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:10.388 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:11.396 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:12.404 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:13.412 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:14.421 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:15.428 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:16.436 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-03 17:31:16.436 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-04-03 17:31:16.449 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-03 17:31:16.468 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-04-03 17:31:16.551 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-04-03 17:31:16.552 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-04-03 17:31:16.552 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-04-03 17:31:16.625 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-04-03 17:31:16.625 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-04-03 17:31:16.638 [main] RFWebsiteDriver - LSD loading image disappears

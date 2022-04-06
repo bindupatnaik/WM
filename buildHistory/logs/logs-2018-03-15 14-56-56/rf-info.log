@@ -1,0 +1,451 @@
+[INFO ] 2018-03-15 14:52:16.384 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-15 14:52:16.385 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-15 14:52:16.386 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-15 14:52:16.386 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-15 14:52:16.387 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-15 14:52:16.388 [main] RFBaseTest - Default DB IP is  ------ 172.16.15.41
+[INFO ] 2018-03-15 14:52:16.388 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-15 14:52:16.389 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-15 14:52:16.389 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-15 14:52:25.585 [main] RFWebsiteDriver - Window is maximized
+[INFO ] 2018-03-15 14:52:25.586 [main] RFWebsiteDriver - All cookies deleted
+[INFO ] 2018-03-15 14:52:25.588 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-15 14:52:28.955 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-15 14:52:36.847 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-15 14:52:37.091 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1
+                                            PeriodID
+                                   FROM     Commissions.reference.Periods
+                                   WHERE    ClosedDate IS NULL
+                                   ORDER BY PeriodID ASC
+                                 ) ,
+    @AccountID INT ,
+    @UserName NVARCHAR(225) ,
+    @Country NVARCHAR(225)
+
+SELECT TOP 1
+        @AccountID = ab.AccountID ,
+        @UserName = ac.Username ,
+        @Country = co.Alpha2Code
+FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab
+        JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID
+        JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID
+        JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID
+WHERE   ab.AccountTypeID = 1
+        AND ab.AccountStatusID = 1
+        AND co.Alpha2Code = 'US'
+        AND rf.Active = 1
+        AND EXISTS ( SELECT 1
+                     FROM   RFOperations.Hybris.Autoship (NOLOCK) a
+                     WHERE  a.AccountID = ab.AccountID
+                            AND a.AutoshipTypeID = 3
+                            AND a.Active = 1 )
+        AND EXISTS ( SELECT 1
+                     FROM   Commissions.calcs.vwQualificationSummary v
+                     WHERE  ab.AccountID = v.AccountID
+                            AND v.PeriodID = @CurrentOpenPeriod
+                            AND v.SV >= 100
+                            AND v.PSQV >= 600 )
+ORDER BY NEWID()
+
+SELECT  ISNULL(@AccountID, 1496) AccountID ,
+        ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName ,
+        ISNULL(@Country, 'US') Country ,
+        @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-03-15 14:52:40.016 [main] RFLSDWebsiteBaseTest - randomConsultantDetailsList:[{AccountID=1496, UserName=skincareconsultants@gmail.com, Country=US, CurrentOpenPeriod=201802}]
+[INFO ] 2018-03-15 14:52:40.017 [main] RFLSDWebsiteBaseTest - Data returned by query: 1496
+[INFO ] 2018-03-15 14:52:40.018 [main] RFLSDWebsiteBaseTest - Data returned by query: skincareconsultants@gmail.com
+[INFO ] 2018-03-15 14:52:40.019 [main] RFLSDWebsiteBaseTest - userName:[{AccountID=1496, UserName=skincareconsultants@gmail.com, Country=US, CurrentOpenPeriod=201802}]
+[INFO ] 2018-03-15 14:52:46.830 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-15 14:52:46.871 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-15 14:52:46.960 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-15 14:52:46.979 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:52:46.980 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-15 14:52:47.447 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-15 14:52:47.448 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-15 14:52:47.466 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:52:47.695 [main] RFWebsiteDriver - TYPED text as = skincareconsultants@gmail.com in  text field
+[INFO ] 2018-03-15 14:52:47.696 [main] LSDLoginPage - username is skincareconsultants@gmail.com
+[INFO ] 2018-03-15 14:52:53.087 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-15 14:52:53.088 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-15 14:52:53.118 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:52:53.283 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-15 14:52:53.284 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-15 14:52:53.285 [main] RFWebsiteDriver - wait started for By.id: button-login
+[INFO ] 2018-03-15 14:52:53.285 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-15 14:52:53.310 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:52:53.311 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-15 14:52:53.390 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-15 14:53:36.419 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-15 14:53:36.985 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-15 14:53:37.125 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-15 14:53:37.127 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-15 14:53:42.585 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-15 14:53:42.603 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:53:42.620 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-15 14:53:42.636 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:53:42.685 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=SARAH
+[INFO ] 2018-03-15 14:53:42.686 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-15 14:53:42.701 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::img[2]
+[INFO ] 2018-03-15 14:53:42.702 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::img[2]
+[INFO ] 2018-03-15 14:53:42.725 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:53:42.726 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-15 14:53:42.810 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-15 14:53:43.096 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsThisMonth_3013q
+******************************************************************************************************************************
+[INFO ] 2018-03-15 14:53:50.694 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-15 14:53:50.695 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-15 14:53:50.728 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:53:50.729 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-15 14:53:50.853 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-15 14:53:50.854 [main] LSDHomePage - Clicked on Pulse Submenu from Top Navigation
+[INFO ] 2018-03-15 14:53:50.935 [main] RFWebsiteDriver - wait started for By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-15 14:53:50.936 [main] RFWebsiteDriver - waiting for locator By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-15 14:53:50.961 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:53:50.962 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-15 14:53:51.069 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-15 14:53:51.070 [main] LSDHomePage - SubMenu Link : Customers clicked
+[INFO ] 2018-03-15 14:53:51.101 [main] RFWebsiteDriver - Waiting for spin image to get disappear0
+[INFO ] 2018-03-15 14:53:51.120 [main] RFWebsiteDriver - spin image disappears
+[INFO ] 2018-03-15 14:54:19.014 [main] DBUtil - QUERY TRIGGERED IS 
+        DECLARE @AccountID INT= 1496   -- You Just need to Pass Consultant's AccountID here . 
+
+
+        
+		
+		  DECLARE  @PeriodID INT= NULL ,
+            @View_All_Customer INT ,
+            @Cust_have_Order INT ,
+            @Cust_Sch_OrderNext_Month INT ,
+            @Cust_Further_Out INT ,
+            @New_Pcs INT ,
+            @Deactivated_Pcs INT
+
+          
+
+        SET @PeriodID = ISNULL(@PeriodID,
+                               ( SELECT MAX(PERIODID)
+                                 FROM   commissions.reference.PERIODS
+                                 WHERE  CLOSEDDATE IS NULL
+                                        AND STARTDATE <= GETDATE()
+                               ))
+  
+  
+        SELECT  @View_All_Customer = COUNT(DISTINCT ab.AccountID)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+      
+				
+				
+				
+        SELECT  @Cust_have_Order = COUNT(DISTINCT ab.AccountID)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND EXISTS ( SELECT 1
+                             FROM   RFOperations.Hybris.orders (NOLOCK)  ro
+                             WHERE  ro.AccountID = ab.AccountID
+                                    AND ro.OrderTypeID = 9
+                                    AND ro.OrderStatusID IN ( 2, 4 )
+                                    AND LEFT(CONVERT(NVARCHAR(25), ro.CompletionDate, 112),
+                                             6) = @PeriodID )
+     
+				
+        SELECT  @Cust_Sch_OrderNext_Month = COUNT(1)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND EXISTS ( SELECT 1
+                             FROM   RFOperations.Hybris.Autoship(NOLOCK)  AU
+                             WHERE  AU.AccountID = ab.AccountID
+                                    AND AU.AutoshipTypeID = 1
+                                    AND AU.Active = 1
+                                    AND LEFT(CONVERT(NVARCHAR(25), DATEADD(MONTH,
+                                                              -1,
+                                                              Au.NextRunDate), 112),
+                                             6) = @PeriodID )			
+				 
+
+
+        SELECT  @Cust_Further_Out = COUNT(1)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND EXISTS ( SELECT 1
+                             FROM   RFOperations.Hybris.Autoship(NOLOCK)  AU
+                             WHERE  AU.AccountID = ab.AccountID
+                                    AND AU.AutoshipTypeID = 1
+                                    AND AU.Active = 1
+                                    AND LEFT(CONVERT(NVARCHAR(25), DATEADD(MONTH,
+                                                              -1,
+                                                              Au.NextRunDate), 112),
+                                             6) > @PeriodID )			
+		
+		
+	
+        SELECT  @Deactivated_Pcs = COUNT(1)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 0
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND  rf.SoftTerminationDate > DATEADD( DAY,-60,GETDATE())
+
+
+
+        SELECT  @New_Pcs = COUNT(1)
+        FROM    commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND rf.EnrollmentDate > DATEADD( DAY,-60,GETDATE())
+				
+        SELECT  @AccountID [AccountID] ,
+                @View_All_Customer [TotalPCCustomersUnderLevel1] ,
+                @Cust_have_Order [CustomersHaveOrdersThisMonth] ,
+                @Cust_Sch_OrderNext_Month [CustomersHaveOrdersNextMonth] ,
+                @Cust_Further_Out [Customer Further Out] ,
+                @New_Pcs [NewPcs] ,
+                @Deactivated_Pcs [DeActivatedPC] ,
+                @PeriodID [Period]
+				
+
+
+[INFO ] 2018-03-15 14:55:05.038 [main] DBUtil - QUERY TRIGGERED IS 
+        DECLARE @AccountID INT= 1496   -- You Just need to Pass Consultant's AccountID here . 
+
+
+        
+		
+		  DECLARE  @PeriodID INT= NULL ,
+            @View_All_Customer INT ,
+            @Cust_have_Order INT ,
+            @Cust_Sch_OrderNext_Month INT ,
+            @Cust_Further_Out INT ,
+            @New_Pcs INT ,
+            @Deactivated_Pcs INT
+
+          
+
+        SET @PeriodID = ISNULL(@PeriodID,
+                               ( SELECT MAX(PERIODID)
+                                 FROM   commissions.reference.PERIODS
+                                 WHERE  CLOSEDDATE IS NULL
+                                        AND STARTDATE <= GETDATE()
+                               ))
+  
+  
+        SELECT  @View_All_Customer = COUNT(DISTINCT ab.AccountID)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+      
+				
+				
+				
+        SELECT  @Cust_have_Order = COUNT(DISTINCT ab.AccountID)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND EXISTS ( SELECT 1
+                             FROM   RFOperations.Hybris.orders (NOLOCK)  ro
+                             WHERE  ro.AccountID = ab.AccountID
+                                    AND ro.OrderTypeID = 9
+                                    AND ro.OrderStatusID IN ( 2, 4 )
+                                    AND LEFT(CONVERT(NVARCHAR(25), ro.CompletionDate, 112),
+                                             6) = @PeriodID )
+     
+				
+        SELECT  @Cust_Sch_OrderNext_Month = COUNT(1)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND EXISTS ( SELECT 1
+                             FROM   RFOperations.Hybris.Autoship(NOLOCK)  AU
+                             WHERE  AU.AccountID = ab.AccountID
+                                    AND AU.AutoshipTypeID = 1
+                                    AND AU.Active = 1
+                                    AND LEFT(CONVERT(NVARCHAR(25), DATEADD(MONTH,
+                                                              -1,
+                                                              Au.NextRunDate), 112),
+                                             6) = @PeriodID )			
+				 
+
+
+        SELECT  @Cust_Further_Out = COUNT(1)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND EXISTS ( SELECT 1
+                             FROM   RFOperations.Hybris.Autoship(NOLOCK)  AU
+                             WHERE  AU.AccountID = ab.AccountID
+                                    AND AU.AutoshipTypeID = 1
+                                    AND AU.Active = 1
+                                    AND LEFT(CONVERT(NVARCHAR(25), DATEADD(MONTH,
+                                                              -1,
+                                                              Au.NextRunDate), 112),
+                                             6) > @PeriodID )			
+		
+		
+	
+        SELECT  @Deactivated_Pcs = COUNT(1)
+        FROM    Commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 0
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND  rf.SoftTerminationDate > DATEADD( DAY,-60,GETDATE())
+
+
+
+        SELECT  @New_Pcs = COUNT(1)
+        FROM    commissions.calcs.vwPlacementTreePermutated AS v WITH ( NOEXPAND )
+                JOIN RFOperations.RFO_Accounts.AccountBase(NOLOCK)  ab ON ab.AccountID = v.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK)  rf ON rf.AccountID = ab.AccountID
+                JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK)  ac ON ac.AccountId = ab.AccountID
+        WHERE   1 = 1
+                AND rf.Active = 1
+                AND ab.AccountTypeID = 2
+                AND v.[SponsorID] = @AccountID
+                AND v.DirectSponsorID = @AccountID
+                AND v.[PeriodID] = @PeriodID
+                AND rf.EnrollmentDate > DATEADD( DAY,-60,GETDATE())
+				
+        SELECT  @AccountID [AccountID] ,
+                @View_All_Customer [TotalPCCustomersUnderLevel1] ,
+                @Cust_have_Order [CustomersHaveOrdersThisMonth] ,
+                @Cust_Sch_OrderNext_Month [CustomersHaveOrdersNextMonth] ,
+                @Cust_Further_Out [Customer Further Out] ,
+                @New_Pcs [NewPcs] ,
+                @Deactivated_Pcs [DeActivatedPC] ,
+                @PeriodID [Period]
+				
+
+
+[INFO ] 2018-03-15 14:56:25.674 [main] RFLSDWebsiteBaseTest - Data returned by query: 0
+[INFO ] 2018-03-15 14:56:30.858 [main] RFWebsiteDriver - Waiting for spin image to get disappear0
+[INFO ] 2018-03-15 14:56:30.919 [main] RFWebsiteDriver - spin image disappears
+[INFO ] 2018-03-15 14:56:30.924 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[2]
+[INFO ] 2018-03-15 14:56:31.003 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:56:31.142 [main] RFWebsiteDriver - TEXT fetched for count of pc autoship orders for this month is=5
+[INFO ] 2018-03-15 14:56:36.940 [main] SoftAssert - VERIFICATION FAILED: Expected count of order is 0 actual on UI is 5 expected [true] but found [false]
+[INFO ] 2018-03-15 14:56:36.945 [main] SoftAssert - Expected: true
+[INFO ] 2018-03-15 14:56:36.949 [main] SoftAssert - Actual: false
+[INFO ] 2018-03-15 14:56:36.954 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-15 14:56:37.499 [main] SoftAssert - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testTotalNumberOfPCsThisMonth_3013q\Expected count of order is 0 actual on UI is 5 expected [true] but found [false].png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testTotalNumberOfPCsThisMonth_3013q\Expected count of order is 0 actual on UI is 5 expected [true] but found [false].png</a>
+
+[INFO ] 2018-03-15 14:56:47.056 [main] RFWebsiteDriver - wait started for By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[1]
+[INFO ] 2018-03-15 14:56:47.081 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[1]
+[INFO ] 2018-03-15 14:56:47.185 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:56:47.189 [main] RFWebsiteDriver - have orders for this month ready to be clicked
+[INFO ] 2018-03-15 14:56:47.370 [main] RFWebsiteDriver - CLICKED on have orders for this month
+[INFO ] 2018-03-15 14:56:48.024 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-15 14:56:50.334 [main] RFWebsiteDriver - wait started for By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-15 14:56:50.336 [main] RFWebsiteDriver - waiting for locator By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-15 14:56:50.366 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:56:50.367 [main] RFWebsiteDriver - waiting for locator By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-15 14:56:50.385 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:56:50.435 [main] RFWebsiteDriver - TEXT fetched for count of pc autoship orders for this month at header is=5
+[INFO ] 2018-03-15 14:56:50.436 [main] SoftAssert - VERIFICATION FAILED: Expected count of order at header is 0 actual on UI is 5 expected [true] but found [false]
+[INFO ] 2018-03-15 14:56:50.437 [main] SoftAssert - Expected: true
+[INFO ] 2018-03-15 14:56:50.438 [main] SoftAssert - Actual: false
+[INFO ] 2018-03-15 14:56:50.438 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-15 14:56:50.838 [main] SoftAssert - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testTotalNumberOfPCsThisMonth_3013q\Expected count of order at header is 0 actual on UI is 5 expected [true] but found [false].png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testTotalNumberOfPCsThisMonth_3013q\Expected count of order at header is 0 actual on UI is 5 expected [true] but found [false].png</a>
+
+[INFO ] 2018-03-15 14:56:50.841 [main] TestListner - [TEST HAS FAILED-------- Test case testTotalNumberOfPCsThisMonth_3013q has failed] due to reason:-<br>  java.lang.AssertionError: 1.Expected count of order is 0 actual on UI is 5
+
+ 1.Expected count of order at header is 0 actual on UI is 5
+
+[INFO ] 2018-03-15 14:56:50.949 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-15 14:56:51.277 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-15 14:56:52.027 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-15 14:56:52.028 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-15 14:56:53.052 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-15 14:56:53.071 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-15 14:56:53.072 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-15 14:56:53.087 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:56:53.088 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-15 14:56:53.088 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-15 14:56:53.108 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-15 14:56:53.109 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-15 14:56:53.205 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-03-15 14:56:53.206 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-03-15 14:56:53.207 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-03-15 14:56:53.330 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-15 14:56:53.331 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-15 14:56:53.354 [main] RFWebsiteDriver - LSD loading image disappears

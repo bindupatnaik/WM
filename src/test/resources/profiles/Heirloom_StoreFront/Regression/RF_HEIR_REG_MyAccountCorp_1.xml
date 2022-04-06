@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="MyAccount Suite(Corp) 1">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="MyAccountCorp_Test_1">
+		<classes>
+			<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.BillingTest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.CancelAndSubscribeCRPAndPulseTest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.EditPCPerksCartTest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.ManageCRPAndPulseUITest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.ManageMyAccountTest">
+				<methods>
+					<exclude name="testEditingAutoshipDatePCPerksStatusPageDisplayFromCorp_3090"></exclude>
+					<exclude name="testVerifyChangeDatePickerTONext61DaysMax_3092"></exclude>
+					<exclude name="testVerifyAutoshipDateWithFailedDefaultCreditCard_3095_3457"></exclude>
+					<exclude name="testVerifyChangeDateButtonIsNotPresent_3310"></exclude>
+					<exclude name="testVerifyDefaultDateBetween21stAnd31st_3096"></exclude>
+					<exclude name="testEditingAutoshipDateOrderProcessingCancel_3149"></exclude>
+					<exclude name="testVerifyPCAutoshipChangeDateAndBuyNow_3458"></exclude>
+					<exclude name="testVerifyNextScheduledDateIsCorrectWhenBuyNowClicked_3469"></exclude>
+					<exclude name="testVerifyDefaultDateToSelectShouldBeAlwaysTomorrow_3111"></exclude>
+					<exclude name="testEditingAutoshipDateBuyNowAndConfirm_3146_3456"></exclude>
+					<exclude name="testVerifyEditingAutoshipDateOrderProcessing_3455"></exclude>
+					<exclude name="testPCAutoshipOrderProcessing_3306"></exclude>
+					<exclude name="testAutoshipOrderProcessingChangeBillingDate_3454"></exclude>
+					<exclude name="testPCAutoshipOrderProcessing_3091"></exclude>
+					<exclude name="testVerifyBuyNowShopToday_3112"></exclude>
+					<exclude name="testCancelBuyNow_3460"></exclude>
+					<exclude name="testVerifyChangeLinkONPCAutoshipBuyNow_3461"></exclude>
+					<exclude name="testEditAutoshipDate_3147"></exclude>
+					<exclude name="testVerifyEditPCPerksCartBuyNow_3459"></exclude>
+				</methods>
+			</class>
+			<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.PulseTest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.ShippingTest"></class>
+		</classes>
+	</test>
+</suite>
+		

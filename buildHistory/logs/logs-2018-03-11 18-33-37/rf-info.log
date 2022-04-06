@@ -1,0 +1,51 @@
+[INFO ] 2018-03-11 18:29:37.941 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-11 18:29:37.941 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-11 18:29:37.941 [main] RFBaseTest - Default URL is  ------ https://www.corprfo.tst4.rodanandfields.com/cscockpit/login.zul
+[INFO ] 2018-03-11 18:29:37.941 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-11 18:29:37.942 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-11 18:29:37.942 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-11 18:29:37.942 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-11 18:29:37.942 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-11 18:29:37.942 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-11 18:29:44.272 [main] RFWebsiteDriver - Window is maximized
+[INFO ] 2018-03-11 18:29:44.272 [main] RFWebsiteDriver - All cookies deleted
+[INFO ] 2018-03-11 18:29:44.272 [main] RFWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-11 18:29:44.276 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-11 18:29:44.343 [main] DBUtil - QUERY TRIGGERED IS USE RFOperations SET TRANSACTION  ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT TOP 1 ab.AccountID , ab.AccountNumber , [as].Username FROM    RFO_Accounts.AccountBase AS ab JOIN    RFO_Accounts.AccountRF AS ar ON ar.AccountID = ab.AccountID JOIN    Security.AccountSecurity AS [as] ON ab.AccountID = [as].AccountID WHERE   ab.CountryID = 236 AND ab.AccountTypeID = 1 AND NOT EXISTS ( SELECT 1 FROM   RFO_Accounts.AccountRF AS ar WHERE  ar.Active = 0 AND ar.HardTerminationDate IS NOT NULL AND ar.AccountID = ab.AccountID ) AND EXISTS ( SELECT 1 FROM   Hybris.Orders AS o WHERE  o.OrderTypeID = 3 AND o.OrderStatusID = 2 ) AND EXISTS ( SELECT 1 FROM   Hybris.Autoship AS a WHERE  a.AccountID = ab.AccountID AND a.AutoshipTypeID = 2 AND a.Active = 1 ) ORDER BY NEWID()
+
+[INFO ] 2018-03-11 18:29:48.676 [main] RFWebsiteBaseTest - The sie of map is 3
+[INFO ] 2018-03-11 18:29:48.676 [main] RFWebsiteBaseTest - Data returned by query: 4176155
+[INFO ] 2018-03-11 18:29:48.681 [main] RFWebsiteDriver - URL opened is https://www.corprfo.tst4.rodanandfields.com/cscockpit/login.zul
+[INFO ] 2018-03-11 18:29:49.654 [main] RFWebsiteBaseTest - Opened Base URL
+[INFO ] 2018-03-11 18:29:49.758 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLSDDataCreation
+******************************************************************************************************************************
+[INFO ] 2018-03-11 18:29:49.810 [main] RFWebsiteDriver - wait started for By.cssSelector: a[id='corp-opp']
+[INFO ] 2018-03-11 18:29:49.817 [main] RFWebsiteDriver - waiting for locator By.cssSelector: a[id='corp-opp']
+[INFO ] 2018-03-11 18:30:10.254 [main] RFWebsiteDriver - wait started for By.cssSelector: a[id='corp-opp']
+[INFO ] 2018-03-11 18:30:10.255 [main] RFWebsiteDriver - waiting for locator By.cssSelector: a[id='corp-opp']
+[INFO ] 2018-03-11 18:30:30.476 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-11 18:31:42.308 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-11 18:31:42.308 [main] StoreFrontHomePage - Our business Link clicked
+[INFO ] 2018-03-11 18:31:42.308 [main] RFWebsiteDriver - wait started for By.cssSelector: a[title='Enroll Now']
+[INFO ] 2018-03-11 18:31:42.308 [main] RFWebsiteDriver - waiting for locator By.cssSelector: a[title='Enroll Now']
+[INFO ] 2018-03-11 18:32:02.638 [main] RFWebsiteDriver - wait started for By.cssSelector: a[title='Enroll Now']
+[INFO ] 2018-03-11 18:32:02.638 [main] RFWebsiteDriver - waiting for locator By.cssSelector: a[title='Enroll Now']
+[INFO ] 2018-03-11 18:32:22.798 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-11 18:33:34.536 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-11 18:33:34.537 [main] StoreFrontHomePage - Enroll Now Link clicked
+[INFO ] 2018-03-11 18:33:35.579 [main] TestListner - [TEST HAS FAILED-------- Test case testLSDDataCreation has failed] due to reason:-<br>  org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='sponserparam' or @id='sponsor-name-id']"}
+  (Session info: chrome=64.0.3282.186)
+  (Driver info: chromedriver=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f),platform=Windows NT 10.0.10586 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.7.1', revision: '8a0099a', time: '2017-11-06T21:01:39.354Z'
+System info: host: 'LD-4V2P3G2', ip: '192.168.121.113', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_161'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptSslCerts: true, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.33.506120 (e3e53437346286..., userDataDir: C:\Users\BPKOTA~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 64.0.3282.186, webStorageEnabled: true}
+Session ID: 0206ced79e78d86baa4bcde9c95c19cf
+*** Element info: {Using=xpath, value=//*[@id='sponserparam' or @id='sponsor-name-id']}
+[INFO ] 2018-03-11 18:33:35.579 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-11 18:33:35.972 [main] TestListner - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testLSDDataCreation\testLSDDataCreation.png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testLSDDataCreation\testLSDDataCreation.png</a>
+

@@ -1,0 +1,18 @@
+[INFO ] 2018-04-05 19:31:58.240 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-04-05 19:31:58.241 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-04-05 19:31:58.242 [main] RFBaseTest - Default URL is  ------ https://laserhead-ppd2.us-east-1.elasticbeanstalk.com
+[INFO ] 2018-04-05 19:31:58.242 [main] RFBaseTest - Default user password is  ------ null
+[INFO ] 2018-04-05 19:31:58.242 [main] RFBaseTest - Default Country is  ------ ca
+[INFO ] 2018-04-05 19:31:58.242 [main] RFBaseTest - Default DB IP is  ------ 172.16.15.48		
+[INFO ] 2018-04-05 19:31:58.242 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-04-05 19:31:58.242 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-04-05 19:31:58.243 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-04-05 19:32:02.996 [main] RFBillingShippingPageWebsiteBaseTest - Application loaded
+[INFO ] 2018-04-05 19:32:03.001 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-04-05 19:32:03.102 [main] DBUtil - QUERY TRIGGERED IS USE RFOperations SET TRANSACTION  ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT TOP 1 ab.AccountID , ab.AccountNumber , [as].Username FROM    RFO_Accounts.AccountBase AS ab JOIN    RFO_Accounts.AccountRF AS ar ON ar.AccountID = ab.AccountID JOIN    Security.AccountSecurity AS [as] ON ab.AccountID = [as].AccountID WHERE   ab.CountryID = 40 AND ab.AccountTypeID = 1 AND NOT EXISTS ( SELECT 1 FROM   RFO_Accounts.AccountRF AS ar WHERE  ar.Active = 0 AND ar.HardTerminationDate IS NOT NULL AND ar.AccountID = ab.AccountID ) AND EXISTS ( SELECT 1 FROM   Hybris.Orders AS o WHERE  o.OrderTypeID = 3 AND o.OrderStatusID = 2 ) AND EXISTS ( SELECT 1 FROM   Hybris.Autoship AS a WHERE  a.AccountID = ab.AccountID AND a.AutoshipTypeID = 2 AND a.Active = 1 ) ORDER BY NEWID()
+
+[INFO ] 2018-04-05 19:32:17.924 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLSDDataCreation
+******************************************************************************************************************************
+[INFO ] 2018-04-05 19:32:17.983 [main] TestListner - [TEST IS SKIPPED -------- Test case testLSDDataCreation skipped]

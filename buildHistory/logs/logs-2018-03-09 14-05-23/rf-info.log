@@ -1,0 +1,24 @@
+[INFO ] 2018-03-09 14:05:03.735 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-09 14:05:03.736 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-09 14:05:03.736 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-09 14:05:03.736 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-09 14:05:03.737 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-09 14:05:03.737 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-09 14:05:03.737 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-09 14:05:03.737 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-09 14:05:03.737 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-09 14:05:09.422 [main] RFWebsiteDriver - Window is maximized
+[INFO ] 2018-03-09 14:05:09.422 [main] RFWebsiteDriver - All cookies deleted
+[INFO ] 2018-03-09 14:05:09.423 [main] RFWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-09 14:05:09.436 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-09 14:05:09.516 [main] DBUtil - QUERY TRIGGERED IS USE RFOperations SET TRANSACTION  ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT TOP 1 ab.AccountID , ab.AccountNumber , [as].Username FROM    RFO_Accounts.AccountBase AS ab JOIN    RFO_Accounts.AccountRF AS ar ON ar.AccountID = ab.AccountID JOIN    Security.AccountSecurity AS [as] ON ab.AccountID = [as].AccountID WHERE   ab.CountryID = 236 AND ab.AccountTypeID = 1 AND NOT EXISTS ( SELECT 1 FROM   RFO_Accounts.AccountRF AS ar WHERE  ar.Active = 0 AND ar.HardTerminationDate IS NOT NULL AND ar.AccountID = ab.AccountID ) AND EXISTS ( SELECT 1 FROM   Hybris.Orders AS o WHERE  o.OrderTypeID = 3 AND o.OrderStatusID = 2 ) AND EXISTS ( SELECT 1 FROM   Hybris.Autoship AS a WHERE  a.AccountID = ab.AccountID AND a.AutoshipTypeID = 2 AND a.Active = 1 ) ORDER BY NEWID()
+
+[INFO ] 2018-03-09 14:05:21.713 [main] RFWebsiteBaseTest - The sie of map is 3
+[INFO ] 2018-03-09 14:05:21.714 [main] RFWebsiteBaseTest - Data returned by query: 2249920
+[INFO ] 2018-03-09 14:05:21.727 [main] RFWebsiteBaseTest - Opened Base URL
+[INFO ] 2018-03-09 14:05:21.864 [main] RFWebsiteDriver - current URL is data:,
+[INFO ] 2018-03-09 14:05:22.003 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLSDDataCreation
+******************************************************************************************************************************
+[INFO ] 2018-03-09 14:05:22.038 [main] TestListner - [TEST IS SKIPPED -------- Test case testLSDDataCreation skipped]

@@ -1,0 +1,14 @@
+[INFO ] 2018-03-01 11:08:18.887 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-01 11:08:19.170 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-01 11:08:19.472 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-01 11:08:19.649 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-01 11:08:19.859 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-01 11:08:20.084 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-01 11:08:20.306 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-01 11:08:20.492 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-01 11:08:20.715 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-01 11:09:12.099 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  TotalNumberOfAllPCs_3349q
+******************************************************************************************************************************
+[INFO ] 2018-03-01 11:09:12.159 [main] TestListner - [TEST IS SKIPPED -------- Test case TotalNumberOfAllPCs_3349q skipped]

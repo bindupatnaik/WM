@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="miniRegressionTestSuite_CA_AU_1">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	
+	<test name="miniRegressionTest_1">
+		<classes>
+		
+			<class name="com.rf.test.website.storeFront.hybris.billingAndShipping.AddEditBillingOnBillingPageTest">
+				<methods>
+				<include name="testAddAndEditNewBillingProfileOnBillingProfilePage_404q_419q" />
+					<include name="testAddAndEditBillingProfileMyAccountFutureAutoshipCheckboxNotChecked_412q_423q" />
+					<include name="testAddNewBillingProfileFromAccountsAndCheckOn_413q" />
+					<include name="testDeleteBillingProfileFromBillingProfilePage_429q" />
+				</methods>
+			</class>		
+			
+				<class name="com.rf.test.website.storeFront.hybris.billingAndShipping.AddEditBillingTest">
+				<methods>
+					<include name="testAddAndEditBillingAddressConsultantEnrollment_2045_428q" />
+					</methods>
+			</class>
+			
+		<class name="com.rf.test.website.storeFront.hybris.billingAndShipping.AddEditShippingOnShippingPageTest">
+				<methods>
+					<include name="testAddAndEditShippingAddressOnShippingProfilePage_433q_442q" />
+					<include name="testDeleteShippingProfileFromShipingProfilePage_450q" />
+				</methods>
+			</class>
+			
+			<class name="com.rf.test.website.storeFront.hybris.billingAndShipping.AddEditShippingTest">
+				<methods>
+					<include name="testAddAndEditShippingAddressDuringCRPEnrollment_437q_446q" />
+					<include name="testAddNewShippingBillingAddressOnEditCRPTemplate_584q" />
+				</methods>
+			</class>
+			
+				<class name="com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest">
+				<methods>
+					<include name="testStandardEnrollmentPersonalKitRedefineRegimenCRPYesPulseNo_461q" />
+				</methods>
+			</class>
+			
+				<class 	name="com.rf.test.website.storeFront.hybris.ExpressEnrollmentValidationTest">
+				<methods>
+				<include name="testAllowMySpouseThroughEnrollment_453q" />
+					<include name="testCorpExpressEnrollmentPersonalResultsKitRedefineRegimen_469q" />					
+				</methods>
+			</class>
+		
+			<class	 name="com.rf.test.website.storeFront.hybris.standardEnrollment.biz.BigBusinessLaunchKitTest">
+				<methods>
+					<include name="testStandardEnrollmentBusinessPortfolio_474q" />
+				</methods>
+			</class>
+			
+				<class	 name="com.rf.test.website.storeFront.hybris.OrderValidationTest">
+				<methods>
+					<include name="testAdhocOrdersFromConsultantAndPc_530q" />
+					<include name="testPlaceAdhocOrderAsRCWithDifferentSponsor_531q" />
+					<include name="testCreateAdhocOrderConsultant_543q" />
+					<include name="testCreateAdhocOrderPC_2777q_2985q" />
+				</methods>
+			</class>
+			
+				<class
+				name="com.rf.test.website.storeFront.hybris.CartAndCheckoutValidationTest">
+				<methods>
+				<include name="testCheckMiniCartForConsultant_545q" />
+					<include name="testValidateRemoveProductsFromCart_547q" />	
+					<include name="testVerifyChangeDateFunctionalityForConsultant_583q" />				
+				</methods>
+			</class>
+			
+			<class	 name="com.rf.test.website.storeFront.hybris.StandardEnrollmentValidationTest">
+				<methods>
+					<include name="testEnrollInCRPFromMyAccountShipImmediately_582q" />
+					<include name="testStandardEnrollmentSwitchToExpresEnrollmentStep5_2884q_465q" />
+				</methods>
+			</class>
+			
+			<class	 name="com.rf.test.website.storeFront.hybris.AccountTest">
+				<methods>
+					<include name="testVerifyConsultantCanChooseCustomPWSPrefixUponEnrollingInPulse_498q"/>				
+				    <include name="testVerifyUserCanCancelCRPSubscriptionThroughMyAccountFromBiz_571q"/>
+				    <include name="testVerifyUserCanCancelCRPSubscriptionThroughMyAccountFromCOM_572q"/>
+				    <include name="testVerifyUserCanEnrollInCRPThroughMyAccountFromBIZ_574q"/>
+				    <include name="testPCUserCancelPcPerksFromComSite_608" />
+					<include name="testVerifyUserCanCancelPulseSubscriptionThroughMyAccount_613q_2233_2134"/>
+					<include name="testVerifyUserCanCancelPulseSubscriptionThroughMyAccountFromBIZ_617q"/>
+					<include name="testSubscribingPulseMyAccount_618q" />
+					<include name="testAccountInformationForUpdate_634q" />
+					<include name="testVerifyUserNameAndEmailAddressFieldsValidationWithDifferentValues_635q" />				
+					<include name="testConsultantAccountTerminationUnderPWS_767q"/>				
+					<include name="testReactivateASoftTerminatedConsultantAccount_2775q"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
+

@@ -1,0 +1,102 @@
+[INFO ] 2018-03-20 14:05:12.681 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-20 14:05:12.681 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-20 14:05:12.681 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-20 14:05:12.681 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-20 14:05:12.681 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-20 14:05:12.682 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-20 14:05:12.682 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-20 14:05:12.682 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-20 14:05:12.682 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-20 14:05:17.222 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-20 14:05:19.974 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-20 14:05:19.993 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-20 14:05:20.082 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1
+                                            PeriodID
+                                   FROM     Commissions.reference.Periods
+                                   WHERE    ClosedDate IS NULL
+                                   ORDER BY PeriodID ASC
+                                 ) ,
+    @AccountID INT ,
+    @UserName NVARCHAR(225) ,
+    @Country NVARCHAR(225)
+
+SELECT TOP 1
+        @AccountID = ab.AccountID ,
+        @UserName = ac.Username ,
+        @Country = co.Alpha2Code
+FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab
+        JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID
+        JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID
+        JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID
+WHERE   ab.AccountTypeID = 1
+        AND ab.AccountStatusID = 1
+        AND co.Alpha2Code = 'US'
+        AND rf.Active = 1
+        AND EXISTS ( SELECT 1
+                     FROM   RFOperations.Hybris.Autoship (NOLOCK) a
+                     WHERE  a.AccountID = ab.AccountID
+                            AND a.AutoshipTypeID = 3
+                            AND a.Active = 1 )
+        AND EXISTS ( SELECT 1
+                     FROM   Commissions.calcs.vwQualificationSummary v
+                     WHERE  ab.AccountID = v.AccountID
+                            AND v.PeriodID = @CurrentOpenPeriod
+                            AND v.SV >= 100
+                            AND v.PSQV >= 600 )
+ORDER BY NEWID()
+
+SELECT  ISNULL(@AccountID, 1496) AccountID ,
+        ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName ,
+        ISNULL(@Country, 'US') Country ,
+        @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-03-20 14:05:34.272 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  TotalNumberOfAllPCs_3349q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.308 [main] TestListner - [TEST IS SKIPPED -------- Test case TotalNumberOfAllPCs_3349q skipped]
+[INFO ] 2018-03-20 14:05:34.383 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  customerViewSubCategories_2448q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.386 [main] TestListner - [TEST IS SKIPPED -------- Test case customerViewSubCategories_2448q skipped]
+[INFO ] 2018-03-20 14:05:34.400 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCCardComponents_3240q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.405 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCCardComponents_3240q skipped]
+[INFO ] 2018-03-20 14:05:34.412 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingByQVLowTohigh_3011q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.417 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingByQVLowTohigh_3011q skipped]
+[INFO ] 2018-03-20 14:05:34.425 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNextMonth_2999q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.428 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNextMonth_2999q skipped]
+[INFO ] 2018-03-20 14:05:34.437 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForThisMonth_3000q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.441 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForThisMonth_3000q skipped]
+[INFO ] 2018-03-20 14:05:34.461 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfDeactivatedPCs_2985q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.465 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfDeactivatedPCs_2985q skipped]
+[INFO ] 2018-03-20 14:05:34.477 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfNewPCs_3306q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.489 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfNewPCs_3306q skipped]
+[INFO ] 2018-03-20 14:05:34.497 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsNextMonth_3021q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.503 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsNextMonth_3021q skipped]
+[INFO ] 2018-03-20 14:05:34.508 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsThisMonth_3013q
+******************************************************************************************************************************
+[INFO ] 2018-03-20 14:05:34.512 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsThisMonth_3013q skipped]

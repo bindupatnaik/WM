@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="BrandRefreshMobile">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="Brand Refresh Build Acceptance Tests">
+		<classes>
+		<class name="com.rf.test.website.storeFront.heirloom.BizPWSTest">
+				<methods>
+					<include name="testPCPerksDelay60Days_401" />
+					<include name="testCheckoutAsConsultant_822" />
+					<include name="testPCEnrollment_2351" />
+					<include name="testAdhocOrderWithNewlyCreatedBillingAddressFormBIZ_2481" />
+				</methods>
+			</class>	
+			<class name="com.rf.test.website.storeFront.heirloom.ComPWSTest">
+				<methods>
+					<include name="testLogoutWithAValidUserOnCOMPWS_2394" />
+					<include name="testRCEnrollmentFromCOM_2406"></include>
+					<include name="testPCEnrollmentFromCOM_2407"></include>
+					<include name="testPCPerksDelay60DaysFromCOM_2417"></include>
+					<include name="testAdhocOrderConsultantsOnlyProductsFromCOM_2422"></include>
+					<include name="testDonationOrderFromCOM_2424"></include>
+					<include name="testAdhocOrderWithNewlyCreatedShippingAddressFromCOM_2482"></include>
+				</methods>
+			</class>
+			<class name="com.rf.test.website.storeFront.heirloom.CorpTest">
+				<methods>
+					<include name="testConsultantStandardEnrollment_503" />
+					<include name="testConsultantExpressEnrollment_505" />
+					<include name="testRCEnrollment_506" />
+					<include name="testPCEnrollment_507" />
+					<include name="testPlaceAdhocOrderFromCorpSiteForRC_508"></include>
+					<include name="testPCPerksTemplateShippingAddressUpdateOnCorpSite_2344"></include>
+					<include name="AdhocOrderConsultantsOnlyProducts_509_2479"></include>
+				</methods>
+			</class>		
+		</classes>
+	</test>
+</suite>

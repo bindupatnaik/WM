@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Pulse All Suite ">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="Pulse All Test">
+		<classes>
+		<class name="com.rf.test.website.LSD.LoginTests" />
+			<class name="com.rf.test.website.LSD.LSDLinkTests" />
+			<class name="com.rf.test.website.LSD.LSDTests" />
+			<class name="com.rf.test.website.LSD.LSDCommissionsTest" />
+			<class name="com.rf.test.website.LSD.LSDHomeTest" />
+			<class name="com.rf.test.website.LSD.LSDCustomerTests_New" />
+			<class name="com.rf.test.website.LSD.LSDOrdersTests" />
+			<class name="com.rf.test.website.LSD.LSDTeamTests" />
+		</classes>
+	</test>
+</suite>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="miniRegressionTestSuite_CA_AU_2">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="miniRegressionTest_2">
+		<classes>
+			<class name="com.rf.test.website.storeFront.hybris.PC_CartAndCheckoutValidationTest">
+				<methods>
+					<include name="testDelayPCPerks_596q" />
+					<include name="testAutoshipTemplateManagePoductsInCartPCPerk_606q" />
+				</methods>
+			</class>	
+			<class	 name="com.rf.test.website.storeFront.hybris.PC_RC_EnrollmentValidationTest">
+				<methods>
+					<include name="testCorporateUserShouldAbleToChangeSponsorRC_5138_680q_682q" />
+					<include name ="testTerminatePCReactivatePCAccountAndPerformAdhocOrder_746q_4319_771q_4647" />
+				 </methods>
+			</class>			
+			<class name="com.rf.test.website.storeFront.hybris.UpgradeDowngradeTest">
+				<methods>
+					<include name="testConsultantToPCDownGradeforCanadianUser_663q" />
+					<include name="testTerminateRCEnrollRCUpgradeToPC_4694_770q" />
+					<include name="testSwitchFromRCToPC_716q_3881" />
+					<include name="testUpgradeFromActivePCUserToConsultant_718q" />
+					<include name="testUpgradeFromActiveRCUserToConsultant_719q" />					
+				</methods>
+			</class>
+
+			<class name="com.rf.test.website.storeFront.hybris.HomePageFunctionalityTest">
+				<methods>
+					<include name="testFollowMeFunctionalityInEditMeetTheConsultantPageForCOMPWSIte_697q" />
+				</methods>
+			</class>
+
+			<class name="com.rf.test.website.storeFront.hybris.majorEnrollments.EnrollmentsTest">
+				<methods>
+					<include name="testPCEnrollment_1308_2160_2187_2300_710q_711q" />
+					<include name="testRCEnrollment_1307_678q_2188_2793q" />
+				</methods>
+			</class>		
+		</classes>
+	</test>
+</suite>

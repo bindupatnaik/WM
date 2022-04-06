@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="RFNSCore4FullRegressionSuite">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="RFNSCore4FullRegressionTestsSuite1">
+		<classes>
+		<class name="com.rf.test.website.nscore4.NSCore4AccountTest">
+				<methods>
+					<include name="testAdministrationLoginLogout_239"></include>
+					<include name="testAdministratorLoginInvalidLogin_240"></include>
+					<include name="testAccountsTabAccountLookup_266"></include>
+					<include name="testAccountsTabOverviewAutoshipsEdit_273"></include>
+					<include name="testMobileTabHeadLineNews_302"></include>
+					<include name="testMobileTabRFInNews_303"></include>
+					<include name="testAccountsTab_OrdersEditCancelOrder"></include>
+					<include name="testOrdersTab_OrderIdSearch_287"></include>
+					<include name="testOrdersTab_OrderAdvancedSearch"></include>
+					<include name="testCorporatePWSContentReviewApprove_250"></include>
+					<include name="testCorporatePWSContentReviewDenied_251"></include>
+					<include name="testOrdersTab_NewOrder_513"></include>
+					<include name="testOrdersTabBrowseOrders_290"></include>
+					<include name="testNSC4AccountsTabOverviewPostNewNote_272"></include>
+					<include name="testAccountsTab_OverviewPlaceNewOrder_512"></include>
+					<include name="testAccountsTab_OverviewStatusChange_270"></include>
+					<include name="testNSC4AccountTabOverviewAutoshipsViewOrders_274"></include>
+					 <include name="testNSC4SitesTabNSCorporateAddEditDeleteNews_242"></include>
+					<include name="testNSC4SitesTabNSCorporateSiteDetailEditSite_244"></include> 
+					<include name="testNSC4AccountTabFullAccountRecordUpdate_275"></include>
+					<include name="testAccountsTab_ShippingProfilesAddEditDefaultDelete_278"></include>
+					<include name="testAccountsTab_BillingProfilesAddEditDefaultDelete_277"></include>
+					 <include name="testAdminTabUsersAddEditRoles_298"></include>
+					<include name="testBasePWSPagesAddEditNewSite_258"></include>
+					<include name="testProductsTab_NewUpdateCatalog_291"></include>
+					<include name="testNSC4SitesTabNSCorporateReplicateSites_245"></include>
+					<include name="testNSC4FullReturn"></include>
+					<include name="testNSC4PartialReturn"></include>
+					<include name="testNSC4ReturnWithRestockingFee"></include>
+					 <include name="testAdminTab_Users_AddEditUsers_297"></include>
+					<include name="testAdminTab_LystTypes_299"></include>
+					<include name="testAccountsTab_OverviewChangeAndStatusHistory_269"></include>
+					<include name="testNSC4SitesTabNSCorporateNewEditDeleteEvent_241"></include>
+					<include name="testNSC4SitesTabBasePWSSiteMap_259q"></include>
+					<include name="testOrdersTab_OrderAdvancedSearch_288"></include>
+					<include name="testChangeShippingMethodAfterOverride_977_980"></include>
+					<include name="testMAIN5200ReturnAndOverrideOrder_943"></include>
+					 <include name="testNSC4SitesTabBaseNSCorporateSiteMap_247"></include>
+					<include name="testNSC4_SitesTab_nsDistributor_BasePWSContentReviewApprove_262"></include>
+					<include name="testNSC4_SitesTab_nsDistributor_CorporatePWSContentReviewDenied_263"></include>
+					<include name="testSaveNewBillingProfileCRPTemplateNSC4_1950q"></include>
+					<include name="testNsc4BrowseAccountMigratedAccount_After_Rollback_1955q"></include>
+					<include name="testChangeShippingAddressAfterOverride_978_979"></include>
+					<include name="testMAIN5200ReduceTheNumberOfProductsOnOverride_944"></include>
+					<include name="testNSC4ReturnsVTReturnsReturns_922"></include>
+					<include name="testRecalculateAfterUpdatingAllFieldsToZero_964"></include>
+					<include name="testNsAccountTabOrderEdit_285"></include>
+					<include name="testPulseTemplateAddPaymentProfile_2467"></include>
+				</methods>
+			</class>
+			<class name="com.rf.test.website.nscore4.DelayPCAutoshipTest"></class>
+		</classes>
+	</test>
+</suite>
+		

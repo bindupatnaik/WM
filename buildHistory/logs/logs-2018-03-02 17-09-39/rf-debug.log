@@ -1,0 +1,161 @@
+[DEBUG] 2018-03-02 17:07:52.925 [main] RFBaseTest - Started execution with  null
+[INFO ] 2018-03-02 17:07:52.932 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-02 17:07:52.932 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-02 17:07:52.933 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-02 17:07:52.933 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-02 17:07:52.933 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-02 17:07:52.933 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-02 17:07:52.933 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-02 17:07:52.933 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-02 17:07:52.933 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-02 17:08:00.993 [main] RFWebsiteDriver - Window is maximized
+[INFO ] 2018-03-02 17:08:00.993 [main] RFWebsiteDriver - All cookies deleted
+[INFO ] 2018-03-02 17:08:00.994 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-02 17:08:24.652 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-02 17:08:24.680 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-02 17:08:24.770 [main] DBUtil - QUERY TRIGGERED IS SELECT top 1 * FROM Commissions.[calcs].[vwQualificationSummary] where SV!=0 and PSQV!=0 and L1L2!=0 and L1L6!=0 and ECLegs > 0 and periodid= LEFT(CONVERT(varchar, GetDate(),112),6)  order by NewID() desc
+
+[INFO ] 2018-03-02 17:08:25.331 [main] RFLSDWebsiteBaseTest - Data returned by query: 1496
+[INFO ] 2018-03-02 17:08:25.332 [main] DBUtil - QUERY TRIGGERED IS SELECT  ab.AccountID ,ac.FirstName ,ac.LastName ,acs.Username FROM  RFOperations.RFO_Accounts.AccountBase ab JOIN RFOperations.RFO_Accounts.AccountRF rf ON rf.AccountID = ab.AccountID JOIN RFOperations.RFO_Accounts.AccountContacts ac ON ac.AccountId = ab.AccountID LEFT JOIN RFOperations.Security.AccountSecurity acs ON acs.AccountID = ab.AccountID LEFT JOIN RFOperations.RFO_Reference.AccountType t ON t.AccountTypeID = ab.AccountTypeID LEFT JOIN RFOperations.RFO_Reference.AccountStatus s ON s.AccountStatusID = ab.AccountStatusID LEFT JOIN RFOperations.RFO_Reference.Countries c ON c.CountryID = ab.CountryID WHERE   ab.AccountID = 1496
+
+[INFO ] 2018-03-02 17:08:25.428 [main] RFLSDWebsiteBaseTest - Data returned by query: skincareconsultants@gmail.com
+[INFO ] 2018-03-02 17:08:25.429 [main] DBUtil - QUERY TRIGGERED IS select EmailAddress from RFO_Accounts.AccountContacts acTB INNER JOIN RFO_Accounts.AccountEmails aeTB  on acTB.AccountContactId=aeTB.AccountContactId INNER JOIN RFO_Accounts.EmailAddresses aEMTB on aeTB.EmailAddressID=aEMTB.EmailAddressID WHERE acTB.AccountID='1496' and aEMTB.EmailAddressTypeID=1 
+
+[INFO ] 2018-03-02 17:08:25.516 [main] RFLSDWebsiteBaseTest - Data returned by query: skincareconsultants@gmail.com
+[INFO ] 2018-03-02 17:08:25.517 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:08:26.545 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:08:26.559 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-02 17:08:26.615 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-02 17:08:26.625 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:26.625 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-02 17:08:27.170 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-02 17:08:27.170 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-02 17:08:27.183 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:27.369 [main] RFWebsiteDriver - TYPED text as = skincareconsultants@gmail.com in  text field
+[INFO ] 2018-03-02 17:08:27.370 [main] LSDLoginPage - username is skincareconsultants@gmail.com
+[INFO ] 2018-03-02 17:08:27.370 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-02 17:08:27.370 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-02 17:08:27.387 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:27.510 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-02 17:08:27.510 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-02 17:08:27.511 [main] RFWebsiteDriver - wait started for By.id: button-login
+[INFO ] 2018-03-02 17:08:27.511 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-02 17:08:27.533 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:27.534 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:08:27.644 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:08:50.848 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-02 17:08:51.288 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:08:51.418 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-02 17:08:51.418 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-02 17:08:52.605 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:52.618 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-02 17:08:52.641 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:52.641 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-02 17:08:53.117 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-02 17:08:53.117 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-02 17:08:53.126 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:53.288 [main] RFWebsiteDriver - TYPED text as = skincareconsultants@gmail.com in  text field
+[INFO ] 2018-03-02 17:08:53.288 [main] LSDLoginPage - username is skincareconsultants@gmail.com
+[INFO ] 2018-03-02 17:08:53.288 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-02 17:08:53.288 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-02 17:08:53.307 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:53.416 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-02 17:08:53.416 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-02 17:08:53.416 [main] RFWebsiteDriver - wait started for By.id: button-login
+[INFO ] 2018-03-02 17:08:53.416 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-02 17:08:53.424 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:08:53.424 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:08:53.492 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:09:01.356 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::img[2]
+[INFO ] 2018-03-02 17:09:01.357 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::img[2]
+[INFO ] 2018-03-02 17:09:01.381 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:01.382 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-02 17:09:01.473 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-02 17:09:01.580 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsThisMonth_3013q
+******************************************************************************************************************************
+[INFO ] 2018-03-02 17:09:01.627 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:09:01.627 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:09:01.648 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:01.648 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:09:01.741 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:09:01.741 [main] LSDHomePage - Clicked on Pulse Submenu from Top Navigation
+[INFO ] 2018-03-02 17:09:01.793 [main] RFWebsiteDriver - wait started for By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-02 17:09:01.794 [main] RFWebsiteDriver - waiting for locator By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-02 17:09:01.802 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:01.802 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:09:01.888 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:09:01.888 [main] LSDHomePage - SubMenu Link : Customers clicked
+[INFO ] 2018-03-02 17:09:01.911 [main] RFWebsiteDriver - Waiting for spin image to get disappear0
+[INFO ] 2018-03-02 17:09:01.920 [main] RFWebsiteDriver - spin image disappears
+[INFO ] 2018-03-02 17:09:05.922 [main] DBUtil - QUERY TRIGGERED IS DECLARE @AccountID INT = 1496 ;WITH PCAchievedOrders AS ( SELECT COUNT( ro.OrderID) Ocount , ro.ConsultantID FROM RFOperations.Hybris.orders (NOLOCK) ro JOIN RFOperations.RFO_Accounts.AccountBase ab ON ab.AccountID = ro.AccountID WHERE ro.ConsultantID = @AccountID AND ro.OrderStatusID IN ( 2, 4, 5 ) AND ab.AccountTypeID = 2 AND ro.CompletionDate BETWEEN CAST(DATEADD(DAY, 1, DATEADD(MONTH, -1, EOMONTH(GETDATE()))) AS DATE) AND GETDATE() AND ro.AutoShipID IS NOT NULL GROUP BY ro.ConsultantID ), PenddingPCTemplate AS ( SELECT COUNT( a.AutoshipID) PCount , a.ConsultantID FROM RFOperations.Hybris.Autoship (NOLOCK) a JOIN RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab ON ab.AccountID = a.AccountID JOIN RFOperations.RFO_Accounts.AccountContacts ac ON ac.AccountId = ab.AccountID WHERE a.ConsultantID = @AccountID AND a.AutoshipTypeID = 1 AND ab.AccountTypeID = 2 AND a.Active = 1 AND CAST(a.NextRunDate AS DATE) BETWEEN CAST(DATEADD(DAY, 1, DATEADD(MONTH, -1, EOMONTH(GETDATE()))) AS DATE) AND EOMONTH(GETDATE()) GROUP BY a.ConsultantID ) SELECT ab.AccountID , ISNULL(p.PCount, 0) + ISNULL(o.Ocount, 0) AS [Totol PC Order Counts] FROM RFOperations.RFO_Accounts.AccountBase ab LEFT JOIN PCAchievedOrders o ON o.ConsultantID = ab.AccountID LEFT JOIN PenddingPCTemplate p ON p.ConsultantID = ab.AccountID WHERE ab.AccountID = @AccountID
+
+[INFO ] 2018-03-02 17:09:06.190 [main] RFLSDWebsiteBaseTest - Data returned by query: 5
+[INFO ] 2018-03-02 17:09:06.191 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:09:06.191 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:09:06.205 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:06.205 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:09:06.257 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:09:06.257 [main] LSDHomePage - Clicked on Pulse Submenu from Top Navigation
+[INFO ] 2018-03-02 17:09:06.294 [main] RFWebsiteDriver - wait started for By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-02 17:09:06.295 [main] RFWebsiteDriver - waiting for locator By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-02 17:09:06.304 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:06.305 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:09:06.379 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:09:06.379 [main] LSDHomePage - SubMenu Link : Customers clicked
+[INFO ] 2018-03-02 17:09:06.394 [main] RFWebsiteDriver - Waiting for spin image to get disappear1
+[INFO ] 2018-03-02 17:09:07.404 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:08.431 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:09.454 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:10.464 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:11.478 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:12.499 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:13.510 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:14.534 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:15.545 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:16.559 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:20.584 [main] RFWebsiteDriver - Waiting for spin image to get disappear2
+[INFO ] 2018-03-02 17:09:21.597 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:22.607 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:23.627 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:24.639 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:25.647 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:26.661 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:27.672 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:27.682 [main] RFWebsiteDriver - spin image disappears
+[INFO ] 2018-03-02 17:09:27.682 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[2]
+[INFO ] 2018-03-02 17:09:27.700 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:27.734 [main] RFWebsiteDriver - TEXT fetched for count of pc autoship orders for this month is=5
+[INFO ] 2018-03-02 17:09:34.737 [main] RFWebsiteDriver - wait started for By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[1]
+[INFO ] 2018-03-02 17:09:34.738 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[1]
+[INFO ] 2018-03-02 17:09:34.763 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:34.763 [main] RFWebsiteDriver - have orders for this month ready to be clicked
+[INFO ] 2018-03-02 17:09:34.836 [main] RFWebsiteDriver - CLICKED on have orders for this month
+[INFO ] 2018-03-02 17:09:34.949 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:09:34.950 [main] RFWebsiteDriver - wait started for By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-02 17:09:34.950 [main] RFWebsiteDriver - waiting for locator By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-02 17:09:35.484 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:35.485 [main] RFWebsiteDriver - waiting for locator By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-02 17:09:35.496 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:35.531 [main] RFWebsiteDriver - TEXT fetched for count of pc autoship orders for this month at header is=5
+[INFO ] 2018-03-02 17:09:35.531 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testTotalNumberOfPCsThisMonth_3013q has passed]
+[INFO ] 2018-03-02 17:09:35.545 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-02 17:09:35.918 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:09:36.124 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-02 17:09:36.124 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:09:37.220 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:38.251 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:09:38.264 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-02 17:09:38.264 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:09:38.272 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:38.273 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:09:38.273 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:09:38.287 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:09:38.287 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-02 17:09:38.368 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-03-02 17:09:38.368 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-03-02 17:09:38.368 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-03-02 17:09:38.465 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:09:38.465 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:09:38.479 [main] RFWebsiteDriver - LSD loading image disappears

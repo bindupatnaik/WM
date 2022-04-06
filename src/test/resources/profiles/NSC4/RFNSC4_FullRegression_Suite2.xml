@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="RFNSCore4FullRegressionSuite">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="RFNSCore4FullRegressionTestsSuite2">
+		<classes>
+		<class name="com.rf.test.website.nscore4.NSCore4OrdersTest" ></class>
+			<class name="com.rf.test.website.nscore4.NSCore4AccountTest">
+				<methods>
+				<!--  <include name="testBasePWSCalendarEvents_260"></include>-->
+				<include name="testPaymentErrorMessageNSC4_1942"></include>
+				<include name="testUpdateBillingProfileCRPTemplateNSC4_1949"></include>
+				<include name="testSearchActiveUser_1956q"></include>
+				<include name="testSearchInactiveUser_1957q"></include>
+				<include name="testSearchConsultantUser_1959q"></include>
+				<include name="testSearchPCUser_1960q"></include>
+				<include name="testSearchRCUser_1961q"></include>
+				<include name="testNScore4CreateAdhocOrderForTheConsultant_2463q"></include>
+				<include name="testNScore4CreateAdhocOrderForTheConsultant_2464q"></include>
+				<include name="testNScore4CreateAdhocOrderForThePC_2465q"></include>
+				<include name="testNSC4ProductsTabProductsManagementAddNewProduct_294"></include>
+				<include name="testNSC4AccountsTabFullOrderHistoryPlaceNewOrder_514"></include>
+				<include name="testCRPTemplateEditPaymentProfile_2470"></include>
+				<include name="testPulseTemplateEditPaymentProfile_2471"></include>
+				<include name="testCRPTemplateAddShippingProfile_2473"></include>
+				<include name="testCRPTemplateAddPaymentProfile_2472"></include>
+				<!-- <include name="testBrowseBymarket_1963"></include> -->
+				<include name="testUpdateBillingProfilePulseTemplateNSC4_1951q"></include>
+				<include name="testSaveNewBillingProfilePulseTemplateNSC4_1952q"></include>
+				<!-- <include name="testNsc4BrowseByLocation_1962"></include> -->
+				<include name="testUpdateBillingProfilePCAutoshipTemplateNSC4_1953"></include>
+				<include name="testCRPTemplateAddFewItems_2475"></include>
+				<include name="testNSC4AccountsTabOverviewProxyLinks_271"></include>
+				<include name="testMAIN5200SOOAndMultipleLineItemZeroShippingOnly_972"></include>
+				<include name="testCRPTemplateEditShippingProfile_2474"></include>
+				<include name="testMAIN5200SOOAndZeroShippingOnly_968"></include>
+				<include name="testMAIN5200SOOAndZeroTaxOnly_969"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

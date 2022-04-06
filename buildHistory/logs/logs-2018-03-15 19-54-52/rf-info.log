@@ -1,0 +1,13 @@
+[INFO ] 2018-03-15 19:54:43.557 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-15 19:54:43.558 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-15 19:54:43.558 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-15 19:54:43.558 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-15 19:54:43.559 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-15 19:54:43.559 [main] RFBaseTest - Default DB IP is  ------ 172.16.15.41
+[INFO ] 2018-03-15 19:54:43.559 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-15 19:54:43.559 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-15 19:54:43.559 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-15 19:54:48.181 [main] RFWebsiteDriver - Window is maximized
+[INFO ] 2018-03-15 19:54:48.182 [main] RFWebsiteDriver - All cookies deleted
+[INFO ] 2018-03-15 19:54:48.182 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-15 19:54:50.863 [main] RFLSDWebsiteBaseTest - Application loaded

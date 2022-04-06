@@ -1,0 +1,1 @@
+{"uuid":"ba02383b-a79d-41a4-a59e-fcd71593b266","name":"com.rf.test.website.RFLSDWebsiteBaseTest.initiateSoftAssertObject","description":"","start":1520298168827,"stop":1520298174858,"children":["56e8abe6-8141-4156-b47a-1b0092948f3b"],"befores":[{"name":"initiateSoftAssertObject","status":"passed","stage":"finished","description":"","start":1520298168827,"stop":1520298174858}]}

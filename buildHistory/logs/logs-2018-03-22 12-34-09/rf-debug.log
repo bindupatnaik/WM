@@ -1,0 +1,905 @@
+[DEBUG] 2018-03-22 12:28:43.512 [main] RFBaseTest - Started execution with  null
+[INFO ] 2018-03-22 12:28:43.518 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-22 12:28:43.519 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-22 12:28:43.519 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com/
+[INFO ] 2018-03-22 12:28:43.519 [main] RFBaseTest - Default user password is  ------ null
+[INFO ] 2018-03-22 12:28:43.519 [main] RFBaseTest - Default Country is  ------ ca
+[INFO ] 2018-03-22 12:28:43.519 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-22 12:28:43.519 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-22 12:28:43.519 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-22 12:28:43.519 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-22 12:28:47.863 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com/
+[INFO ] 2018-03-22 12:28:50.482 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-22 12:28:50.498 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-22 12:28:50.549 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1
+                                            PeriodID
+                                   FROM     Commissions.reference.Periods
+                                   WHERE    ClosedDate IS NULL
+                                   ORDER BY PeriodID ASC
+                                 ) ,
+    @AccountID INT ,
+    @UserName NVARCHAR(225) ,
+    @Country NVARCHAR(225)
+
+SELECT TOP 1
+        @AccountID = ab.AccountID ,
+        @UserName = ac.Username ,
+        @Country = co.Alpha2Code
+FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab
+        JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID
+        JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID
+        JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID
+WHERE   ab.AccountTypeID = 1
+        AND ab.AccountStatusID = 1
+        AND co.Alpha2Code = 'US'
+        AND rf.Active = 1
+        AND EXISTS ( SELECT 1
+                     FROM   RFOperations.Hybris.Autoship (NOLOCK) a
+                     WHERE  a.AccountID = ab.AccountID
+                            AND a.AutoshipTypeID = 3
+                            AND a.Active = 1 )
+        AND EXISTS ( SELECT 1
+                     FROM   Commissions.calcs.vwQualificationSummary v
+                     WHERE  ab.AccountID = v.AccountID
+                            AND v.PeriodID = @CurrentOpenPeriod
+                            AND v.SV >= 100
+                            AND v.PSQV >= 600 )
+ORDER BY NEWID()
+
+SELECT  ISNULL(@AccountID, 1496) AccountID ,
+        ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName ,
+        ISNULL(@Country, 'US') Country ,
+        @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-03-22 12:28:55.581 [main] RFLSDWebsiteBaseTest - randomConsultantDetailsList:[{AccountID=2666748, UserName=alisesinc@gmail.com, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-03-22 12:28:55.581 [main] RFLSDWebsiteBaseTest - Data returned by query: 2666748
+[INFO ] 2018-03-22 12:28:55.581 [main] RFLSDWebsiteBaseTest - Data returned by query: alisesinc@gmail.com
+[INFO ] 2018-03-22 12:28:55.581 [main] RFLSDWebsiteBaseTest - userName:[{AccountID=2666748, UserName=alisesinc@gmail.com, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-03-22 12:28:55.581 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-22 12:28:55.607 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-22 12:28:55.655 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-22 12:28:55.666 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-22 12:28:55.666 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-22 12:28:55.666 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-22 12:28:55.677 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-22 12:28:55.861 [main] RFWebsiteDriver - TYPED text as = alisesinc@gmail.com in  text field
+[INFO ] 2018-03-22 12:28:55.861 [main] LSDLoginPage - username is alisesinc@gmail.com
+[INFO ] 2018-03-22 12:28:55.862 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-22 12:28:55.862 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-22 12:28:55.878 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-22 12:28:55.999 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-22 12:28:56.000 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-22 12:28:56.037 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-22 12:28:56.119 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-22 12:29:07.376 [main] RFLSDWebsiteBaseTest - Total windows opened are 1
+[INFO ] 2018-03-22 12:29:07.381 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com/#/Home
+[INFO ] 2018-03-22 12:34:07.629 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoginFailed_2628q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.675 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoginFailed_2628q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.676 [main] TestListner - [TEST IS SKIPPED -------- Test case testLoginFailed_2628q skipped]
+[INFO ] 2018-03-22 12:34:07.693 [main] TestListner - [TEST IS SKIPPED -------- Test case testLoginFailed_2628q skipped]
+[INFO ] 2018-03-22 12:34:07.697 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTextAboveUsernameAndPassword_3412q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.700 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTextAboveUsernameAndPassword_3412q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.701 [main] TestListner - [TEST IS SKIPPED -------- Test case testTextAboveUsernameAndPassword_3412q skipped]
+[INFO ] 2018-03-22 12:34:07.704 [main] TestListner - [TEST IS SKIPPED -------- Test case testTextAboveUsernameAndPassword_3412q skipped]
+[INFO ] 2018-03-22 12:34:07.728 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantCardComponents_2876q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.732 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantCardComponents_2876q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.732 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantCardComponents_2876q skipped]
+[INFO ] 2018-03-22 12:34:07.736 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantCardComponents_2876q skipped]
+[INFO ] 2018-03-22 12:34:07.741 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testFAQNavigation_2953q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.744 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testFAQNavigation_2953q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.745 [main] TestListner - [TEST IS SKIPPED -------- Test case testFAQNavigation_2953q skipped]
+[INFO ] 2018-03-22 12:34:07.749 [main] TestListner - [TEST IS SKIPPED -------- Test case testFAQNavigation_2953q skipped]
+[INFO ] 2018-03-22 12:34:07.769 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testMainMenuLinks_2631q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.772 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testMainMenuLinks_2631q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.772 [main] TestListner - [TEST IS SKIPPED -------- Test case testMainMenuLinks_2631q skipped]
+[INFO ] 2018-03-22 12:34:07.777 [main] TestListner - [TEST IS SKIPPED -------- Test case testMainMenuLinks_2631q skipped]
+[INFO ] 2018-03-22 12:34:07.781 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForAreGettingThere_3331q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.784 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForAreGettingThere_3331q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.784 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForAreGettingThere_3331q skipped]
+[INFO ] 2018-03-22 12:34:07.788 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForAreGettingThere_3331q skipped]
+[INFO ] 2018-03-22 12:34:07.792 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForMayNotPromote_3332q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.795 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForMayNotPromote_3332q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.795 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForMayNotPromote_3332q skipped]
+[INFO ] 2018-03-22 12:34:07.798 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForMayNotPromote_3332q skipped]
+[INFO ] 2018-03-22 12:34:07.802 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForViewAllConsultants_3328q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.807 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForViewAllConsultants_3328q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.807 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForViewAllConsultants_3328q skipped]
+[INFO ] 2018-03-22 12:34:07.814 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForViewAllConsultants_3328q skipped]
+[INFO ] 2018-03-22 12:34:07.816 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyTabsWith6Level_3238q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.823 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyTabsWith6Level_3238q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.823 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyTabsWith6Level_3238q skipped]
+[INFO ] 2018-03-22 12:34:07.829 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyTabsWith6Level_3238q skipped]
+[INFO ] 2018-03-22 12:34:07.832 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLeadTheWayLink_1455q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.838 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLeadTheWayLink_1455q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.839 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLeadTheWayLink_1455q skipped]
+[INFO ] 2018-03-22 12:34:07.843 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLeadTheWayLink_1455q skipped]
+[INFO ] 2018-03-22 12:34:07.845 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFConnectionLink_1456q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.849 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFConnectionLink_1456q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.849 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFConnectionLink_1456q skipped]
+[INFO ] 2018-03-22 12:34:07.852 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFConnectionLink_1456q skipped]
+[INFO ] 2018-03-22 12:34:07.853 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFJourneyLink_1457q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.856 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFJourneyLink_1457q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.857 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFJourneyLink_1457q skipped]
+[INFO ] 2018-03-22 12:34:07.863 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFJourneyLink_1457q skipped]
+[INFO ] 2018-03-22 12:34:07.865 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFMallLink_1458q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.868 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFMallLink_1458q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.868 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFMallLink_1458q skipped]
+[INFO ] 2018-03-22 12:34:07.872 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFMallLink_1458q skipped]
+[INFO ] 2018-03-22 12:34:07.874 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFPaydayLink_1459q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.877 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFPaydayLink_1459q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.878 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFPaydayLink_1459q skipped]
+[INFO ] 2018-03-22 12:34:07.880 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFPaydayLink_1459q skipped]
+[INFO ] 2018-03-22 12:34:07.882 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkCommsCorner_1447q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.885 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkCommsCorner_1447q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.886 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLinkCommsCorner_1447q skipped]
+[INFO ] 2018-03-22 12:34:07.890 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLinkCommsCorner_1447q skipped]
+[INFO ] 2018-03-22 12:34:07.893 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkConsultantLEDEvents_1448
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.898 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkConsultantLEDEvents_1448
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.899 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLinkConsultantLEDEvents_1448 skipped]
+[INFO ] 2018-03-22 12:34:07.907 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLinkConsultantLEDEvents_1448 skipped]
+[INFO ] 2018-03-22 12:34:07.909 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkCorporateEvents_1449q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.911 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkCorporateEvents_1449q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.911 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLinkCorporateEvents_1449q skipped]
+[INFO ] 2018-03-22 12:34:07.915 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLinkCorporateEvents_1449q skipped]
+[INFO ] 2018-03-22 12:34:07.917 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkGettingStarted_1450q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.919 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkGettingStarted_1450q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.919 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLinkGettingStarted_1450q skipped]
+[INFO ] 2018-03-22 12:34:07.922 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyLinkGettingStarted_1450q skipped]
+[INFO ] 2018-03-22 12:34:07.932 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  test2InitialIcon_2547q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.939 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  test2InitialIcon_2547q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.939 [main] TestListner - [TEST IS SKIPPED -------- Test case test2InitialIcon_2547q skipped]
+[INFO ] 2018-03-22 12:34:07.942 [main] TestListner - [TEST IS SKIPPED -------- Test case test2InitialIcon_2547q skipped]
+[INFO ] 2018-03-22 12:34:07.944 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testCRPAutoshipProcessedInPastForThismonth_2522q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.947 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testCRPAutoshipProcessedInPastForThismonth_2522q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.947 [main] TestListner - [TEST IS SKIPPED -------- Test case testCRPAutoshipProcessedInPastForThismonth_2522q skipped]
+[INFO ] 2018-03-22 12:34:07.957 [main] TestListner - [TEST IS SKIPPED -------- Test case testCRPAutoshipProcessedInPastForThismonth_2522q skipped]
+[INFO ] 2018-03-22 12:34:07.961 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfPSQVValueAndPSQVRingEqualsTo0_2470q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.963 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfPSQVValueAndPSQVRingEqualsTo0_2470q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.963 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfPSQVValueAndPSQVRingEqualsTo0_2470q skipped]
+[INFO ] 2018-03-22 12:34:07.967 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfPSQVValueAndPSQVRingEqualsTo0_2470q skipped]
+[INFO ] 2018-03-22 12:34:07.968 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfPSQVValueAndPSQVRingGreaterThan600_3128q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.970 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfPSQVValueAndPSQVRingGreaterThan600_3128q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.970 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfPSQVValueAndPSQVRingGreaterThan600_3128q skipped]
+[INFO ] 2018-03-22 12:34:07.973 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfPSQVValueAndPSQVRingGreaterThan600_3128q skipped]
+[INFO ] 2018-03-22 12:34:07.975 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfPSQVValueAndPSQVRingLessThan600_3127q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.978 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfPSQVValueAndPSQVRingLessThan600_3127q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.978 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfPSQVValueAndPSQVRingLessThan600_3127q skipped]
+[INFO ] 2018-03-22 12:34:07.980 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfPSQVValueAndPSQVRingLessThan600_3127q skipped]
+[INFO ] 2018-03-22 12:34:07.982 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfSVValueAndSVRingForEqualsTo0_2469q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.983 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfSVValueAndSVRingForEqualsTo0_2469q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.984 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfSVValueAndSVRingForEqualsTo0_2469q skipped]
+[INFO ] 2018-03-22 12:34:07.990 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfSVValueAndSVRingForEqualsTo0_2469q skipped]
+[INFO ] 2018-03-22 12:34:07.991 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfSVValueAndSVRingGreaterThan100_3125q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.993 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfSVValueAndSVRingGreaterThan100_3125q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.993 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfSVValueAndSVRingGreaterThan100_3125q skipped]
+[INFO ] 2018-03-22 12:34:07.995 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfSVValueAndSVRingGreaterThan100_3125q skipped]
+[INFO ] 2018-03-22 12:34:07.997 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfSVValueAndSVRingLessThan100_3126q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:07.999 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testColorOfSVValueAndSVRingLessThan100_3126q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.000 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfSVValueAndSVRingLessThan100_3126q skipped]
+[INFO ] 2018-03-22 12:34:08.002 [main] TestListner - [TEST IS SKIPPED -------- Test case testColorOfSVValueAndSVRingLessThan100_3126q skipped]
+[INFO ] 2018-03-22 12:34:08.003 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantOverviewDetails_2420q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.005 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantOverviewDetails_2420q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.005 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantOverviewDetails_2420q skipped]
+[INFO ] 2018-03-22 12:34:08.007 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantOverviewDetails_2420q skipped]
+[INFO ] 2018-03-22 12:34:08.008 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantsOnMyLevel1Value_2539q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.010 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantsOnMyLevel1Value_2539q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.010 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantsOnMyLevel1Value_2539q skipped]
+[INFO ] 2018-03-22 12:34:08.017 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantsOnMyLevel1Value_2539q skipped]
+[INFO ] 2018-03-22 12:34:08.018 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testCurrentProgressEstSVValue_2467q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.020 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testCurrentProgressEstSVValue_2467q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.020 [main] TestListner - [TEST IS SKIPPED -------- Test case testCurrentProgressEstSVValue_2467q skipped]
+[INFO ] 2018-03-22 12:34:08.023 [main] TestListner - [TEST IS SKIPPED -------- Test case testCurrentProgressEstSVValue_2467q skipped]
+[INFO ] 2018-03-22 12:34:08.025 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testDeactivatedPCCardDetails_2988q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.027 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testDeactivatedPCCardDetails_2988q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.027 [main] TestListner - [TEST IS SKIPPED -------- Test case testDeactivatedPCCardDetails_2988q skipped]
+[INFO ] 2018-03-22 12:34:08.029 [main] TestListner - [TEST IS SKIPPED -------- Test case testDeactivatedPCCardDetails_2988q skipped]
+[INFO ] 2018-03-22 12:34:08.031 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testDownlineReportLink_2561q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.033 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testDownlineReportLink_2561q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.033 [main] TestListner - [TEST IS SKIPPED -------- Test case testDownlineReportLink_2561q skipped]
+[INFO ] 2018-03-22 12:34:08.035 [main] TestListner - [TEST IS SKIPPED -------- Test case testDownlineReportLink_2561q skipped]
+[INFO ] 2018-03-22 12:34:08.038 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testECLegsValue_2476q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.039 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testECLegsValue_2476q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.039 [main] TestListner - [TEST IS SKIPPED -------- Test case testECLegsValue_2476q skipped]
+[INFO ] 2018-03-22 12:34:08.045 [main] TestListner - [TEST IS SKIPPED -------- Test case testECLegsValue_2476q skipped]
+[INFO ] 2018-03-22 12:34:08.047 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testEarningsStatementsReportLink_2562q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.049 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testEarningsStatementsReportLink_2562q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.049 [main] TestListner - [TEST IS SKIPPED -------- Test case testEarningsStatementsReportLink_2562q skipped]
+[INFO ] 2018-03-22 12:34:08.052 [main] TestListner - [TEST IS SKIPPED -------- Test case testEarningsStatementsReportLink_2562q skipped]
+[INFO ] 2018-03-22 12:34:08.054 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testEnrollmentDate_2545q_2626q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.056 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testEnrollmentDate_2545q_2626q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.056 [main] TestListner - [TEST IS SKIPPED -------- Test case testEnrollmentDate_2545q_2626q skipped]
+[INFO ] 2018-03-22 12:34:08.059 [main] TestListner - [TEST IS SKIPPED -------- Test case testEnrollmentDate_2545q_2626q skipped]
+[INFO ] 2018-03-22 12:34:08.061 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testEnrollmentSponsor_2535q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.065 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testEnrollmentSponsor_2535q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.065 [main] TestListner - [TEST IS SKIPPED -------- Test case testEnrollmentSponsor_2535q skipped]
+[INFO ] 2018-03-22 12:34:08.068 [main] TestListner - [TEST IS SKIPPED -------- Test case testEnrollmentSponsor_2535q skipped]
+[INFO ] 2018-03-22 12:34:08.069 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testEstPSQVValue_2468q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.071 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testEstPSQVValue_2468q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.071 [main] TestListner - [TEST IS SKIPPED -------- Test case testEstPSQVValue_2468q skipped]
+[INFO ] 2018-03-22 12:34:08.077 [main] TestListner - [TEST IS SKIPPED -------- Test case testEstPSQVValue_2468q skipped]
+[INFO ] 2018-03-22 12:34:08.078 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testFullNameFromCard_2634q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.079 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testFullNameFromCard_2634q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.080 [main] TestListner - [TEST IS SKIPPED -------- Test case testFullNameFromCard_2634q skipped]
+[INFO ] 2018-03-22 12:34:08.082 [main] TestListner - [TEST IS SKIPPED -------- Test case testFullNameFromCard_2634q skipped]
+[INFO ] 2018-03-22 12:34:08.083 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testGreetingAndFirstName_2546q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.085 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testGreetingAndFirstName_2546q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.085 [main] TestListner - [TEST IS SKIPPED -------- Test case testGreetingAndFirstName_2546q skipped]
+[INFO ] 2018-03-22 12:34:08.087 [main] TestListner - [TEST IS SKIPPED -------- Test case testGreetingAndFirstName_2546q skipped]
+[INFO ] 2018-03-22 12:34:08.088 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testL1L2QualifyingVolumeValue_2418q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.090 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testL1L2QualifyingVolumeValue_2418q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.091 [main] TestListner - [TEST IS SKIPPED -------- Test case testL1L2QualifyingVolumeValue_2418q skipped]
+[INFO ] 2018-03-22 12:34:08.094 [main] TestListner - [TEST IS SKIPPED -------- Test case testL1L2QualifyingVolumeValue_2418q skipped]
+[INFO ] 2018-03-22 12:34:08.107 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testL1L2QualifyingVolumeValue_2541q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.117 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testL1L2QualifyingVolumeValue_2541q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.117 [main] TestListner - [TEST IS SKIPPED -------- Test case testL1L2QualifyingVolumeValue_2541q skipped]
+[INFO ] 2018-03-22 12:34:08.123 [main] TestListner - [TEST IS SKIPPED -------- Test case testL1L2QualifyingVolumeValue_2541q skipped]
+[INFO ] 2018-03-22 12:34:08.125 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testL1L6QualifyingVolumeValue_2419q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.127 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testL1L6QualifyingVolumeValue_2419q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.128 [main] TestListner - [TEST IS SKIPPED -------- Test case testL1L6QualifyingVolumeValue_2419q skipped]
+[INFO ] 2018-03-22 12:34:08.130 [main] TestListner - [TEST IS SKIPPED -------- Test case testL1L6QualifyingVolumeValue_2419q skipped]
+[INFO ] 2018-03-22 12:34:08.132 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testL1L6QualifyingVolumeValue_2542q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.134 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testL1L6QualifyingVolumeValue_2542q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.134 [main] TestListner - [TEST IS SKIPPED -------- Test case testL1L6QualifyingVolumeValue_2542q skipped]
+[INFO ] 2018-03-22 12:34:08.138 [main] TestListner - [TEST IS SKIPPED -------- Test case testL1L6QualifyingVolumeValue_2542q skipped]
+[INFO ] 2018-03-22 12:34:08.139 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCAutoshipsThisMonthValue_2537q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.141 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCAutoshipsThisMonthValue_2537q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.141 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCAutoshipsThisMonthValue_2537q skipped]
+[INFO ] 2018-03-22 12:34:08.145 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCAutoshipsThisMonthValue_2537q skipped]
+[INFO ] 2018-03-22 12:34:08.149 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCWithOrdersValue_2536q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.151 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCWithOrdersValue_2536q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.151 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCWithOrdersValue_2536q skipped]
+[INFO ] 2018-03-22 12:34:08.157 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCWithOrdersValue_2536q skipped]
+[INFO ] 2018-03-22 12:34:08.159 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPSQVValueFromCard_2635q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.162 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPSQVValueFromCard_2635q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.162 [main] TestListner - [TEST IS SKIPPED -------- Test case testPSQVValueFromCard_2635q skipped]
+[INFO ] 2018-03-22 12:34:08.165 [main] TestListner - [TEST IS SKIPPED -------- Test case testPSQVValueFromCard_2635q skipped]
+[INFO ] 2018-03-22 12:34:08.167 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPSQVValue_2395q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.169 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPSQVValue_2395q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.169 [main] TestListner - [TEST IS SKIPPED -------- Test case testPSQVValue_2395q skipped]
+[INFO ] 2018-03-22 12:34:08.172 [main] TestListner - [TEST IS SKIPPED -------- Test case testPSQVValue_2395q skipped]
+[INFO ] 2018-03-22 12:34:08.175 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPendingPCAutoships_3017q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.177 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPendingPCAutoships_3017q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.177 [main] TestListner - [TEST IS SKIPPED -------- Test case testPendingPCAutoships_3017q skipped]
+[INFO ] 2018-03-22 12:34:08.180 [main] TestListner - [TEST IS SKIPPED -------- Test case testPendingPCAutoships_3017q skipped]
+[INFO ] 2018-03-22 12:34:08.181 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPendingPCAutoships_3017q_3353q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.184 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPendingPCAutoships_3017q_3353q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.184 [main] TestListner - [TEST IS SKIPPED -------- Test case testPendingPCAutoships_3017q_3353q skipped]
+[INFO ] 2018-03-22 12:34:08.192 [main] TestListner - [TEST IS SKIPPED -------- Test case testPendingPCAutoships_3017q_3353q skipped]
+[INFO ] 2018-03-22 12:34:08.193 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPerformanceSponsorDetails_2534q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.195 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPerformanceSponsorDetails_2534q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.196 [main] TestListner - [TEST IS SKIPPED -------- Test case testPerformanceSponsorDetails_2534q skipped]
+[INFO ] 2018-03-22 12:34:08.198 [main] TestListner - [TEST IS SKIPPED -------- Test case testPerformanceSponsorDetails_2534q skipped]
+[INFO ] 2018-03-22 12:34:08.200 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testProcessedPCAutoships_3015q_3351q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.202 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testProcessedPCAutoships_3015q_3351q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.203 [main] TestListner - [TEST IS SKIPPED -------- Test case testProcessedPCAutoships_3015q_3351q skipped]
+[INFO ] 2018-03-22 12:34:08.206 [main] TestListner - [TEST IS SKIPPED -------- Test case testProcessedPCAutoships_3015q_3351q skipped]
+[INFO ] 2018-03-22 12:34:08.208 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPulseProAutoshipProcessedInPastForThisMonth_2530q_2529q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.210 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPulseProAutoshipProcessedInPastForThisMonth_2530q_2529q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.211 [main] TestListner - [TEST IS SKIPPED -------- Test case testPulseProAutoshipProcessedInPastForThisMonth_2530q_2529q skipped]
+[INFO ] 2018-03-22 12:34:08.214 [main] TestListner - [TEST IS SKIPPED -------- Test case testPulseProAutoshipProcessedInPastForThisMonth_2530q_2529q skipped]
+[INFO ] 2018-03-22 12:34:08.216 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testQualificationTitleC_3217q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.218 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testQualificationTitleC_3217q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.218 [main] TestListner - [TEST IS SKIPPED -------- Test case testQualificationTitleC_3217q skipped]
+[INFO ] 2018-03-22 12:34:08.224 [main] TestListner - [TEST IS SKIPPED -------- Test case testQualificationTitleC_3217q skipped]
+[INFO ] 2018-03-22 12:34:08.227 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testQualificationTitleEC_3218q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.229 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testQualificationTitleEC_3218q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.229 [main] TestListner - [TEST IS SKIPPED -------- Test case testQualificationTitleEC_3218q skipped]
+[INFO ] 2018-03-22 12:34:08.232 [main] TestListner - [TEST IS SKIPPED -------- Test case testQualificationTitleEC_3218q skipped]
+[INFO ] 2018-03-22 12:34:08.234 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSVValueFromCard_2634q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.236 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSVValueFromCard_2634q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.236 [main] TestListner - [TEST IS SKIPPED -------- Test case testSVValueFromCard_2634q skipped]
+[INFO ] 2018-03-22 12:34:08.239 [main] TestListner - [TEST IS SKIPPED -------- Test case testSVValueFromCard_2634q skipped]
+[INFO ] 2018-03-22 12:34:08.240 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSVValue_2394q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.241 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSVValue_2394q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.241 [main] TestListner - [TEST IS SKIPPED -------- Test case testSVValue_2394q skipped]
+[INFO ] 2018-03-22 12:34:08.243 [main] TestListner - [TEST IS SKIPPED -------- Test case testSVValue_2394q skipped]
+[INFO ] 2018-03-22 12:34:08.245 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSolutionToolReportLink_2563q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.246 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSolutionToolReportLink_2563q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.247 [main] TestListner - [TEST IS SKIPPED -------- Test case testSolutionToolReportLink_2563q skipped]
+[INFO ] 2018-03-22 12:34:08.253 [main] TestListner - [TEST IS SKIPPED -------- Test case testSolutionToolReportLink_2563q skipped]
+[INFO ] 2018-03-22 12:34:08.254 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTitleHistoryPage_2479q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.255 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTitleHistoryPage_2479q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.255 [main] TestListner - [TEST IS SKIPPED -------- Test case testTitleHistoryPage_2479q skipped]
+[INFO ] 2018-03-22 12:34:08.257 [main] TestListner - [TEST IS SKIPPED -------- Test case testTitleHistoryPage_2479q skipped]
+[INFO ] 2018-03-22 12:34:08.258 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testUpcomingOrdersPendingAutoships_2531q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.260 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testUpcomingOrdersPendingAutoships_2531q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.260 [main] TestListner - [TEST IS SKIPPED -------- Test case testUpcomingOrdersPendingAutoships_2531q skipped]
+[INFO ] 2018-03-22 12:34:08.262 [main] TestListner - [TEST IS SKIPPED -------- Test case testUpcomingOrdersPendingAutoships_2531q skipped]
+[INFO ] 2018-03-22 12:34:08.263 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFLinkForLevelECIVOrMore_2956q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.265 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFLinkForLevelECIVOrMore_2956q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.265 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFLinkForLevelECIVOrMore_2956q skipped]
+[INFO ] 2018-03-22 12:34:08.268 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFLinkForLevelECIVOrMore_2956q skipped]
+[INFO ] 2018-03-22 12:34:08.269 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFLinkForPaidAsTitleLevelECIIIOrLess_3103q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.270 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFLinkForPaidAsTitleLevelECIIIOrLess_3103q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.271 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFLinkForPaidAsTitleLevelECIIIOrLess_3103q skipped]
+[INFO ] 2018-03-22 12:34:08.277 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyRFLinkForPaidAsTitleLevelECIIIOrLess_3103q skipped]
+[INFO ] 2018-03-22 12:34:08.279 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testViewPastOrderDetails_2895q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.282 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testViewPastOrderDetails_2895q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.282 [main] TestListner - [TEST IS SKIPPED -------- Test case testViewPastOrderDetails_2895q skipped]
+[INFO ] 2018-03-22 12:34:08.284 [main] TestListner - [TEST IS SKIPPED -------- Test case testViewPastOrderDetails_2895q skipped]
+[INFO ] 2018-03-22 12:34:08.287 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVitalSignsPageNavigation_2560q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.290 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVitalSignsPageNavigation_2560q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.290 [main] TestListner - [TEST IS SKIPPED -------- Test case testVitalSignsPageNavigation_2560q skipped]
+[INFO ] 2018-03-22 12:34:08.294 [main] TestListner - [TEST IS SKIPPED -------- Test case testVitalSignsPageNavigation_2560q skipped]
+[INFO ] 2018-03-22 12:34:08.301 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  TotalNumberOfAllPCs_3349q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.302 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  TotalNumberOfAllPCs_3349q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.303 [main] TestListner - [TEST IS SKIPPED -------- Test case TotalNumberOfAllPCs_3349q skipped]
+[INFO ] 2018-03-22 12:34:08.306 [main] TestListner - [TEST IS SKIPPED -------- Test case TotalNumberOfAllPCs_3349q skipped]
+[INFO ] 2018-03-22 12:34:08.307 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCCardComponents_3240q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.309 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCCardComponents_3240q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.309 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCCardComponents_3240q skipped]
+[INFO ] 2018-03-22 12:34:08.315 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCCardComponents_3240q skipped]
+[INFO ] 2018-03-22 12:34:08.316 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingByQVLowTohigh_3011q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.317 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingByQVLowTohigh_3011q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.317 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingByQVLowTohigh_3011q skipped]
+[INFO ] 2018-03-22 12:34:08.319 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingByQVLowTohigh_3011q skipped]
+[INFO ] 2018-03-22 12:34:08.320 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNextMonth_2999q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.321 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNextMonth_2999q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.322 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNextMonth_2999q skipped]
+[INFO ] 2018-03-22 12:34:08.324 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNextMonth_2999q skipped]
+[INFO ] 2018-03-22 12:34:08.325 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForThisMonth_3000q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.326 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForThisMonth_3000q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.326 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForThisMonth_3000q skipped]
+[INFO ] 2018-03-22 12:34:08.328 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForThisMonth_3000q skipped]
+[INFO ] 2018-03-22 12:34:08.330 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfDeactivatedPCs_2985q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.331 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfDeactivatedPCs_2985q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.331 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfDeactivatedPCs_2985q skipped]
+[INFO ] 2018-03-22 12:34:08.337 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfDeactivatedPCs_2985q skipped]
+[INFO ] 2018-03-22 12:34:08.338 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfNewPCs_3306q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.339 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfNewPCs_3306q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.340 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfNewPCs_3306q skipped]
+[INFO ] 2018-03-22 12:34:08.345 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfNewPCs_3306q skipped]
+[INFO ] 2018-03-22 12:34:08.346 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsNextMonth_3021q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.348 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsNextMonth_3021q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.348 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsNextMonth_3021q skipped]
+[INFO ] 2018-03-22 12:34:08.350 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsNextMonth_3021q skipped]
+[INFO ] 2018-03-22 12:34:08.351 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsThisMonth_3013q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.353 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsThisMonth_3013q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.353 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsThisMonth_3013q skipped]
+[INFO ] 2018-03-22 12:34:08.355 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsThisMonth_3013q skipped]
+[INFO ] 2018-03-22 12:34:08.358 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantAdhocOrderDetailsOnOrderCards_2848q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.359 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantAdhocOrderDetailsOnOrderCards_2848q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.360 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantAdhocOrderDetailsOnOrderCards_2848q skipped]
+[INFO ] 2018-03-22 12:34:08.367 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantAdhocOrderDetailsOnOrderCards_2848q skipped]
+[INFO ] 2018-03-22 12:34:08.368 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoadingOrdersScreen_2821q_2820q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.370 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoadingOrdersScreen_2821q_2820q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.370 [main] TestListner - [TEST IS SKIPPED -------- Test case testLoadingOrdersScreen_2821q_2820q skipped]
+[INFO ] 2018-03-22 12:34:08.373 [main] TestListner - [TEST IS SKIPPED -------- Test case testLoadingOrdersScreen_2821q_2820q skipped]
+[INFO ] 2018-03-22 12:34:08.374 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderStatusOrderResultsBasedOnOrderFilter_2835q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.375 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderStatusOrderResultsBasedOnOrderFilter_2835q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.376 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderStatusOrderResultsBasedOnOrderFilter_2835q skipped]
+[INFO ] 2018-03-22 12:34:08.378 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderStatusOrderResultsBasedOnOrderFilter_2835q skipped]
+[INFO ] 2018-03-22 12:34:08.379 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderTypeOrderResultsBasedOnOrderFilter_2834q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.380 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderTypeOrderResultsBasedOnOrderFilter_2834q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.381 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderTypeOrderResultsBasedOnOrderFilter_2834q skipped]
+[INFO ] 2018-03-22 12:34:08.383 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderTypeOrderResultsBasedOnOrderFilter_2834q skipped]
+[INFO ] 2018-03-22 12:34:08.384 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCAdhocOrderDetailsOnOrderCards_2844q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.386 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCAdhocOrderDetailsOnOrderCards_2844q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.386 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCAdhocOrderDetailsOnOrderCards_2844q skipped]
+[INFO ] 2018-03-22 12:34:08.392 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCAdhocOrderDetailsOnOrderCards_2844q skipped]
+[INFO ] 2018-03-22 12:34:08.393 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPulseSubscriptionOrderDetailsOnOrderCards_2843q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.394 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPulseSubscriptionOrderDetailsOnOrderCards_2843q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.394 [main] TestListner - [TEST IS SKIPPED -------- Test case testPulseSubscriptionOrderDetailsOnOrderCards_2843q skipped]
+[INFO ] 2018-03-22 12:34:08.399 [main] TestListner - [TEST IS SKIPPED -------- Test case testPulseSubscriptionOrderDetailsOnOrderCards_2843q skipped]
+[INFO ] 2018-03-22 12:34:08.401 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testRetailAdhocOrderDetailsOnOrderCards_2841q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.402 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testRetailAdhocOrderDetailsOnOrderCards_2841q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.402 [main] TestListner - [TEST IS SKIPPED -------- Test case testRetailAdhocOrderDetailsOnOrderCards_2841q skipped]
+[INFO ] 2018-03-22 12:34:08.404 [main] TestListner - [TEST IS SKIPPED -------- Test case testRetailAdhocOrderDetailsOnOrderCards_2841q skipped]
+[INFO ] 2018-03-22 12:34:08.406 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsOnOrderCards_2838q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.406 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsOnOrderCards_2838q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.407 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsOnOrderCards_2838q skipped]
+[INFO ] 2018-03-22 12:34:08.408 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsOnOrderCards_2838q skipped]
+[INFO ] 2018-03-22 12:34:08.410 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.411 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.411 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q skipped]
+[INFO ] 2018-03-22 12:34:08.417 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q skipped]
+[INFO ] 2018-03-22 12:34:08.419 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForFailedPCOrders_3430q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.421 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForFailedPCOrders_3430q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.421 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForFailedPCOrders_3430q skipped]
+[INFO ] 2018-03-22 12:34:08.425 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForFailedPCOrders_3430q skipped]
+[INFO ] 2018-03-22 12:34:08.430 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.432 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.433 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q skipped]
+[INFO ] 2018-03-22 12:34:08.440 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q skipped]
+[INFO ] 2018-03-22 12:34:08.451 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNewConsultant_3329q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.454 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNewConsultant_3329q
+******************************************************************************************************************************
+[INFO ] 2018-03-22 12:34:08.454 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNewConsultant_3329q skipped]
+[INFO ] 2018-03-22 12:34:08.458 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNewConsultant_3329q skipped]

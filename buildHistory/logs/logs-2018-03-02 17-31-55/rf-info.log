@@ -1,0 +1,151 @@
+[INFO ] 2018-03-02 17:30:36.479 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-02 17:30:36.479 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-02 17:30:36.480 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-02 17:30:36.480 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-02 17:30:36.480 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-02 17:30:36.480 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-02 17:30:36.480 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-02 17:30:36.480 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-02 17:30:36.480 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-02 17:30:41.130 [main] RFWebsiteDriver - Window is maximized
+[INFO ] 2018-03-02 17:30:41.130 [main] RFWebsiteDriver - All cookies deleted
+[INFO ] 2018-03-02 17:30:41.130 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-02 17:30:42.592 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-02 17:30:42.608 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-02 17:30:42.692 [main] DBUtil - QUERY TRIGGERED IS SELECT top 1 * FROM Commissions.[calcs].[vwQualificationSummary] where SV!=0 and PSQV!=0 and L1L2!=0 and L1L6!=0 and ECLegs > 0 and periodid= LEFT(CONVERT(varchar, GetDate(),112),6)  order by NewID() desc
+
+[INFO ] 2018-03-02 17:30:43.358 [main] RFLSDWebsiteBaseTest - Data returned by query: 1496
+[INFO ] 2018-03-02 17:30:43.359 [main] DBUtil - QUERY TRIGGERED IS SELECT  ab.AccountID ,ac.FirstName ,ac.LastName ,acs.Username FROM  RFOperations.RFO_Accounts.AccountBase ab JOIN RFOperations.RFO_Accounts.AccountRF rf ON rf.AccountID = ab.AccountID JOIN RFOperations.RFO_Accounts.AccountContacts ac ON ac.AccountId = ab.AccountID LEFT JOIN RFOperations.Security.AccountSecurity acs ON acs.AccountID = ab.AccountID LEFT JOIN RFOperations.RFO_Reference.AccountType t ON t.AccountTypeID = ab.AccountTypeID LEFT JOIN RFOperations.RFO_Reference.AccountStatus s ON s.AccountStatusID = ab.AccountStatusID LEFT JOIN RFOperations.RFO_Reference.Countries c ON c.CountryID = ab.CountryID WHERE   ab.AccountID = 1496
+
+[INFO ] 2018-03-02 17:30:43.563 [main] RFLSDWebsiteBaseTest - Data returned by query: skincareconsultants@gmail.com
+[INFO ] 2018-03-02 17:30:43.565 [main] DBUtil - QUERY TRIGGERED IS select EmailAddress from RFO_Accounts.AccountContacts acTB INNER JOIN RFO_Accounts.AccountEmails aeTB  on acTB.AccountContactId=aeTB.AccountContactId INNER JOIN RFO_Accounts.EmailAddresses aEMTB on aeTB.EmailAddressID=aEMTB.EmailAddressID WHERE acTB.AccountID='1496' and aEMTB.EmailAddressTypeID=1 
+
+[INFO ] 2018-03-02 17:30:43.771 [main] RFLSDWebsiteBaseTest - Data returned by query: skincareconsultants@gmail.com
+[INFO ] 2018-03-02 17:30:43.771 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:30:44.808 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:30:44.817 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-02 17:30:44.869 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-02 17:30:44.879 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:30:44.879 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-02 17:30:45.456 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-02 17:30:45.456 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-02 17:30:45.467 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:30:45.649 [main] RFWebsiteDriver - TYPED text as = skincareconsultants@gmail.com in  text field
+[INFO ] 2018-03-02 17:30:45.649 [main] LSDLoginPage - username is skincareconsultants@gmail.com
+[INFO ] 2018-03-02 17:30:45.649 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-02 17:30:45.649 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-02 17:30:45.667 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:30:45.791 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-02 17:30:45.791 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-02 17:30:45.791 [main] RFWebsiteDriver - wait started for By.id: button-login
+[INFO ] 2018-03-02 17:30:45.791 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-02 17:30:45.810 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:30:45.810 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:30:45.891 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:31:09.072 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-02 17:31:09.158 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:31:10.191 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:11.202 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:12.213 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:13.225 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:14.252 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:15.261 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:16.292 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:17.300 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:18.328 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:19.338 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:20.357 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:21.374 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:22.410 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:23.419 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:24.440 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:25.450 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:26.474 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:27.493 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:28.502 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:29.515 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:29.516 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-02 17:31:34.809 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-02 17:31:34.819 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:34.828 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-02 17:31:34.837 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:34.870 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=SARAH
+[INFO ] 2018-03-02 17:31:34.870 [main] RFLSDWebsiteBaseTest - Data returned by query: Sarah
+[INFO ] 2018-03-02 17:31:34.875 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::img[2]
+[INFO ] 2018-03-02 17:31:34.875 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::img[2]
+[INFO ] 2018-03-02 17:31:34.890 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:34.890 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-02 17:31:34.957 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-02 17:31:35.045 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsThisMonth_3013q
+******************************************************************************************************************************
+[INFO ] 2018-03-02 17:31:35.094 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:31:35.095 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:31:35.109 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:35.110 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:31:35.176 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:31:35.176 [main] LSDHomePage - Clicked on Pulse Submenu from Top Navigation
+[INFO ] 2018-03-02 17:31:35.227 [main] RFWebsiteDriver - wait started for By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-02 17:31:35.227 [main] RFWebsiteDriver - waiting for locator By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-02 17:31:35.237 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:35.238 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:31:35.313 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:31:35.314 [main] LSDHomePage - SubMenu Link : Customers clicked
+[INFO ] 2018-03-02 17:31:35.344 [main] RFWebsiteDriver - Waiting for spin image to get disappear0
+[INFO ] 2018-03-02 17:31:35.354 [main] RFWebsiteDriver - spin image disappears
+[INFO ] 2018-03-02 17:31:39.355 [main] DBUtil - QUERY TRIGGERED IS DECLARE @AccountID INT = 1496 ;WITH PCAchievedOrders AS ( SELECT COUNT( ro.OrderID) Ocount , ro.ConsultantID FROM RFOperations.Hybris.orders (NOLOCK) ro JOIN RFOperations.RFO_Accounts.AccountBase ab ON ab.AccountID = ro.AccountID WHERE ro.ConsultantID = @AccountID AND ro.OrderStatusID IN ( 2, 4, 5 ) AND ab.AccountTypeID = 2 AND ro.CompletionDate BETWEEN CAST(DATEADD(DAY, 1, DATEADD(MONTH, -1, EOMONTH(GETDATE()))) AS DATE) AND GETDATE() AND ro.AutoShipID IS NOT NULL GROUP BY ro.ConsultantID ), PenddingPCTemplate AS ( SELECT COUNT( a.AutoshipID) PCount , a.ConsultantID FROM RFOperations.Hybris.Autoship (NOLOCK) a JOIN RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab ON ab.AccountID = a.AccountID JOIN RFOperations.RFO_Accounts.AccountContacts ac ON ac.AccountId = ab.AccountID WHERE a.ConsultantID = @AccountID AND a.AutoshipTypeID = 1 AND ab.AccountTypeID = 2 AND a.Active = 1 AND CAST(a.NextRunDate AS DATE) BETWEEN CAST(DATEADD(DAY, 1, DATEADD(MONTH, -1, EOMONTH(GETDATE()))) AS DATE) AND EOMONTH(GETDATE()) GROUP BY a.ConsultantID ) SELECT ab.AccountID , ISNULL(p.PCount, 0) + ISNULL(o.Ocount, 0) AS [Totol PC Order Counts] FROM RFOperations.RFO_Accounts.AccountBase ab LEFT JOIN PCAchievedOrders o ON o.ConsultantID = ab.AccountID LEFT JOIN PenddingPCTemplate p ON p.ConsultantID = ab.AccountID WHERE ab.AccountID = @AccountID
+
+[INFO ] 2018-03-02 17:31:39.637 [main] RFLSDWebsiteBaseTest - Data returned by query: 5
+[INFO ] 2018-03-02 17:31:39.638 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:31:39.638 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:31:39.666 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:39.667 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:31:39.722 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:31:39.723 [main] LSDHomePage - Clicked on Pulse Submenu from Top Navigation
+[INFO ] 2018-03-02 17:31:39.756 [main] RFWebsiteDriver - wait started for By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-02 17:31:39.756 [main] RFWebsiteDriver - waiting for locator By.xpath: //a[contains(text(),'Customers')]
+[INFO ] 2018-03-02 17:31:39.767 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:39.767 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-02 17:31:39.804 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:31:39.805 [main] LSDHomePage - SubMenu Link : Customers clicked
+[INFO ] 2018-03-02 17:31:39.817 [main] RFWebsiteDriver - Waiting for spin image to get disappear0
+[INFO ] 2018-03-02 17:31:39.830 [main] RFWebsiteDriver - spin image disappears
+[INFO ] 2018-03-02 17:31:43.846 [main] RFWebsiteDriver - Waiting for spin image to get disappear0
+[INFO ] 2018-03-02 17:31:43.855 [main] RFWebsiteDriver - spin image disappears
+[INFO ] 2018-03-02 17:31:43.855 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[2]
+[INFO ] 2018-03-02 17:31:43.871 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:43.908 [main] RFWebsiteDriver - TEXT fetched for count of pc autoship orders for this month is=5
+[INFO ] 2018-03-02 17:31:50.911 [main] RFWebsiteDriver - wait started for By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[1]
+[INFO ] 2018-03-02 17:31:50.911 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[contains(@class,'white-fb')]/descendant::a[1]/descendant::span[1]
+[INFO ] 2018-03-02 17:31:50.929 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:50.929 [main] RFWebsiteDriver - have orders for this month ready to be clicked
+[INFO ] 2018-03-02 17:31:50.995 [main] RFWebsiteDriver - CLICKED on have orders for this month
+[INFO ] 2018-03-02 17:31:51.119 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:31:51.119 [main] RFWebsiteDriver - wait started for By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-02 17:31:51.119 [main] RFWebsiteDriver - waiting for locator By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-02 17:31:51.665 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:51.665 [main] RFWebsiteDriver - waiting for locator By.xpath: //h1[contains(text(),'have orders this month')]/preceding::span[1]
+[INFO ] 2018-03-02 17:31:51.676 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:51.715 [main] RFWebsiteDriver - TEXT fetched for count of pc autoship orders for this month at header is=5
+[INFO ] 2018-03-02 17:31:51.715 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testTotalNumberOfPCsThisMonth_3013q has passed]
+[INFO ] 2018-03-02 17:31:51.729 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-02 17:31:52.150 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:31:52.289 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-02 17:31:52.289 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:31:53.452 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-02 17:31:53.464 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-02 17:31:53.464 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:31:53.997 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:53.997 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:31:53.997 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-02 17:31:54.013 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-02 17:31:54.014 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-02 17:31:54.095 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-03-02 17:31:54.095 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-03-02 17:31:54.095 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-03-02 17:31:54.184 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-02 17:31:54.185 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-02 17:31:54.206 [main] RFWebsiteDriver - LSD loading image disappears
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              [INFO ] 2018-03-02 17:30:40.714 [main] RFLSDWebsiteBaseTest - Data returned by query: Sarah
+[INFO ] 2018-03-02 17:30:40.718 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear

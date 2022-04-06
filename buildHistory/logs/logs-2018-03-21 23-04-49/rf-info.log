@@ -1,0 +1,600 @@
+[INFO ] 2018-03-21 22:58:43.801 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-03-21 22:58:43.802 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-03-21 22:58:43.802 [main] RFBaseTest - Default URL is  ------ https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 22:58:43.802 [main] RFBaseTest - Default user password is  ------ 111Maiden$
+[INFO ] 2018-03-21 22:58:43.802 [main] RFBaseTest - Default Country is  ------ us
+[INFO ] 2018-03-21 22:58:43.802 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-03-21 22:58:43.802 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-03-21 22:58:43.802 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-03-21 22:58:43.803 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-03-21 22:58:43.819 [main] RFLSDWebsiteBaseTest - ================>com.rf.test.website.LSD.LSDLinkTests===============
+[INFO ] 2018-03-21 22:58:48.305 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 22:58:51.791 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-03-21 22:58:51.803 [main] RFLSDWebsiteBaseTest - ================inside befoe class===============
+[INFO ] 2018-03-21 22:58:51.803 [main] RFLSDWebsiteBaseTest - ================>com.rf.test.website.LSD.LoginTests===============
+[INFO ] 2018-03-21 22:58:51.805 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-21 22:58:51.847 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1
+                                            PeriodID
+                                   FROM     Commissions.reference.Periods
+                                   WHERE    ClosedDate IS NULL
+                                   ORDER BY PeriodID ASC
+                                 ) ,
+    @AccountID INT ,
+    @UserName NVARCHAR(225) ,
+    @Country NVARCHAR(225)
+
+SELECT TOP 1
+        @AccountID = ab.AccountID ,
+        @UserName = ac.Username ,
+        @Country = co.Alpha2Code
+FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab
+        JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID
+        JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID
+        JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID
+WHERE   ab.AccountTypeID = 1
+        AND ab.AccountStatusID = 1
+        AND co.Alpha2Code = 'US'
+        AND rf.Active = 1
+        AND EXISTS ( SELECT 1
+                     FROM   RFOperations.Hybris.Autoship (NOLOCK) a
+                     WHERE  a.AccountID = ab.AccountID
+                            AND a.AutoshipTypeID = 3
+                            AND a.Active = 1 )
+        AND EXISTS ( SELECT 1
+                     FROM   Commissions.calcs.vwQualificationSummary v
+                     WHERE  ab.AccountID = v.AccountID
+                            AND v.PeriodID = @CurrentOpenPeriod
+                            AND v.SV >= 100
+                            AND v.PSQV >= 600 )
+ORDER BY NEWID()
+
+SELECT  ISNULL(@AccountID, 1496) AccountID ,
+        ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName ,
+        ISNULL(@Country, 'US') Country ,
+        @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-03-21 22:58:53.873 [main] RFLSDWebsiteBaseTest - randomConsultantDetailsList:[{AccountID=3836533, UserName=a.biven@me.com, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-03-21 22:58:53.873 [main] RFLSDWebsiteBaseTest - Data returned by query: 3836533
+[INFO ] 2018-03-21 22:58:53.874 [main] RFLSDWebsiteBaseTest - Data returned by query: a.biven@me.com
+[INFO ] 2018-03-21 22:58:53.874 [main] RFLSDWebsiteBaseTest - userName:[{AccountID=3836533, UserName=a.biven@me.com, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-03-21 22:58:53.874 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:58:53.900 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 22:58:53.943 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-21 22:58:53.953 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:58:53.954 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-21 22:58:54.325 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-21 22:58:54.325 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-21 22:58:54.335 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:58:54.452 [main] RFWebsiteDriver - TYPED text as = a.biven@me.com in  text field
+[INFO ] 2018-03-21 22:58:54.453 [main] LSDLoginPage - username is a.biven@me.com
+[INFO ] 2018-03-21 22:58:54.453 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-21 22:58:54.453 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-21 22:58:54.468 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:58:54.568 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-21 22:58:54.569 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-21 22:58:54.599 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-21 22:58:54.667 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-21 22:59:04.997 [main] RFLSDWebsiteBaseTest - ================end of befoe class===============
+[INFO ] 2018-03-21 22:59:05.006 [main] RFLSDWebsiteBaseTest - ================Inside before method      ===============
+[INFO ] 2018-03-21 22:59:05.011 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 22:59:05.557 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:59:05.654 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 22:59:05.655 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 22:59:11.055 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 22:59:11.065 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:11.122 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=AMY
+[INFO ] 2018-03-21 22:59:11.122 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 22:59:11.161 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 22:59:11.246 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 22:59:11.247 [main] RFLSDWebsiteBaseTest - ================end of before method      ===============
+[INFO ] 2018-03-21 22:59:11.326 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTextAboveUsernameAndPassword_3412q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 22:59:11.372 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTextAboveUsernameAndPassword_3412q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 22:59:11.373 [main] LSDRFWebsiteBasePage - start: clicklogout
+[INFO ] 2018-03-21 22:59:11.373 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:59:11.382 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 22:59:11.383 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-21 22:59:11.397 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:11.423 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-21 22:59:11.492 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-03-21 22:59:11.493 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-03-21 22:59:11.493 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-03-21 22:59:11.558 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-03-21 22:59:11.558 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:59:11.572 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 22:59:11.572 [main] LSDRFWebsiteBasePage - end: clicklogout
+[INFO ] 2018-03-21 22:59:11.572 [main] RFWebsiteDriver - wait started for By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-03-21 22:59:11.572 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-03-21 22:59:12.100 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:12.101 [main] RFWebsiteDriver - wait started for By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-03-21 22:59:12.101 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-03-21 22:59:12.112 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:12.148 [main] RFWebsiteDriver - wait started for By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-03-21 22:59:12.148 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-03-21 22:59:12.159 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:12.159 [main] RFWebsiteDriver - wait started for By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-03-21 22:59:12.159 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@class='text-center get-started']/span
+[INFO ] 2018-03-21 22:59:12.169 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:12.188 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-21 22:59:12.199 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:12.199 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-21 22:59:12.536 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-21 22:59:12.537 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-21 22:59:12.547 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:12.650 [main] RFWebsiteDriver - TYPED text as = a.biven@me.com in  text field
+[INFO ] 2018-03-21 22:59:12.655 [main] LSDLoginPage - username is a.biven@me.com
+[INFO ] 2018-03-21 22:59:12.655 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-21 22:59:12.656 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-21 22:59:12.671 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:12.765 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-21 22:59:12.765 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-21 22:59:12.789 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-21 22:59:12.848 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-21 22:59:17.055 [main] RFWebsiteDriver - Waiting for login button to get disappear
+[INFO ] 2018-03-21 22:59:17.070 [main] RFWebsiteDriver - login button disappears
+[INFO ] 2018-03-21 22:59:17.095 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 22:59:17.105 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:17.117 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testTextAboveUsernameAndPassword_3412q has passed]
+[INFO ] 2018-03-21 22:59:17.127 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testTextAboveUsernameAndPassword_3412q has passed]
+[INFO ] 2018-03-21 22:59:17.134 [main] RFLSDWebsiteBaseTest - inside after class of com.rf.test.website.LSD.LoginTests
+[INFO ] 2018-03-21 22:59:30.934 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 22:59:31.613 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:59:31.838 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 22:59:31.838 [main] LSDRFWebsiteBasePage - start: clicklogout
+[INFO ] 2018-03-21 22:59:31.838 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:59:32.903 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-21 22:59:33.914 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-03-21 22:59:33.924 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 22:59:33.924 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-21 22:59:33.939 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:33.964 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-21 22:59:34.043 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-03-21 22:59:34.043 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-03-21 22:59:34.043 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-03-21 22:59:34.123 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-03-21 22:59:34.123 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:59:34.143 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 22:59:34.143 [main] LSDRFWebsiteBasePage - end: clicklogout
+[INFO ] 2018-03-21 22:59:34.143 [main] RFLSDWebsiteBaseTest - inside end of after class of com.rf.test.website.LSD.LoginTests
+[INFO ] 2018-03-21 22:59:34.145 [main] RFLSDWebsiteBaseTest - ================inside befoe class===============
+[INFO ] 2018-03-21 22:59:34.145 [main] RFLSDWebsiteBaseTest - ================>com.rf.test.website.LSD.LSDLinkTests===============
+[INFO ] 2018-03-21 22:59:34.145 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-03-21 22:59:34.146 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1
+                                            PeriodID
+                                   FROM     Commissions.reference.Periods
+                                   WHERE    ClosedDate IS NULL
+                                   ORDER BY PeriodID ASC
+                                 ) ,
+    @AccountID INT ,
+    @UserName NVARCHAR(225) ,
+    @Country NVARCHAR(225)
+
+SELECT TOP 1
+        @AccountID = ab.AccountID ,
+        @UserName = ac.Username ,
+        @Country = co.Alpha2Code
+FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab
+        JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID
+        JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID
+        JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID
+WHERE   ab.AccountTypeID = 1
+        AND ab.AccountStatusID = 1
+        AND co.Alpha2Code = 'US'
+        AND rf.Active = 1
+        AND EXISTS ( SELECT 1
+                     FROM   RFOperations.Hybris.Autoship (NOLOCK) a
+                     WHERE  a.AccountID = ab.AccountID
+                            AND a.AutoshipTypeID = 3
+                            AND a.Active = 1 )
+        AND EXISTS ( SELECT 1
+                     FROM   Commissions.calcs.vwQualificationSummary v
+                     WHERE  ab.AccountID = v.AccountID
+                            AND v.PeriodID = @CurrentOpenPeriod
+                            AND v.SV >= 100
+                            AND v.PSQV >= 600 )
+ORDER BY NEWID()
+
+SELECT  ISNULL(@AccountID, 1496) AccountID ,
+        ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName ,
+        ISNULL(@Country, 'US') Country ,
+        @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-03-21 22:59:35.458 [main] RFLSDWebsiteBaseTest - randomConsultantDetailsList:[{AccountID=1798482, UserName=aliciaquackenbush@yahoo.com, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-03-21 22:59:35.458 [main] RFLSDWebsiteBaseTest - Data returned by query: 1798482
+[INFO ] 2018-03-21 22:59:35.458 [main] RFLSDWebsiteBaseTest - Data returned by query: aliciaquackenbush@yahoo.com
+[INFO ] 2018-03-21 22:59:35.458 [main] RFLSDWebsiteBaseTest - userName:[{AccountID=1798482, UserName=aliciaquackenbush@yahoo.com, Country=US, CurrentOpenPeriod=201710}]
+[INFO ] 2018-03-21 22:59:35.459 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:59:35.468 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 22:59:35.498 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-21 22:59:35.506 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:35.506 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-21 22:59:35.862 [main] RFWebsiteDriver - wait started for By.id: username
+[INFO ] 2018-03-21 22:59:35.862 [main] RFWebsiteDriver - waiting for locator By.id: username
+[INFO ] 2018-03-21 22:59:35.872 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:36.063 [main] RFWebsiteDriver - TYPED text as = aliciaquackenbush@yahoo.com in  text field
+[INFO ] 2018-03-21 22:59:36.063 [main] LSDLoginPage - username is aliciaquackenbush@yahoo.com
+[INFO ] 2018-03-21 22:59:36.063 [main] RFWebsiteDriver - wait started for By.id: password
+[INFO ] 2018-03-21 22:59:36.063 [main] RFWebsiteDriver - waiting for locator By.id: password
+[INFO ] 2018-03-21 22:59:36.081 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:36.184 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in  text field
+[INFO ] 2018-03-21 22:59:36.185 [main] LSDLoginPage - password is 111Maiden$
+[INFO ] 2018-03-21 22:59:36.216 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-03-21 22:59:36.278 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-03-21 22:59:44.931 [main] RFLSDWebsiteBaseTest - ================end of befoe class===============
+[INFO ] 2018-03-21 22:59:44.932 [main] RFLSDWebsiteBaseTest - ================Inside before method      ===============
+[INFO ] 2018-03-21 22:59:44.932 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 22:59:45.303 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 22:59:45.409 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 22:59:45.409 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 22:59:50.816 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 22:59:50.832 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:50.891 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=ALICIA
+[INFO ] 2018-03-21 22:59:50.891 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 22:59:50.925 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 22:59:51.001 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 22:59:51.001 [main] RFLSDWebsiteBaseTest - ================end of before method      ===============
+[INFO ] 2018-03-21 22:59:51.003 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLeadTheWayLink_1455q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 22:59:51.007 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLeadTheWayLink_1455q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 22:59:51.027 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 22:59:51.027 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 22:59:51.052 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 22:59:51.149 [main] RFWebsiteDriver - Lead the Way ready to be clicked
+[INFO ] 2018-03-21 22:59:51.257 [main] RFWebsiteDriver - CLICKED on Lead the Way
+[INFO ] 2018-03-21 22:59:52.298 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 22:59:54.299 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 22:59:57.309 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 22:59:57.316 [main] RFWebsiteDriver - current URL is https://safe.menlosecurity.com/safeview-auth-server/saml
+[INFO ] 2018-03-21 22:59:57.319 [main] SoftAssert - VERIFICATION FAILED: Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney expected [true] but found [false]
+[INFO ] 2018-03-21 22:59:57.319 [main] SoftAssert - Expected: true
+[INFO ] 2018-03-21 22:59:57.320 [main] SoftAssert - Actual: false
+[INFO ] 2018-03-21 22:59:57.320 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-03-21 23:00:05.099 [main] SoftAssert - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testVerifyLeadTheWayLink_1455q\Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney expected [true] but found [false].png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testVerifyLeadTheWayLink_1455q\Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney expected [true] but found [false].png</a>
+
+[INFO ] 2018-03-21 23:00:05.224 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 23:00:05.230 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 23:00:07.234 [main] TestListner - [TEST HAS FAILED-------- Test case testVerifyLeadTheWayLink_1455q has failed] due to reason:-<br>  java.lang.AssertionError: 1.Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney
+
+[INFO ] 2018-03-21 23:00:07.264 [main] TestListner - [TEST HAS FAILED-------- Test case testVerifyLeadTheWayLink_1455q has failed] due to reason:-<br>  java.lang.AssertionError: 1.Current URL : https://safe.menlosecurity.com/safeview-auth-server/saml does not contains randfjourney
+
+[INFO ] 2018-03-21 23:00:07.276 [main] RFLSDWebsiteBaseTest - ================Inside before method      ===============
+[INFO ] 2018-03-21 23:00:07.276 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 23:00:07.848 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 23:00:07.973 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 23:00:07.974 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 23:00:13.396 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 23:00:13.413 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 23:00:13.492 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=ALICIA
+[INFO ] 2018-03-21 23:00:13.492 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 23:00:13.527 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 23:00:13.595 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 23:00:13.595 [main] RFLSDWebsiteBaseTest - ================end of before method      ===============
+[INFO ] 2018-03-21 23:00:13.597 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFConnectionLink_1456q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:00:13.600 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFConnectionLink_1456q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:00:13.603 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 23:00:13.603 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 23:00:13.620 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 23:00:13.690 [main] RFWebsiteDriver - RF Connection ready to be clicked
+[INFO ] 2018-03-21 23:00:13.781 [main] RFWebsiteDriver - CLICKED on RF Connection
+[INFO ] 2018-03-21 23:00:14.797 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 23:00:16.799 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 23:00:25.493 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 23:00:25.509 [main] RFWebsiteDriver - current URL is http://www.rodanandfields.com/rfconnection/
+[INFO ] 2018-03-21 23:00:25.678 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 23:00:25.683 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 23:00:27.684 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyRFConnectionLink_1456q has passed]
+[INFO ] 2018-03-21 23:00:27.692 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyRFConnectionLink_1456q has passed]
+[INFO ] 2018-03-21 23:00:27.697 [main] RFLSDWebsiteBaseTest - ================Inside before method      ===============
+[INFO ] 2018-03-21 23:00:27.697 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 23:00:28.201 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 23:00:28.289 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 23:00:28.290 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 23:00:33.605 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 23:00:33.613 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 23:00:33.669 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=ALICIA
+[INFO ] 2018-03-21 23:00:33.670 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 23:00:33.704 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 23:00:33.758 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 23:00:33.759 [main] RFLSDWebsiteBaseTest - ================end of before method      ===============
+[INFO ] 2018-03-21 23:00:33.760 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFJourneyLink_1457q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:00:33.764 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyRFJourneyLink_1457q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:00:33.766 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 23:00:33.766 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 23:00:33.783 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 23:00:33.858 [main] RFWebsiteDriver - RF Journey ready to be clicked
+[INFO ] 2018-03-21 23:00:33.950 [main] RFWebsiteDriver - CLICKED on RF Journey
+[INFO ] 2018-03-21 23:00:34.960 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 23:00:36.960 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 23:00:38.019 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 23:00:38.023 [main] RFWebsiteDriver - current URL is https://randfjourney.com/
+[INFO ] 2018-03-21 23:00:38.173 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 23:00:38.177 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 23:00:40.179 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyRFJourneyLink_1457q has passed]
+[INFO ] 2018-03-21 23:00:40.188 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyRFJourneyLink_1457q has passed]
+[INFO ] 2018-03-21 23:00:40.197 [main] RFLSDWebsiteBaseTest - ================Inside before method      ===============
+[INFO ] 2018-03-21 23:00:40.197 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 23:00:40.626 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 23:00:40.663 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 23:00:40.663 [main] RFWebsiteDriver - waiting for locator By.id: button-login
+[INFO ] 2018-03-21 23:00:45.956 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[text()='Hello,']/following-sibling::div[contains(@class,'text-uppercase')]
+[INFO ] 2018-03-21 23:00:45.970 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 23:00:46.025 [main] RFWebsiteDriver - TEXT fetched for First name in overview section is=ALICIA
+[INFO ] 2018-03-21 23:00:46.026 [main] RFLSDWebsiteBaseTest - Data returned by query: null
+[INFO ] 2018-03-21 23:00:46.053 [main] RFWebsiteDriver - R+F logo ready to be clicked
+[INFO ] 2018-03-21 23:00:46.113 [main] RFWebsiteDriver - CLICKED on R+F logo
+[INFO ] 2018-03-21 23:00:46.113 [main] RFLSDWebsiteBaseTest - ================end of before method      ===============
+[INFO ] 2018-03-21 23:00:46.115 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkGettingStarted_1450q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:00:46.118 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyLinkGettingStarted_1450q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:00:46.120 [main] RFWebsiteDriver - wait started for By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 23:00:46.120 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Links'][1]
+[INFO ] 2018-03-21 23:00:46.131 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 23:00:46.212 [main] RFWebsiteDriver - Getting Started ready to be clicked
+[INFO ] 2018-03-21 23:00:46.306 [main] RFWebsiteDriver - CLICKED on Getting Started
+[INFO ] 2018-03-21 23:00:47.323 [main] LSDRFWebsiteBasePage - Switched to child window
+[INFO ] 2018-03-21 23:00:49.325 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-03-21 23:00:50.376 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-03-21 23:00:50.385 [main] RFWebsiteDriver - current URL is https://www.rodanandfields.com/getstarted/login
+[INFO ] 2018-03-21 23:00:50.413 [main] RFWebsiteDriver - current window closed
+[INFO ] 2018-03-21 23:00:50.419 [main] LSDRFWebsiteBasePage - Switched to parent window
+[INFO ] 2018-03-21 23:00:52.419 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyLinkGettingStarted_1450q has passed]
+[INFO ] 2018-03-21 23:00:52.429 [main] TestListner - [TEST IS SUCCESSFUL -------- Test case testVerifyLinkGettingStarted_1450q has passed]
+[INFO ] 2018-03-21 23:00:52.437 [main] LSDRFWebsiteBasePage - start: clicklogout
+[INFO ] 2018-03-21 23:00:52.438 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 23:00:52.478 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 23:00:52.478 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-21 23:00:52.499 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-03-21 23:00:52.521 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-21 23:00:52.586 [main] RFWebsiteDriver - CLICKED on Pulse in top navigation
+[INFO ] 2018-03-21 23:00:52.586 [main] LSDRFWebsiteBasePage - Pulse in top navigation clicked
+[INFO ] 2018-03-21 23:00:52.587 [main] LSDRFWebsiteBasePage - Logging out from pulse application
+[INFO ] 2018-03-21 23:00:52.653 [main] RFWebsiteDriver - CLICKED by JS on 
+[INFO ] 2018-03-21 23:00:52.653 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 23:00:52.668 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 23:00:52.668 [main] LSDRFWebsiteBasePage - end: clicklogout
+[INFO ] 2018-03-21 23:00:52.669 [main] RFLSDWebsiteBaseTest - inside after class of com.rf.test.website.LSD.LSDLinkTests
+[INFO ] 2018-03-21 23:00:59.152 [main] RFWebsiteDriver - URL opened is https://skywalker.rodanandfields.com
+[INFO ] 2018-03-21 23:01:17.999 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 23:01:24.895 [main] RFWebsiteDriver - LSD Animation image disappears
+[INFO ] 2018-03-21 23:01:32.558 [main] LSDRFWebsiteBasePage - start: clicklogout
+[INFO ] 2018-03-21 23:01:38.086 [main] RFWebsiteDriver - Waiting for LSD loading image to get disappear
+[INFO ] 2018-03-21 23:01:42.998 [main] RFWebsiteDriver - LSD loading image disappears
+[INFO ] 2018-03-21 23:01:57.860 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[@id='rf-nav-wrapper']/descendant::span[text()='Pulse'][1]
+[INFO ] 2018-03-21 23:04:43.184 [main] RFWebsiteDriver - Pulse in top navigation ready to be clicked
+[INFO ] 2018-03-21 23:04:48.493 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  TotalNumberOfAllPCs_3349q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.499 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  TotalNumberOfAllPCs_3349q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.499 [main] TestListner - [TEST IS SKIPPED -------- Test case TotalNumberOfAllPCs_3349q skipped]
+[INFO ] 2018-03-21 23:04:48.503 [main] TestListner - [TEST IS SKIPPED -------- Test case TotalNumberOfAllPCs_3349q skipped]
+[INFO ] 2018-03-21 23:04:48.506 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCCardComponents_3240q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.510 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCCardComponents_3240q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.510 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCCardComponents_3240q skipped]
+[INFO ] 2018-03-21 23:04:48.514 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCCardComponents_3240q skipped]
+[INFO ] 2018-03-21 23:04:48.518 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingByQVLowTohigh_3011q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.521 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingByQVLowTohigh_3011q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.521 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingByQVLowTohigh_3011q skipped]
+[INFO ] 2018-03-21 23:04:48.525 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingByQVLowTohigh_3011q skipped]
+[INFO ] 2018-03-21 23:04:48.528 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNextMonth_2999q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.531 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNextMonth_2999q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.531 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNextMonth_2999q skipped]
+[INFO ] 2018-03-21 23:04:48.534 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNextMonth_2999q skipped]
+[INFO ] 2018-03-21 23:04:48.536 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForThisMonth_3000q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.538 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForThisMonth_3000q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.539 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForThisMonth_3000q skipped]
+[INFO ] 2018-03-21 23:04:48.542 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForThisMonth_3000q skipped]
+[INFO ] 2018-03-21 23:04:48.544 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfDeactivatedPCs_2985q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.546 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfDeactivatedPCs_2985q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.546 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfDeactivatedPCs_2985q skipped]
+[INFO ] 2018-03-21 23:04:48.549 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfDeactivatedPCs_2985q skipped]
+[INFO ] 2018-03-21 23:04:48.551 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfNewPCs_3306q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.553 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfNewPCs_3306q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.553 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfNewPCs_3306q skipped]
+[INFO ] 2018-03-21 23:04:48.556 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfNewPCs_3306q skipped]
+[INFO ] 2018-03-21 23:04:48.559 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsNextMonth_3021q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.561 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsNextMonth_3021q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.561 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsNextMonth_3021q skipped]
+[INFO ] 2018-03-21 23:04:48.564 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsNextMonth_3021q skipped]
+[INFO ] 2018-03-21 23:04:48.566 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsThisMonth_3013q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.568 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testTotalNumberOfPCsThisMonth_3013q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.569 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsThisMonth_3013q skipped]
+[INFO ] 2018-03-21 23:04:48.573 [main] TestListner - [TEST IS SKIPPED -------- Test case testTotalNumberOfPCsThisMonth_3013q skipped]
+[INFO ] 2018-03-21 23:04:48.580 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantAdhocOrderDetailsOnOrderCards_2848q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.582 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testConsultantAdhocOrderDetailsOnOrderCards_2848q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.582 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantAdhocOrderDetailsOnOrderCards_2848q skipped]
+[INFO ] 2018-03-21 23:04:48.586 [main] TestListner - [TEST IS SKIPPED -------- Test case testConsultantAdhocOrderDetailsOnOrderCards_2848q skipped]
+[INFO ] 2018-03-21 23:04:48.588 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoadingOrdersScreen_2821q_2820q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.590 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLoadingOrdersScreen_2821q_2820q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.590 [main] TestListner - [TEST IS SKIPPED -------- Test case testLoadingOrdersScreen_2821q_2820q skipped]
+[INFO ] 2018-03-21 23:04:48.594 [main] TestListner - [TEST IS SKIPPED -------- Test case testLoadingOrdersScreen_2821q_2820q skipped]
+[INFO ] 2018-03-21 23:04:48.597 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderStatusOrderResultsBasedOnOrderFilter_2835q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.599 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderStatusOrderResultsBasedOnOrderFilter_2835q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.599 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderStatusOrderResultsBasedOnOrderFilter_2835q skipped]
+[INFO ] 2018-03-21 23:04:48.603 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderStatusOrderResultsBasedOnOrderFilter_2835q skipped]
+[INFO ] 2018-03-21 23:04:48.606 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderTypeOrderResultsBasedOnOrderFilter_2834q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.609 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderTypeOrderResultsBasedOnOrderFilter_2834q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.610 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderTypeOrderResultsBasedOnOrderFilter_2834q skipped]
+[INFO ] 2018-03-21 23:04:48.613 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderTypeOrderResultsBasedOnOrderFilter_2834q skipped]
+[INFO ] 2018-03-21 23:04:48.615 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCAdhocOrderDetailsOnOrderCards_2844q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.617 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPCAdhocOrderDetailsOnOrderCards_2844q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.617 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCAdhocOrderDetailsOnOrderCards_2844q skipped]
+[INFO ] 2018-03-21 23:04:48.620 [main] TestListner - [TEST IS SKIPPED -------- Test case testPCAdhocOrderDetailsOnOrderCards_2844q skipped]
+[INFO ] 2018-03-21 23:04:48.622 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPulseSubscriptionOrderDetailsOnOrderCards_2843q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.624 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testPulseSubscriptionOrderDetailsOnOrderCards_2843q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.624 [main] TestListner - [TEST IS SKIPPED -------- Test case testPulseSubscriptionOrderDetailsOnOrderCards_2843q skipped]
+[INFO ] 2018-03-21 23:04:48.627 [main] TestListner - [TEST IS SKIPPED -------- Test case testPulseSubscriptionOrderDetailsOnOrderCards_2843q skipped]
+[INFO ] 2018-03-21 23:04:48.630 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testRetailAdhocOrderDetailsOnOrderCards_2841q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.633 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testRetailAdhocOrderDetailsOnOrderCards_2841q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.633 [main] TestListner - [TEST IS SKIPPED -------- Test case testRetailAdhocOrderDetailsOnOrderCards_2841q skipped]
+[INFO ] 2018-03-21 23:04:48.637 [main] TestListner - [TEST IS SKIPPED -------- Test case testRetailAdhocOrderDetailsOnOrderCards_2841q skipped]
+[INFO ] 2018-03-21 23:04:48.638 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsOnOrderCards_2838q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.640 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsOnOrderCards_2838q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.640 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsOnOrderCards_2838q skipped]
+[INFO ] 2018-03-21 23:04:48.643 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsOnOrderCards_2838q skipped]
+[INFO ] 2018-03-21 23:04:48.645 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.647 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.648 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q skipped]
+[INFO ] 2018-03-21 23:04:48.650 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyCRPOrderDetailsWithConsultantPersonalOnOrderCards_2855q skipped]
+[INFO ] 2018-03-21 23:04:48.652 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForFailedPCOrders_3430q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.655 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForFailedPCOrders_3430q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.655 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForFailedPCOrders_3430q skipped]
+[INFO ] 2018-03-21 23:04:48.658 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForFailedPCOrders_3430q skipped]
+[INFO ] 2018-03-21 23:04:48.660 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.663 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.663 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q skipped]
+[INFO ] 2018-03-21 23:04:48.666 [main] TestListner - [TEST IS SKIPPED -------- Test case testVerifyOrderReceiptForProcessedPersonalAdhocOrders_3425q skipped]
+[INFO ] 2018-03-21 23:04:48.670 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNewConsultant_3329q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.672 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testSortingMenuForNewConsultant_3329q
+******************************************************************************************************************************
+[INFO ] 2018-03-21 23:04:48.672 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNewConsultant_3329q skipped]
+[INFO ] 2018-03-21 23:04:48.676 [main] TestListner - [TEST IS SKIPPED -------- Test case testSortingMenuForNewConsultant_3329q skipped]

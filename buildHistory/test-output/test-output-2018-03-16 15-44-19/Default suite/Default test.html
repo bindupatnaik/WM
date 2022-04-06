@@ -1,0 +1,313 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>0/0/1</td>
+</tr><tr>
+<td>Started on:</td><td>Fri Mar 16 15:44:19 PDT 2018</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (157 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest.setUp()'><b>setUp</b><br>Test class: com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest</td>
+<td><div><pre>org.openqa.selenium.WebDriverException: System.ArgumentOutOfRangeException: Appium request /session resulted in an error: An unknown server-side error occurred while processing the command. Original error: Cannot read manifest information from &apos;/usr/local/deviceconnect/Appium/dc-appium-ebaac7a8-1.7.1/node_modules/appium/node_modules/appium-uiautomator2-driver/uiautomator2/appium-uiautomator2-server-v0.1.8.apk&apos;. Does the package exist and is accessible?
+Parameter name: status
+13
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient.ExceptionIfNonZeroStatus (System.String url, System.String response) [0x00000] in &lt;filename unknown&gt;:0 
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient+&lt;RequestUninitialized&gt;d__27.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[System.String].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient+&lt;RequestUninitialized&gt;d__29`1[MobileLabs.AirStream.Framework.Async.IO.AppiumResponse`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]]].MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[MobileLabs.AirStream.Framework.Async.IO.AppiumResponse`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]]].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient+&lt;InitializeAsync&gt;d__21.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter.GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter.cs:60 
+  at MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession+&lt;StartAppiumSession&gt;d__107.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[MobileLabs.AirStream.Gateway.Protocol.AppiumStartServiceResult].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession+&lt;Initialize&gt;d__92.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter.GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter.cs:60 
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient+&lt;Request&gt;d__24`1[MobileLabs.AirStream.Framework.Async.IO.AppiumResponse`1[System.Object]].MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession+&lt;Initialize&gt;d__92.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter.GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter.cs:60 
+  at MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession+&lt;Create&gt;d__90.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Web.Controllers.AppiumController+&lt;CreateSession&gt;d__13.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[MobileLabs.AirStream.Framework.IO.Mvc.MvcJsonResult].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Web.Controllers.AppiumController+&lt;HandleRequestAsync&gt;d__10.MoveNext () [0x00000] in &lt;filename unknown&gt;:0  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 24.42 seconds
+Build info: version: &apos;3.7.1&apos;, revision: &apos;8a0099a&apos;, time: &apos;2017-11-06T21:01:39.354Z&apos;
+System info: host: &apos;LD-4V2P3G2&apos;, ip: &apos;10.6.65.11&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_161&apos;
+Driver info: driver.version: RFWebsiteDriver
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$new$0(JsonWireProtocolResponse.java:53)
+	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$getResponseFunction$2(JsonWireProtocolResponse.java:91)
+	at org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:123)
+	at java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+	at java.util.Spliterators$ArraySpliterator.tryAdvance(Unknown Source)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(Unknown Source)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(Unknown Source)
+	at java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+	at java.util.stream.FindOps$FindOp.evaluateSequential(Unknown Source)
+	at java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+	at java.util.stream.ReferencePipeline.findFirst(Unknown Source)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:126)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:73)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:219)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:142)
+	at io.appium.java_client.DefaultGenericMobileDriver.&lt;init&gt;(DefaultGenericMobileDriver.java:38)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:83)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:93)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:72)
+	at com.rf.core.driver.website.RFWebsiteDriver.loadApplication(RFWebsiteDriver.java:107)
+	at com.rf.test.website.RFWebsiteBaseTest.setUp(RFWebsiteBaseTest.java:124)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace2100572327", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2100572327'><pre>org.openqa.selenium.WebDriverException: System.ArgumentOutOfRangeException: Appium request /session resulted in an error: An unknown server-side error occurred while processing the command. Original error: Cannot read manifest information from &apos;/usr/local/deviceconnect/Appium/dc-appium-ebaac7a8-1.7.1/node_modules/appium/node_modules/appium-uiautomator2-driver/uiautomator2/appium-uiautomator2-server-v0.1.8.apk&apos;. Does the package exist and is accessible?
+Parameter name: status
+13
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient.ExceptionIfNonZeroStatus (System.String url, System.String response) [0x00000] in &lt;filename unknown&gt;:0 
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient+&lt;RequestUninitialized&gt;d__27.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[System.String].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient+&lt;RequestUninitialized&gt;d__29`1[MobileLabs.AirStream.Framework.Async.IO.AppiumResponse`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]]].MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[MobileLabs.AirStream.Framework.Async.IO.AppiumResponse`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]]].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient+&lt;InitializeAsync&gt;d__21.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter.GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter.cs:60 
+  at MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession+&lt;StartAppiumSession&gt;d__107.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[MobileLabs.AirStream.Gateway.Protocol.AppiumStartServiceResult].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession+&lt;Initialize&gt;d__92.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter.GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter.cs:60 
+  at MobileLabs.AirStream.Framework.Async.IO.AppiumClient+&lt;Request&gt;d__24`1[MobileLabs.AirStream.Framework.Async.IO.AppiumResponse`1[System.Object]].MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession+&lt;Initialize&gt;d__92.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter.GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter.cs:60 
+  at MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession+&lt;Create&gt;d__90.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[MobileLabs.AirStream.Framework.Async.IO.Appium.AppiumSession].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Web.Controllers.AppiumController+&lt;CreateSession&gt;d__13.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62 
+  at System.Runtime.CompilerServices.TaskAwaiter`1[MobileLabs.AirStream.Framework.IO.Mvc.MvcJsonResult].GetResult () [0x00034] in /Users/eiz/code/mono/mcs/class/corlib/System.Runtime.CompilerServices/TaskAwaiter_T.cs:59 
+  at MobileLabs.AirStream.Web.Controllers.AppiumController+&lt;HandleRequestAsync&gt;d__10.MoveNext () [0x00000] in &lt;filename unknown&gt;:0  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 24.42 seconds
+Build info: version: &apos;3.7.1&apos;, revision: &apos;8a0099a&apos;, time: &apos;2017-11-06T21:01:39.354Z&apos;
+System info: host: &apos;LD-4V2P3G2&apos;, ip: &apos;10.6.65.11&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_161&apos;
+Driver info: driver.version: RFWebsiteDriver
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$new$0(JsonWireProtocolResponse.java:53)
+	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$getResponseFunction$2(JsonWireProtocolResponse.java:91)
+	at org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:123)
+	at java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+	at java.util.Spliterators$ArraySpliterator.tryAdvance(Unknown Source)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(Unknown Source)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(Unknown Source)
+	at java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+	at java.util.stream.FindOps$FindOp.evaluateSequential(Unknown Source)
+	at java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+	at java.util.stream.ReferencePipeline.findFirst(Unknown Source)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:126)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:73)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:219)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:142)
+	at io.appium.java_client.DefaultGenericMobileDriver.&lt;init&gt;(DefaultGenericMobileDriver.java:38)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:83)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:93)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:72)
+	at com.rf.core.driver.website.RFWebsiteDriver.loadApplication(RFWebsiteDriver.java:107)
+	at com.rf.test.website.RFWebsiteBaseTest.setUp(RFWebsiteBaseTest.java:124)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest.beforeClass()'><b>beforeClass</b><br>Test class: com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest</td>
+<td></td>
+<td>0</td>
+<td>com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest@793f29ff</td></tr>
+<tr>
+<td title='com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest.beforeMethod()'><b>beforeMethod</b><br>Test class: com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest</td>
+<td></td>
+<td>0</td>
+<td>com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest@793f29ff</td></tr>
+<tr>
+<td title='com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest.tearDownAfterMethod()'><b>tearDownAfterMethod</b><br>Test class: com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest</td>
+<td></td>
+<td>0</td>
+<td>com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest@793f29ff</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest.testStandardEnrollmentPersonalKitReverseRegimen_50()'><b>testStandardEnrollmentPersonalKitReverseRegimen_50</b><br>Test class: com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest</td>
+<td></td>
+<td>0</td>
+<td>com.rf.test.website.storeFront.hybris.standardEnrollment.corp.PersonalResultsKitTest@793f29ff</td></tr>
+</table><p>
+</body>
+</html>

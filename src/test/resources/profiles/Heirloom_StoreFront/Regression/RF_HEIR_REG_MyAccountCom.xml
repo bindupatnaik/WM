@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="MyAccount Suite(COM)">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="MyAccountCom_Test">
+		<classes>
+			<class name="com.rf.test.website.storeFront.heirloom.comPWS.myAccount.BillingTest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.comPWS.myAccount.CancelAndSubscribeCRPAndPulseTest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.comPWS.myAccount.EditPCPerksCartTest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.comPWS.myAccount.ManageCRPAndPulseInactiveUITest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.comPWS.myAccount.ManageCRPAndPulseUITest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.comPWS.myAccount.ManageMyAccountTest">
+			<methods>
+					<exclude name="testEditingAutoshipDatePCPerksStatusPageDisplayFromCOM_3098"></exclude>
+					<exclude name="testPCAutoshipOrderProcessing_3093"></exclude>
+				</methods>
+			</class>
+			<class name="com.rf.test.website.storeFront.heirloom.comPWS.myAccount.PulseTest"></class>
+			<class name="com.rf.test.website.storeFront.heirloom.comPWS.myAccount.ShippingTest"></class>
+		</classes>
+	</test>
+</suite>
+		

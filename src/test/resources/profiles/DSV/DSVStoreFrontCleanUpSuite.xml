@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="DSV Cleanup Suite">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="DSV Cleanup Test">
+		<classes>
+			<class name="com.rf.test.website.storeFront.hybris.dsv.StoreFrontHybrisDSVCleanProfilesTest">				
+			</class>
+		</classes>
+	</test>
+</suite>

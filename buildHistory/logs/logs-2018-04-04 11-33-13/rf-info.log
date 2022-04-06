@@ -1,0 +1,21 @@
+[INFO ] 2018-04-04 11:32:25.045 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-04-04 11:32:25.046 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-04-04 11:32:25.046 [main] RFBaseTest - Default URL is  ------ https://www.corprfo.dev3.rodanandfields.com
+[INFO ] 2018-04-04 11:32:25.046 [main] RFBaseTest - Default user password is  ------ null
+[INFO ] 2018-04-04 11:32:25.046 [main] RFBaseTest - Default Country is  ------ ca
+[INFO ] 2018-04-04 11:32:25.046 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.159
+[INFO ] 2018-04-04 11:32:25.047 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-04-04 11:32:25.047 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-04-04 11:32:25.048 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-04-04 11:32:31.549 [main] RFWebsiteDriver - URL opened is https://www.corprfo.dev3.rodanandfields.com
+[INFO ] 2018-04-04 11:32:55.542 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-04 11:32:55.575 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-04 11:32:57.575 [main] RFLSDWebsiteBaseTest - Application loaded
+[INFO ] 2018-04-04 11:32:57.589 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-04-04 11:32:57.639 [main] DBUtil - QUERY TRIGGERED IS DECLARE @CurrentOpenPeriod INT = ( SELECT TOP 1    PeriodID FROM     Commissions.reference.Periods WHERE    ClosedDate IS NULL   ORDER BY PeriodID ASC ) ,  @AccountID INT , @UserName NVARCHAR(225) , @Country NVARCHAR(225), @FirstName nvarchar(255), @LastName nvarchar(255) SELECT TOP 1 @AccountID = ab.AccountID , @UserName = ac.Username , @Country = co.Alpha2Code, @firstname=act.FirstName, @LastName= act. LAstName  FROM    RFOperations.RFO_Accounts.AccountBase (NOLOCK) ab JOIN RFOperations.RFO_Accounts.AccountRF (NOLOCK) rf ON rf.AccountID = ab.AccountID  JOIN RFOperations.Security.AccountSecurity (NOLOCK) ac ON ac.AccountID = ab.AccountID    JOIN RFOperations.RFO_Accounts.AccountContacts (NOLOCK) act ON act.AccountID = ab.AccountID  JOIN RFOperations.RFO_Reference.Countries (NOLOCK) co ON co.CountryID = ab.CountryID WHERE   ab.AccountTypeID = 1 AND ab.AccountStatusID = 1 AND co.Alpha2Code = 'US' AND rf.Active = 1  AND EXISTS ( SELECT 1 FROM   RFOperations.Hybris.Autoship (NOLOCK) a WHERE  a.AccountID = ab.AccountID  AND a.AutoshipTypeID = 3  AND a.Active = 1 )  AND EXISTS ( SELECT 1 FROM   Commissions.calcs.vwQualificationSummary v WHERE  ab.AccountID = v.AccountID  AND v.PeriodID = @CurrentOpenPeriod AND v.SV >= 100 AND v.PSQV >= 600 ) ORDER BY NEWID() SELECT  ISNULL(@AccountID, 1496) AccountID , ISNULL(@UserName, 'skincareconsultants@gmail.com') UserName , Isnull(@FirstName,'Sarah') [FirstName], Isnull(@LastName,'Robbins') [LastName], ISNULL(@Country, 'US') Country ,  @CurrentOpenPeriod CurrentOpenPeriod
+
+[INFO ] 2018-04-04 11:33:12.166 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testOrderTypeOrderResultsBasedOnOrderFilter_2834q
+******************************************************************************************************************************
+[INFO ] 2018-04-04 11:33:12.232 [main] TestListner - [TEST IS SKIPPED -------- Test case testOrderTypeOrderResultsBasedOnOrderFilter_2834q skipped]

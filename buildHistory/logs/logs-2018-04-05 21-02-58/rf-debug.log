@@ -1,0 +1,257 @@
+[DEBUG] 2018-04-05 20:38:54.941 [main] RFBaseTest - Started execution with  null
+[INFO ] 2018-04-05 20:39:01.372 [main] RFBaseTest - Environment properties are not provided by the user ... loading the default properties
+[INFO ] 2018-04-05 20:39:01.372 [main] RFBaseTest - Default Browser is  ------ chrome
+[INFO ] 2018-04-05 20:39:01.372 [main] RFBaseTest - Default URL is  ------ https://www.corprfo.ppd2.rodanandfields.com
+[INFO ] 2018-04-05 20:39:01.373 [main] RFBaseTest - Default user password is  ------ null
+[INFO ] 2018-04-05 20:39:01.373 [main] RFBaseTest - Default Country is  ------ ca
+[INFO ] 2018-04-05 20:39:01.373 [main] RFBaseTest - Default DB IP is  ------ 10.3.0.218
+[INFO ] 2018-04-05 20:39:01.373 [main] RFBaseTest - Default DB Username is  ------ perftest
+[INFO ] 2018-04-05 20:39:01.373 [main] RFBaseTest - Default DB Password is  ------ perftest
+[INFO ] 2018-04-05 20:39:01.373 [main] RFBaseTest - Default DB Domain is  ------ RF
+[INFO ] 2018-04-05 20:39:20.978 [main] RFBillingShippingPageWebsiteBaseTest - Application loaded
+[INFO ] 2018-04-05 20:39:20.983 [main] RFWebsiteDriver - DB connections are set
+[INFO ] 2018-04-05 20:39:21.054 [main] DBUtil - QUERY TRIGGERED IS USE RFOperations SET TRANSACTION  ISOLATION LEVEL READ UNCOMMITTED; BEGIN TRANSACTION SELECT TOP 1 ab.AccountID , ab.AccountNumber , [as].Username FROM    RFO_Accounts.AccountBase AS ab JOIN    RFO_Accounts.AccountRF AS ar ON ar.AccountID = ab.AccountID JOIN    Security.AccountSecurity AS [as] ON ab.AccountID = [as].AccountID WHERE   ab.CountryID = 40 AND ab.AccountTypeID = 1 AND NOT EXISTS ( SELECT 1 FROM   RFO_Accounts.AccountRF AS ar WHERE  ar.Active = 0 AND ar.HardTerminationDate IS NOT NULL AND ar.AccountID = ab.AccountID ) AND EXISTS ( SELECT 1 FROM   Hybris.Orders AS o WHERE  o.OrderTypeID = 3 AND o.OrderStatusID = 2 ) AND EXISTS ( SELECT 1 FROM   Hybris.Autoship AS a WHERE  a.AccountID = ab.AccountID AND a.AutoshipTypeID = 2 AND a.Active = 1 ) ORDER BY NEWID()
+
+[INFO ] 2018-04-05 20:39:23.001 [main] RFBillingShippingPageWebsiteBaseTest - The sie of map is 3
+[INFO ] 2018-04-05 20:39:23.001 [main] RFBillingShippingPageWebsiteBaseTest - Data returned by query: 39540473
+[INFO ] 2018-04-05 20:39:23.004 [main] TestListner - 
+******************************************************************************************************************************
+					TEST CASE NAME:                  testLSDDataCreation
+******************************************************************************************************************************
+[INFO ] 2018-04-05 20:39:38.046 [main] RFWebsiteDriver - URL opened is https://www.corprfo.ppd2.rodanandfields.com/ca
+[INFO ] 2018-04-05 20:39:47.585 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 20:39:47.851 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 20:45:14.522 [main] RFWebsiteDriver - wait started for By.cssSelector: a[id='corp-opp']
+[INFO ] 2018-04-05 20:45:14.532 [main] RFWebsiteDriver - waiting for locator By.cssSelector: a[id='corp-opp']
+[INFO ] 2018-04-05 20:45:14.709 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:45:14.933 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-05 20:45:15.214 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-05 20:45:15.223 [main] StoreFrontHomePage - Our business Link clicked
+[INFO ] 2018-04-05 20:45:22.130 [main] RFWebsiteDriver - wait started for By.cssSelector: a[title='Enroll Now']
+[INFO ] 2018-04-05 20:45:22.138 [main] RFWebsiteDriver - waiting for locator By.cssSelector: a[title='Enroll Now']
+[INFO ] 2018-04-05 20:45:22.243 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:45:22.414 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-05 20:45:24.987 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-05 20:45:24.996 [main] StoreFrontHomePage - Enroll Now Link clicked
+[INFO ] 2018-04-05 20:45:58.198 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='sponserparam' or @id='sponsor-name-id']
+[INFO ] 2018-04-05 20:45:58.208 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='sponserparam' or @id='sponsor-name-id']
+[INFO ] 2018-04-05 20:45:58.309 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:45:58.665 [main] RFWebsiteDriver - TYPED text as = test in sponsor search text field
+[INFO ] 2018-04-05 20:46:17.774 [main] RFWebsiteDriver - CLICKED by JS on sponsor search button
+[INFO ] 2018-04-05 20:46:40.111 [main] RFWebsiteDriver - wait started for By.xpath: //div[contains(@id,'search-results')]/descendant::*[contains(@value,'Select')][1]
+[INFO ] 2018-04-05 20:46:40.119 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[contains(@id,'search-results')]/descendant::*[contains(@value,'Select')][1]
+[INFO ] 2018-04-05 20:46:40.216 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:46:53.026 [main] RFWebsiteDriver - CLICKED by JS on first sponsor result
+[INFO ] 2018-04-05 20:46:53.033 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 20:46:53.106 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 20:47:59.045 [main] RFWebsiteDriver - kitname= RFx Express Business Kit ready to be clicked
+[INFO ] 2018-04-05 20:47:59.308 [main] RFWebsiteDriver - CLICKED on kitname= RFx Express Business Kit
+[INFO ] 2018-04-05 20:48:01.636 [main] RFWebsiteDriver - CLICKED by JS on regimen= REDEFINE
+[INFO ] 2018-04-05 20:48:01.809 [main] RFWebsiteDriver - Next button after selecting regimen ready to be clicked
+[INFO ] 2018-04-05 20:48:03.935 [main] RFWebsiteDriver - CLICKED on Next button after selecting regimen
+[INFO ] 2018-04-05 20:48:05.530 [main] RFWebsiteDriver - STANDARD ENROLLMENT ready to be clicked
+[INFO ] 2018-04-05 20:48:05.748 [main] RFWebsiteDriver - CLICKED on STANDARD ENROLLMENT
+[INFO ] 2018-04-05 20:48:05.955 [main] RFWebsiteDriver - Next button after selecting enrolmnt type ready to be clicked
+[INFO ] 2018-04-05 20:48:08.935 [main] RFWebsiteDriver - CLICKED on Next button after selecting enrolmnt type
+[INFO ] 2018-04-05 20:48:13.803 [main] RFWebsiteDriver - wait started for By.id: first-name
+[INFO ] 2018-04-05 20:48:13.811 [main] RFWebsiteDriver - waiting for locator By.id: first-name
+[INFO ] 2018-04-05 20:48:13.910 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:48:14.298 [main] RFWebsiteDriver - TYPED text as = Mary in First Name text field
+[INFO ] 2018-04-05 20:48:15.291 [main] RFWebsiteDriver - wait started for By.id: last-name
+[INFO ] 2018-04-05 20:48:15.299 [main] RFWebsiteDriver - waiting for locator By.id: last-name
+[INFO ] 2018-04-05 20:48:15.392 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:48:15.813 [main] RFWebsiteDriver - TYPED text as = McQueen in Last Name text field
+[INFO ] 2018-04-05 20:48:20.259 [main] RFWebsiteDriver - waiting for locator By.id: email-account
+[INFO ] 2018-04-05 20:48:20.354 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:48:20.361 [main] RFWebsiteDriver - wait started for By.id: email-account
+[INFO ] 2018-04-05 20:48:20.368 [main] RFWebsiteDriver - waiting for locator By.id: email-account
+[INFO ] 2018-04-05 20:48:20.454 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:48:21.047 [main] RFWebsiteDriver - TYPED text as = Mary@rodanandfields.com	 in Email Address text field
+[INFO ] 2018-04-05 20:48:27.739 [main] RFWebsiteDriver - wait started for By.id: new-password-account
+[INFO ] 2018-04-05 20:48:27.748 [main] RFWebsiteDriver - waiting for locator By.id: new-password-account
+[INFO ] 2018-04-05 20:48:54.357 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:48:54.760 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in password text field
+[INFO ] 2018-04-05 20:48:58.371 [main] RFWebsiteDriver - wait started for By.id: new-password-account2
+[INFO ] 2018-04-05 20:48:58.380 [main] RFWebsiteDriver - waiting for locator By.id: new-password-account2
+[INFO ] 2018-04-05 20:48:58.480 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:48:58.896 [main] RFWebsiteDriver - TYPED text as = 111Maiden$ in confirm password text field
+[INFO ] 2018-04-05 20:49:03.161 [main] RFWebsiteDriver - wait started for By.id: address-1
+[INFO ] 2018-04-05 20:49:03.170 [main] RFWebsiteDriver - waiting for locator By.id: address-1
+[INFO ] 2018-04-05 20:49:03.266 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:49:03.678 [main] RFWebsiteDriver - TYPED text as = 5502 54 St in addressLine 1 text field
+[INFO ] 2018-04-05 20:49:08.146 [main] RFWebsiteDriver - wait started for By.id: city
+[INFO ] 2018-04-05 20:49:08.155 [main] RFWebsiteDriver - waiting for locator By.id: city
+[INFO ] 2018-04-05 20:49:08.254 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:49:08.685 [main] RFWebsiteDriver - TYPED text as = Bonnyville in city text field
+[INFO ] 2018-04-05 20:49:55.624 [main] RFWebsiteDriver - wait started for By.id: postcode
+[INFO ] 2018-04-05 20:49:55.632 [main] RFWebsiteDriver - waiting for locator By.id: postcode
+[INFO ] 2018-04-05 20:49:55.727 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:49:56.157 [main] RFWebsiteDriver - TYPED text as = T9N 2N8 in postal code text field
+[INFO ] 2018-04-05 20:49:59.136 [main] RFWebsiteDriver - wait started for By.id: phonenumber
+[INFO ] 2018-04-05 20:49:59.144 [main] RFWebsiteDriver - waiting for locator By.id: phonenumber
+[INFO ] 2018-04-05 20:49:59.238 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:49:59.648 [main] RFWebsiteDriver - TYPED text as = 8067736419 in Phone number text field
+[INFO ] 2018-04-05 20:50:33.145 [main] RFWebsiteDriver - CLICKED by JS on next button
+[INFO ] 2018-04-05 20:50:34.173 [main] RFWebsiteDriver - Waiting for loading image to get disappear
+[INFO ] 2018-04-05 20:50:35.190 [main] RFWebsiteDriver - waiting..
+[INFO ] 2018-04-05 20:50:35.202 [main] RFWebsiteDriver - loading image disappears
+[INFO ] 2018-04-05 20:50:35.202 [main] RFWebsiteDriver - quick wait started for By.xpath: //*[contains(@id,'_AcceptOriginal')]
+[INFO ] 2018-04-05 20:50:35.220 [main] RFWebsiteDriver - wait over,element found
+[INFO ] 2018-04-05 20:50:35.220 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[contains(@id,'_AcceptOriginal')]
+[INFO ] 2018-04-05 20:50:35.233 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:51:29.936 [main] RFWebsiteDriver - CLICKED by JS on Use as entered button
+[INFO ] 2018-04-05 20:51:30.949 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 20:51:30.956 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 20:51:35.957 [main] RFWebsiteDriver - wait started for By.id: card-nr
+[INFO ] 2018-04-05 20:51:35.957 [main] RFWebsiteDriver - waiting for locator By.id: card-nr
+[INFO ] 2018-04-05 20:51:35.976 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:51:36.239 [main] RFWebsiteDriver - TYPED text as = 4747474747474747 in card number text field
+[INFO ] 2018-04-05 20:51:46.715 [main] RFWebsiteDriver - CLICKED by JS on expiry year
+[INFO ] 2018-04-05 20:51:46.715 [main] RFWebsiteDriver - wait started for By.id: security-code
+[INFO ] 2018-04-05 20:51:46.715 [main] RFWebsiteDriver - waiting for locator By.id: security-code
+[INFO ] 2018-04-05 20:51:46.733 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:51:46.892 [main] RFWebsiteDriver - TYPED text as = 123 in  text field
+[INFO ] 2018-04-05 20:51:58.062 [main] RFWebsiteDriver - wait started for By.id: card-name
+[INFO ] 2018-04-05 20:51:58.072 [main] RFWebsiteDriver - waiting for locator By.id: card-name
+[INFO ] 2018-04-05 20:51:58.186 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:51:58.754 [main] RFWebsiteDriver - TYPED text as = auto913761 in name on card text field
+[INFO ] 2018-04-05 20:52:27.549 [main] StoreFrontRFWebsiteBasePage - New billing card exp month selected
+[INFO ] 2018-04-05 20:52:28.691 [main] StoreFrontRFWebsiteBasePage - New billing card exp Year selected
+[INFO ] 2018-04-05 20:52:39.765 [main] RFWebsiteDriver - wait started for By.id: security-code
+[INFO ] 2018-04-05 20:52:39.773 [main] RFWebsiteDriver - waiting for locator By.id: security-code
+[INFO ] 2018-04-05 20:52:39.864 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:52:40.224 [main] RFWebsiteDriver - TYPED text as = 123 in CVV text field
+[INFO ] 2018-04-05 20:52:52.525 [main] RFWebsiteDriver - wait started for By.id: S-S-N
+[INFO ] 2018-04-05 20:52:52.533 [main] RFWebsiteDriver - waiting for locator By.id: S-S-N
+[INFO ] 2018-04-05 20:52:52.632 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:52:53.104 [main] RFWebsiteDriver - TYPED text as = 532845314 in Social Insurance Number text field
+[INFO ] 2018-04-05 20:52:57.572 [main] RFWebsiteDriver - wait started for By.id: name-on-card
+[INFO ] 2018-04-05 20:52:57.580 [main] RFWebsiteDriver - waiting for locator By.id: name-on-card
+[INFO ] 2018-04-05 20:52:57.672 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:52:58.117 [main] RFWebsiteDriver - TYPED text as = Mary last in name on card text field
+[INFO ] 2018-04-05 20:53:09.355 [main] RFWebsiteDriver - CLICKED by JS on next button
+[INFO ] 2018-04-05 20:53:10.438 [main] RFWebsiteDriver - quick wait started for By.xpath: //*[contains(@id,'_AcceptOriginal')]
+[INFO ] 2018-04-05 20:53:11.518 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:12.595 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:13.671 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:14.745 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:15.820 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:16.895 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:17.968 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:19.044 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:20.119 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:21.192 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:21.199 [main] RFWebsiteDriver - ELEMENT NOT FOUND
+[INFO ] 2018-04-05 20:53:21.206 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[contains(@id,'_AcceptOriginal')]
+[INFO ] 2018-04-05 20:53:26.498 [main] StoreFrontRFWebsiteBasePage - QAS Popup NOT present
+[INFO ] 2018-04-05 20:53:27.581 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 20:53:27.664 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 20:53:37.788 [main] RFWebsiteDriver - waiting for locator By.xpath: //input[@id='pulse-check']/ancestor::div[contains(@class,'checked')]
+[INFO ] 2018-04-05 20:53:37.887 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:53:37.977 [main] RFWebsiteDriver - waiting for locator By.xpath: //input[@id='CRP-check']/ancestor::div[@class='repaired-checkbox checked']
+[INFO ] 2018-04-05 20:53:38.072 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:53:51.480 [main] RFWebsiteDriver - CLICKED by JS on next button
+[INFO ] 2018-04-05 20:53:52.562 [main] RFWebsiteDriver - quick wait started for By.xpath: //*[contains(@id,'_AcceptOriginal')]
+[INFO ] 2018-04-05 20:53:53.639 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:54.721 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:55.798 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:56.877 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:57.954 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:53:59.030 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:54:00.105 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:54:01.178 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:54:02.254 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:54:03.333 [main] RFWebsiteDriver - waiting...
+[INFO ] 2018-04-05 20:54:03.340 [main] RFWebsiteDriver - ELEMENT NOT FOUND
+[INFO ] 2018-04-05 20:54:03.348 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[contains(@id,'_AcceptOriginal')]
+[INFO ] 2018-04-05 20:54:08.645 [main] StoreFrontRFWebsiteBasePage - QAS Popup NOT present
+[INFO ] 2018-04-05 20:54:09.723 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 20:54:09.794 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 20:54:20.319 [main] StoreFrontHomePage - filter done for high to low price
+[INFO ] 2018-04-05 20:54:20.327 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 20:54:20.399 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 20:54:22.235 [main] RFWebsiteDriver - CLICKED by JS on first product
+[INFO ] 2018-04-05 20:54:24.692 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@value='OK']
+[INFO ] 2018-04-05 20:54:29.986 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 20:54:30.063 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 20:54:33.819 [main] RFWebsiteDriver - quick wait started for By.id: quantity0
+[INFO ] 2018-04-05 20:54:33.917 [main] RFWebsiteDriver - wait over,element found
+[INFO ] 2018-04-05 20:54:34.092 [main] RFWebsiteDriver - wait started for By.id: quantity0
+[INFO ] 2018-04-05 20:54:34.101 [main] RFWebsiteDriver - waiting for locator By.id: quantity0
+[INFO ] 2018-04-05 20:54:34.185 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:54:34.524 [main] RFWebsiteDriver - TYPED text as = 5 in  text field
+[INFO ] 2018-04-05 20:54:34.532 [main] StoreFrontRFWebsiteBasePage - quantity added is 5
+[INFO ] 2018-04-05 20:54:34.699 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-05 20:54:37.090 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-05 20:54:37.097 [main] StoreFrontRFWebsiteBasePage - Update button clicked after adding quantity
+[INFO ] 2018-04-05 20:54:37.104 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 20:54:37.177 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 20:54:57.927 [main] RFWebsiteDriver - CLICKED by JS on Next button after adding quantity
+[INFO ] 2018-04-05 20:55:03.051 [main] RFWebsiteDriver - wait started for By.xpath: //input[@id='policies-check']/..
+[INFO ] 2018-04-05 20:55:03.059 [main] RFWebsiteDriver - waiting for locator By.xpath: //input[@id='policies-check']/..
+[INFO ] 2018-04-05 20:55:03.154 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:55:03.463 [main] RFWebsiteDriver - CLICKED by JS on Policies And Procedures CheckBox
+[INFO ] 2018-04-05 20:55:06.906 [main] RFWebsiteDriver - wait started for By.xpath: //input[@id='acknowledge-check']/..
+[INFO ] 2018-04-05 20:55:06.915 [main] RFWebsiteDriver - waiting for locator By.xpath: //input[@id='acknowledge-check']/..
+[INFO ] 2018-04-05 20:55:07.013 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:55:07.330 [main] RFWebsiteDriver - CLICKED by JS on I Acknowledge CheckBox
+[INFO ] 2018-04-05 20:55:09.440 [main] RFWebsiteDriver - CLICKED by JS on I Agree checkbox
+[INFO ] 2018-04-05 20:55:13.075 [main] RFWebsiteDriver - wait started for By.xpath: //input[@id='terms-check']/..
+[INFO ] 2018-04-05 20:55:13.084 [main] RFWebsiteDriver - waiting for locator By.xpath: //input[@id='terms-check']/..
+[INFO ] 2018-04-05 20:55:13.179 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:55:13.497 [main] RFWebsiteDriver - CLICKED by JS on erms And Conditions CheckBox
+[INFO ] 2018-04-05 20:55:31.516 [main] RFWebsiteDriver - CLICKED by JS on Charge and Enroll me button
+[INFO ] 2018-04-05 20:56:04.556 [main] RFWebsiteDriver - CLICKED by JS on Automatic payment confirmation button
+[INFO ] 2018-04-05 20:58:09.168 [main] RFWebsiteDriver - wait started for By.id: Congrats
+[INFO ] 2018-04-05 20:58:09.177 [main] RFWebsiteDriver - waiting for locator By.id: Congrats
+[INFO ] 2018-04-05 20:58:09.271 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 20:58:16.973 [main] DataCreationTest - Top level consultant email : Mary@rodanandfields.com
+[INFO ] 2018-04-05 20:59:44.178 [main] RFWebsiteDriver - CLICKED by JS on R+F logo
+[INFO ] 2018-04-05 21:00:15.173 [main] RFWebsiteDriver - CLICKED by JS on R+F logo
+[INFO ] 2018-04-05 21:00:21.261 [main] RFWebsiteDriver - wait started for By.id: account-info-button
+[INFO ] 2018-04-05 21:00:21.268 [main] RFWebsiteDriver - waiting for locator By.id: account-info-button
+[INFO ] 2018-04-05 21:00:21.361 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 21:00:21.690 [main] RFWebsiteDriver - CLICKED by JS on Your account info
+[INFO ] 2018-04-05 21:00:33.982 [main] RFWebsiteDriver - CLICKED by JS on logout
+[INFO ] 2018-04-05 21:00:33.990 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 21:00:34.061 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 21:01:09.514 [main] DBUtil - QUERY TRIGGERED IS select * from RFO_Accounts.AccountBase join RFO_Accounts.AccountContacts ON RFO_Accounts.AccountContacts.AccountId = RFO_Accounts.AccountBase.AccountID join RFO_Accounts.AccountEmails ON RFO_Accounts.AccountEmails.AccountContactId = RFO_Accounts.AccountContacts.AccountContactId join RFO_Accounts.EmailAddresses ON RFO_Accounts.EmailAddresses.EmailAddressID = RFO_Accounts.AccountEmails.EmailAddressId where RFO_Accounts.EmailAddresses.EmailAddress like 'Mary@rodanandfields.com'
+
+[INFO ] 2018-04-05 21:01:24.895 [main] RFBillingShippingPageWebsiteBaseTest - The sie of map is 29
+[INFO ] 2018-04-05 21:01:24.903 [main] RFBillingShippingPageWebsiteBaseTest - Data returned by query: 39544653
+[INFO ] 2018-04-05 21:01:28.165 [main] RFWebsiteDriver - URL opened is https://www.corprfo.ppd2.rodanandfields.com/ca
+[INFO ] 2018-04-05 21:01:29.967 [main] RFWebsiteDriver - Waiting For Page load via JS
+[INFO ] 2018-04-05 21:01:30.040 [main] RFWebsiteDriver - page load complete..
+[INFO ] 2018-04-05 21:01:59.871 [main] RFWebsiteDriver - wait started for By.cssSelector: a[id='corp-opp']
+[INFO ] 2018-04-05 21:01:59.879 [main] RFWebsiteDriver - waiting for locator By.cssSelector: a[id='corp-opp']
+[INFO ] 2018-04-05 21:01:59.983 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 21:02:00.154 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-05 21:02:00.366 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-05 21:02:00.375 [main] StoreFrontHomePage - Our business Link clicked
+[INFO ] 2018-04-05 21:02:03.231 [main] RFWebsiteDriver - wait started for By.cssSelector: a[title='Enroll Now']
+[INFO ] 2018-04-05 21:02:03.239 [main] RFWebsiteDriver - waiting for locator By.cssSelector: a[title='Enroll Now']
+[INFO ] 2018-04-05 21:02:03.344 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 21:02:03.517 [main] RFWebsiteDriver -  ready to be clicked
+[INFO ] 2018-04-05 21:02:05.413 [main] RFWebsiteDriver - CLICKED on 
+[INFO ] 2018-04-05 21:02:05.421 [main] StoreFrontHomePage - Enroll Now Link clicked
+[INFO ] 2018-04-05 21:02:08.688 [main] RFWebsiteDriver - wait started for By.xpath: //*[@id='sponserparam' or @id='sponsor-name-id']
+[INFO ] 2018-04-05 21:02:08.696 [main] RFWebsiteDriver - waiting for locator By.xpath: //*[@id='sponserparam' or @id='sponsor-name-id']
+[INFO ] 2018-04-05 21:02:08.800 [main] RFWebsiteDriver - Element found
+[INFO ] 2018-04-05 21:02:09.178 [main] RFWebsiteDriver - TYPED text as = 39544653 in sponsor search text field
+[INFO ] 2018-04-05 21:02:11.639 [main] RFWebsiteDriver - CLICKED by JS on sponsor search button
+[INFO ] 2018-04-05 21:02:12.715 [main] RFWebsiteDriver - wait started for By.xpath: //div[contains(@id,'search-results')]/descendant::*[contains(@value,'Select')][1]
+[INFO ] 2018-04-05 21:02:12.723 [main] RFWebsiteDriver - waiting for locator By.xpath: //div[contains(@id,'search-results')]/descendant::*[contains(@value,'Select')][1]
+[INFO ] 2018-04-05 21:02:56.665 [main] TestListner - [TEST HAS FAILED-------- Test case testLSDDataCreation has failed] due to reason:-<br>  org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[contains(@id,'search-results')]/descendant::*[contains(@value,'Select')][1]"}
+  (Session info: chrome=65.0.3325.181)
+  (Driver info: chromedriver=2.37.544315 (730aa6a5fdba159ac9f4c1e8cbc59bf1b5ce12b7),platform=Windows NT 10.0.10586 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.7.1', revision: '8a0099a', time: '2017-11-06T21:01:39.354Z'
+System info: host: 'LD-4V2P3G2', ip: '192.168.121.74', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_161'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.37.544315 (730aa6a5fdba15..., userDataDir: C:\Users\BPKOTA~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 65.0.3325.181, webStorageEnabled: true}
+Session ID: 235eb52d92af54743af063296a436d69
+*** Element info: {Using=xpath, value=//div[contains(@id,'search-results')]/descendant::*[contains(@value,'Select')][1]}
+[INFO ] 2018-04-05 21:02:56.667 [main] RFWebsiteDriver - Taking Screenshot
+[INFO ] 2018-04-05 21:02:57.286 [main] TestListner - Snapshot Path :<a href='C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testLSDDataCreation\testLSDDataCreation.png'>C:\Users\bpkotamahanti\Bindu\Automation\qa-automation\output\Screenshots\testLSDDataCreation\testLSDDataCreation.png</a>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Biz PWS Suite">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="Biz PWS Test">
+		<classes>
+			<class name="com.rf.test.website.storeFront.heirloom.BizPWSTest">
+			<methods>
+			<exclude name="testMyAccountOptionsAsPCCustomerFromBIZ_397"></exclude>
+			<exclude name="testMyAccountAsAConsultantCustomer_398"></exclude>
+			<exclude name="testPCUserTerminationFromBIZ_399"></exclude>
+			<exclude name="testPCPerksDelay30DaysFromBIZ_400"></exclude>
+			<exclude name="testPCPerksDelay60Days_401"></exclude>
+			<exclude name="testPCPerksTemplateUpdateFromBIZ_402"></exclude>
+			<exclude name="testPCPerksTemplateShippingAddressUpdateFromBIZ_403q"></exclude>
+			<exclude name="testPCPerksTemplateBillingAddressUpdateFromBIZ_404"></exclude>
+			<exclude name="testMyAccountOptionsAsRCCustomer_860"></exclude>
+			<exclude name="testSponsorInfo_MyAccountFromBizPWS_2152"></exclude>
+			</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

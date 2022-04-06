@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="MiniRegressionSuite_Heirloom_1">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.rf.core.listeners.RetryListener" />
+		<listener class-name="com.rf.core.listeners.TestListner" />
+	</listeners>
+	<test name="MiniRegressionTest_Heirloom_1">
+		<classes>
+			<class name="com.rf.test.website.storeFront.heirloom.CorpTest">
+				<methods>
+					<include name="testLoginAsExistingConsultant_372" />
+					<include name="testLoginAsExistingPC_373" />
+					<include name="testLoginAsExistingRC_374" />
+					<include name="testLogoutWithAValidUser_375" />
+					<include name="testConsultantStandardEnrollment_503" />
+					<include name="testConsultantExpressEnrollment_505" />
+					<include name="testRCEnrollment_506" />
+					<include name="testPCEnrollment_507" />
+					<include name="testEnrollConsultantUsingSpecialCharsInPrefixFieldFromCorp_872" />
+					<include name="testPlaceAdhocOrderFromCorpSiteForRC_508" />
+					<include name="AdhocOrderConsultantsOnlyProducts_509_2479" />
+					<include name="testPCAdhocOrderFromCorp_510" />
+					<include name="testAdhocOrderWithNewlyCreatedShippingAddressFromCorp_2478" />
+				</methods>
+			</class>
+			<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.ShippingTest">
+				    <include name="testCreateNewShippingProfileBySelectingTheCheckBoxUseThisShippingAddressForFutureCRPOrders_2778"></include>
+				    <include name="testVerifyCheckboxOnAddShippingForPC_2881"></include>
+				    <include name="testVerifyCheckboxOnEditShippingForRC_2888"></include>
+			</class>
+	<class name="com.rf.test.website.storeFront.heirloom.corp.myAccount.CancelAndSubscribeCRPAndPulseTest">
+		<include name="testVerifyUserIsAbleToCancelCRPCorpSite_2949"></include>
+		<inculde name="testWhenUserSelectsEnrollInCRP_CorpSite_2953"></inculde>
+		<include name="testCancelMyPulseProSubscriptionNavigation_CorpSite_2910"></include>
+		<include name="testSubscribeToPULSEProNavigationFromManageCRPandPULSEPage_2945"></include>
+	</class>
+			<class name="com.rf.test.website.storeFront.heirloom.BizPWSTest">
+				<methods>
+					<include name="testMyAccountAsAConsultantCustomer_398" />
+					<include name="testPCUserTerminationFromBIZ_399" />
+					<include name="testPCPerksTemplateUpdateFromBIZ_402" />
+					<include name="RegisterConsultantUsingExistingRetailCustomerEmailId_407" />
+					<include name="testConsultantEnrollmentSignUp_504q" />
+					<include name="testCheckoutAsConsultantFromBIZ_511" />
+					<include name="testPCPerksTemplateUpdateOnBizPWS_2343" />
+					<include name="testMyAccountOptionsAsPCCustomerFromBIZ_397" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

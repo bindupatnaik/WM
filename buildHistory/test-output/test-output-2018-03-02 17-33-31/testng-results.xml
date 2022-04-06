@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="53636" started-at="2018-03-03T01:32:33Z" finished-at="2018-03-03T01:33:27Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="53636" started-at="2018-03-03T01:32:33Z" finished-at="2018-03-03T01:33:27Z">
+      <class name="com.rf.test.website.LSD.LSDCustomerTests">
+        <test-method status="PASS" signature="beforeSuite(java.lang.String)[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="beforeSuite" is-config="true" duration-ms="83" started-at="2018-03-02T17:32:25Z" finished-at="2018-03-02T17:32:25Z">
+          <params>
+            <param index="0">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="setUp" is-config="true" duration-ms="7719" started-at="2018-03-02T17:32:25Z" depends-on-methods="com.rf.test.base.RFBaseTest.beforeSuite" finished-at="2018-03-02T17:32:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="beforeClass" is-config="true" duration-ms="26390" started-at="2018-03-02T17:32:33Z" finished-at="2018-03-02T17:33:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="initiateSoftAssertObject()[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="initiateSoftAssertObject" is-config="true" duration-ms="6095" started-at="2018-03-02T17:33:00Z" finished-at="2018-03-02T17:33:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initiateSoftAssertObject -->
+        <test-method status="PASS" signature="testTotalNumberOfPCsThisMonth_3013q()[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="testTotalNumberOfPCsThisMonth_3013q" duration-ms="16716" started-at="2018-03-02T17:33:06Z" finished-at="2018-03-02T17:33:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTotalNumberOfPCsThisMonth_3013q -->
+        <test-method status="PASS" signature="tearDownAfterMethod()[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="tearDownAfterMethod" is-config="true" duration-ms="2" started-at="2018-03-02T17:33:22Z" finished-at="2018-03-02T17:33:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownAfterMethod -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="afterClass" is-config="true" duration-ms="4396" started-at="2018-03-02T17:33:22Z" finished-at="2018-03-02T17:33:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="tearDown" is-config="true" duration-ms="1142" started-at="2018-03-02T17:33:27Z" finished-at="2018-03-02T17:33:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.rf.test.website.LSD.LSDCustomerTests@2af004b]" name="afterSuite" is-config="true" duration-ms="27" started-at="2018-03-02T17:33:28Z" depends-on-methods="com.rf.test.website.RFLSDWebsiteBaseTest.tearDown" finished-at="2018-03-02T17:33:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- com.rf.test.website.LSD.LSDCustomerTests -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
